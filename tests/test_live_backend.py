@@ -67,3 +67,42 @@ def test_session_build_and_readback(song):
         got = backend.read_back(res["tracks"][stem], res["scenes"][sec])
         assert compare_notes(plan.clips[cid]["notes"], got)["match"]
     assert all(len(p["notes"]) <= LiveBackend.CHUNK for c, p in fake.log if c == "add_notes_to_clip")
+
+
+def test_build_never_changes_set_tempo_unless_asked(song):
+    folder, _ = song
+    plan = make_plan(analyze(str(folder), log=lambda *_: None), "session")
+
+    class TempoFake(FakeLive):
+        def handle(self, cmd, p):
+            if cmd == "get_session_info":
+                return {"track_count": len(self.tracks), "scene_count": len(self.scenes), "tempo": 90.0}
+            return super().handle(cmd, p)
+
+    fake = TempoFake()
+    build(plan, LiveBackend(port=fake.port), log=lambda *_: None)
+    assert "set_tempo" not in [c for c, _ in fake.log]            # the set's tempo is left alone
+    fake2 = TempoFake()
+    build(plan, LiveBackend(port=fake2.port), log=lambda *_: None, set_tempo=True)
+    assert "set_tempo" in [c for c, _ in fake2.log]               # only when asked
+
+
+def test_arrangement_refused_when_set_tempo_differs(song):
+    import pytest
+    from stemforge.build.backends import NotSupported
+    folder, _ = song
+    plan = make_plan(analyze(str(folder), log=lambda *_: None), "arrangement")
+
+    class TempoFake(FakeLive):
+        def handle(self, cmd, p):
+            if cmd == "get_session_info":
+                return {"track_count": 2, "scene_count": 1, "tempo": plan.tempo + 10}
+            if cmd == "list_commands":
+                return {"commands": ["create_arrangement_clip", "add_notes_to_arrangement_clip",
+                                     "get_arrangement_clip_notes"]}
+            return super().handle(cmd, p)
+
+    fake = TempoFake()
+    with pytest.raises(NotSupported, match="BPM"):
+        build(plan, LiveBackend(port=fake.port), log=lambda *_: None)
+    assert "create_midi_track" not in [c for c, _ in fake.log]    # refused before creating anything

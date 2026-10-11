@@ -53,6 +53,21 @@ def _pyin(y: np.ndarray, sr: int, role: str) -> list[dict]:
     return notes
 
 
+def _split_at_onsets(notes: list[dict], y: np.ndarray, sr: int, margin: float = 0.03, min_len: float = 0.04) -> list[dict]:
+    """pyin merges consecutive frames of one pitch into a single note; a repeated bass note would collapse.
+    Cut every note at the stem's own onsets so repeated notes stay separate."""
+    import librosa
+    onsets = librosa.onset.onset_detect(y=y, sr=sr, units="time")
+    out: list[dict] = []
+    for n in notes:
+        cuts = [o for o in onsets if n["start_s"] + margin < o < n["end_s"] - margin]
+        edges = [n["start_s"]] + cuts + [n["end_s"]]
+        for a, b in zip(edges[:-1], edges[1:]):
+            if b - a >= min_len:
+                out.append({**n, "start_s": float(a), "end_s": float(b)})
+    return out
+
+
 def make_mono(notes: list[dict]) -> list[dict]:
     """Bass/melody are single-voice: when notes overlap keep the more confident one (trim, don't stack)."""
     notes = sorted(notes, key=lambda n: (n["start_s"], -n["confidence"]))
@@ -73,6 +88,11 @@ def make_mono(notes: list[dict]) -> list[dict]:
 def transcribe(path: str, y: np.ndarray, sr: int, role: str, mode: str):
     """Returns (notes_in_seconds, backend, warnings)."""
     warnings: list[str] = []
+    if role == "bass" and mode == "mono":
+        # Measured on a real bass stem: Basic Pitch reported the 2nd harmonic (an octave above the
+        # sub fundamental) in ~70% of frames; pyin tracks the fundamental. Basic Pitch is not used for bass.
+        notes = make_mono(_split_at_onsets(_pyin(y, sr, role), y, sr))
+        return notes, "pyin+onset-split", warnings
     try:
         notes = _basic_pitch(path, role, mode)
         backend = backend_name()

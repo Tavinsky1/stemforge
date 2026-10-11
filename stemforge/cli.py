@@ -55,6 +55,9 @@ def _cmd_verify(a):
     bp = blueprint.load(a.blueprint)
     rep = verify(bp)
     print(format_report(rep))
+    out = a.blueprint.replace(".blueprint.json", "") + ".verify.json"
+    Path(out).write_text(json.dumps(rep, indent=1))
+    print("\nreport saved -> %s (build uses it to leave out stems that clearly failed)" % out)
 
 
 def _cmd_clips(a):
@@ -69,7 +72,21 @@ def _cmd_build(a):
     from .build.backends import DryRunBackend, LiveBackend, MidiFilesBackend, NotSupported, build, compare_notes
     from .build.plan import make_plan
     bp = blueprint.load(a.blueprint)
-    plan = make_plan(bp, a.mode, a.stems)
+    only = a.stems
+    vpath = Path(a.blueprint.replace(".blueprint.json", "") + ".verify.json")
+    if vpath.exists():
+        from .verify import below_floor
+        report = json.loads(vpath.read_text())["stems"]
+        keep = list(only) if only else [s["name"] for s in bp["stems"]]
+        for name in list(keep):
+            reason = below_floor(report[name]) if name in report else None
+            if reason and name not in (a.include or []):
+                print("EXCLUDED %s: %s (force with --include \"%s\")" % (name, reason, name))
+                keep.remove(name)
+        only = keep
+    else:
+        print("note: no verify report next to the blueprint; run `stemforge verify` first to auto-exclude failed stems")
+    plan = make_plan(bp, a.mode, only)
     roles = {s["name"]: s["role"] for s in bp["stems"]}
     if a.backend == "dry":
         backend = DryRunBackend()
@@ -78,7 +95,7 @@ def _cmd_build(a):
     else:
         backend = LiveBackend(port=a.port)
     try:
-        res = build(plan, backend, roles)
+        res = build(plan, backend, roles, set_tempo=a.set_tempo)
     except NotSupported as e:
         print("NOT SUPPORTED:", e)
         return 2
@@ -103,10 +120,23 @@ def _cmd_build(a):
     return 0
 
 
+def _cmd_import_midi(a):
+    from .importmidi import import_into_blueprint
+    bp = blueprint.load(a.blueprint)
+    try:
+        r = import_into_blueprint(bp, a.stem, a.midi, as_beats=a.as_beats, min_confidence=a.min_confidence)
+    except ValueError as e:
+        print("ERROR:", e)
+        return 2
+    blueprint.save(bp, a.out or a.blueprint)
+    print("imported %d notes into '%s'; %d clips in the blueprint now. Run `stemforge verify` to compare against the stem."
+          % (r["notes"], r["stem"], r["clips"]))
+
+
 def _cmd_smoke(a):
-    if not a.confirm_scratch:
-        print("Refusing to connect to Live: pass --confirm-scratch once the open set is a scratch set "
-              "(this adds one MIDI track named 'stemforge_smoke').")
+    if not a.confirm_set_ok:
+        print("Refusing to connect to Live: pass --confirm-set-ok once you are happy for the open set to get one "
+              "new MIDI track named 'stemforge_smoke' (nothing existing is touched; use a scratch set the first time).")
         return 2
     from .smoke import run
     try:
@@ -134,11 +164,20 @@ def main(argv=None):
     b.add_argument("--backend", choices=["dry", "midi", "live"], default="dry")
     b.add_argument("--out", default="out"); b.add_argument("--port", type=int, default=9877)
     b.add_argument("--stems", nargs="*"); b.add_argument("--readback", action="store_true")
+    b.add_argument("--include", nargs="*", help="stems to build even though verify says they failed")
+    b.add_argument("--set-tempo", action="store_true", help="change the open Live set's tempo to the song's (never done by default)")
     b.set_defaults(fn=_cmd_build)
+    im = sp.add_parser("import-midi", help="use a MIDI file (NeuralNote, DAW, hand-edited) as one stem's notes")
+    im.add_argument("blueprint"); im.add_argument("midi"); im.add_argument("--stem", required=True)
+    im.add_argument("--as-beats", action="store_true",
+                    help="MIDI bar/beat positions already match the song's bar 1 (default: positions are time from the stem start)")
+    im.add_argument("--min-confidence", type=float, default=0.0); im.add_argument("--out")
+    im.set_defaults(fn=_cmd_import_midi)
     sm = sp.add_parser("smoke-live", help="write/read-back check against a SCRATCH Live set (adds one track)")
     sm.add_argument("--port", type=int, default=9877)
-    sm.add_argument("--confirm-scratch", action="store_true",
-                    help="required: you confirm the open Live set is a scratch set, not a real project")
+    sm.add_argument("--confirm-set-ok", "--confirm-scratch", dest="confirm_set_ok", action="store_true",
+                    help="required: you confirm it is fine to add a test track to the open Live set "
+                         "(use a scratch set for the first run)")
     sm.add_argument("--cleanup", action="store_true", help="delete the smoke track afterwards (name-checked)")
     sm.set_defaults(fn=_cmd_smoke)
     a = p.parse_args(argv)

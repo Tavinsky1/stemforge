@@ -14,6 +14,9 @@ class NotSupported(RuntimeError):
 
 
 class Backend:
+    modifies_set = False      # True for backends that write into someone's open Live set
+    session_tempo = None      # the open set's tempo, when the backend can read it
+
     def start(self, plan: Plan): ...
     def set_tempo(self, bpm: float): ...
     def create_track(self, name: str, role: str) -> int: ...
@@ -23,11 +26,20 @@ class Backend:
     def finish(self): ...
 
 
-def build(plan: Plan, backend: Backend, roles: dict[str, str] | None = None, log=print) -> dict:
-    """Run the plan on a backend. Only ever creates NEW tracks/scenes; never touches existing ones."""
+def build(plan: Plan, backend: Backend, roles: dict[str, str] | None = None, log=print,
+          set_tempo: bool = False) -> dict:
+    """Run the plan on a backend. Only ever creates NEW tracks/scenes; never touches existing ones.
+    A backend that writes into someone's open set (Live) does NOT change that set's tempo unless set_tempo=True."""
     roles = roles or {}
     backend.start(plan)
-    backend.set_tempo(plan.tempo)
+    if not backend.modifies_set or set_tempo:
+        backend.set_tempo(plan.tempo)
+    elif backend.session_tempo is not None and abs(backend.session_tempo - plan.tempo) > 0.5:
+        msg = ("the open set is at %.2f BPM but the song is %.2f BPM" % (backend.session_tempo, plan.tempo))
+        if plan.mode == "arrangement":
+            raise NotSupported(msg + "; arrangement clips are placed in beats, so they would drift away from the audio. "
+                               "Pass --set-tempo to change the set's tempo, or use --mode session.")
+        log("WARNING: " + msg + "; leaving the set's tempo alone (pass --set-tempo to match the song).")
     track_idx = {n: backend.create_track(n, roles.get(n, "")) for n in plan.tracks}
     scene_idx = {}
     if plan.mode == "session":
@@ -160,6 +172,7 @@ class LiveBackend(Backend):
     Only new tracks/scenes are created; existing ones are never modified.
     """
     CHUNK = 80   # notes per add_notes_to_clip call (crash prevention)
+    modifies_set = True
 
     def __init__(self, host="127.0.0.1", port=9877, timeout=15.0, log=print):
         self.host, self.port, self.timeout, self.log = host, port, timeout, log
@@ -212,6 +225,7 @@ class LiveBackend(Backend):
         info = self.send("get_session_info")
         self.log("connected to Live: %s tracks, %s scenes" % (info.get("track_count", "?"), info.get("scene_count", "?")))
         self.scene_base = info.get("scene_count")
+        self.session_tempo = info.get("tempo")
         if plan.mode == "arrangement":
             cmds = self.available_commands()
             need = {"create_arrangement_clip", "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}

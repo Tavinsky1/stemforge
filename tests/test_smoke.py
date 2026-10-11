@@ -64,4 +64,4 @@ def test_smoke_cleanup_only_deletes_own_track():
 
 def test_cli_refuses_without_confirm_scratch(capsys):
     assert main(["smoke-live"]) == 2
-    assert "scratch" in capsys.readouterr().out
+    assert "--confirm-set-ok" in capsys.readouterr().out

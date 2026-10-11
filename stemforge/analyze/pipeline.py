@@ -70,7 +70,7 @@ def analyze(folder: str, stems: list[Stem] | None = None, resolution: float = 0.
             raw, tr["backend"], w = pitched.transcribe(s.path, ys[s.name], sr, s.role, s.mode)
             tr["warnings"] += w
         beats = qmod.to_beats(raw, grid)
-        vel_src = [n.get("level", n["confidence"]) for n in beats] if s.mode == "drums" else [n["confidence"] for n in beats]
+        vel_src = [n.get("level", n["confidence"]) for n in beats]   # loudness when the tracker measured it
         for n, v in zip(beats, qmod.velocity_from_level(vel_src)):
             n["velocity"] = v
         cleaned, stats = qmod.quantize(beats, resolution, strength, drums=(s.mode == "drums"), mono=(s.mode == "mono"))

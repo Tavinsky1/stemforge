@@ -86,3 +86,17 @@ def test_live_backend_refuses_foreign_tracks():
     import pytest
     with pytest.raises(RuntimeError):
         b._guard(track=0)
+
+
+def test_bass_uses_pyin_and_splits_repeated_notes():
+    import numpy as np
+    from stemforge.analyze import pitched
+    sr = 22050
+    t = np.arange(int(0.5 * sr)) / sr
+    env = np.exp(-6 * t)                                   # decaying note, hard attack
+    note = (np.sin(2 * np.pi * 55.0 * t) * env).astype(np.float32)
+    y = np.concatenate([note, note, note])                 # same pitch three times, no gap
+    notes, backend, _ = pitched.transcribe("unused.wav", y, sr, "bass", "mono")
+    assert backend == "pyin+onset-split"
+    assert len(notes) >= 3
+    assert {n["pitch"] for n in notes} == {33}             # A1 = 55 Hz
