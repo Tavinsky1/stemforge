@@ -8,6 +8,7 @@ dependencies = ["numpy", "scipy", "soundfile", "librosa>=0.10", "mido"]
 [project.optional-dependencies]
 pitched = ["basic-pitch", "setuptools<81"]   # polyphonic transcription; resampy needs pkg_resources. Use Python 3.11.
 app = ["PySide6>=6.6"]
+package = ["pyinstaller"]   # packaging/build_app.sh -> Stemforge.app
 dev = ["pytest"]
 
 [project.scripts]

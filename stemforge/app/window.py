@@ -2,17 +2,18 @@
 from __future__ import annotations
 
 import sys
+import traceback
 from pathlib import Path
 
 from PySide6.QtCore import QPointF, QRectF, Qt, QThread, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QPainter, QPen
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox, QFileDialog, QFrame, QHBoxLayout,
-                               QHeaderView, QLabel, QMainWindow, QPlainTextEdit, QProgressBar, QPushButton,
+                               QHeaderView, QLabel, QMainWindow, QMessageBox, QPlainTextEdit, QProgressBar, QPushButton,
                                QRadioButton, QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem, QToolTip,
                                QVBoxLayout, QWidget)
 
 from ..build.backends import NotSupported
-from . import actions, live, theme
+from . import actions, installer, live, theme
 
 
 class Worker(QThread):
@@ -29,11 +30,9 @@ class Worker(QThread):
             self.done.emit(self.fn(self.log.emit))
         except NotSupported as e:
             self.failed.emit(str(e))
-        except (ConnectionRefusedError, TimeoutError, OSError) as e:
-            self.failed.emit("Cannot reach Ableton (%s). Open Live 12 with AbletonMCP selected as a Control Surface, "
-                             "or export .mid files instead." % e)
-        except Exception as e:  # shown to the user, never silent
-            self.failed.emit("%s: %s" % (type(e).__name__, e))
+        except Exception as e:  # shown to the user in plain English; the technical detail goes to 'Show details'
+            self.log.emit(traceback.format_exc())
+            self.failed.emit(actions.plain_error(e))
 
 
 class Probe(QThread):
@@ -49,6 +48,7 @@ class Probe(QThread):
 
 def card(title: str, step: str) -> tuple[QFrame, QVBoxLayout]:
     f = QFrame(); f.setObjectName("card")
+    f.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)   # extra window height goes below the cards, not into them
     lay = QVBoxLayout(f); lay.setContentsMargins(18, 16, 18, 16); lay.setSpacing(12)
     head = QHBoxLayout(); n = QLabel(step); n.setObjectName("step")
     t = QLabel(title); t.setObjectName("h2")
@@ -164,6 +164,14 @@ class Window(QMainWindow):
 
         # 1 stems
         c1, l1 = card("Stems", "1"); col.addWidget(c1)
+        self.hint = QLabel("<b>How to use</b><br>"
+                           "1. Drop the folder that holds one audio file per stem (a song's stems from Suno, Demucs, etc.).<br>"
+                           "2. Check each stem's label, then press <b>Analyze song</b> (a couple of minutes for a full track).<br>"
+                           "3. <b>Preview</b> changes nothing. <b>Export .mid files</b> needs no Ableton. "
+                           "To build inside Ableton, open a new, empty set and press <b>Connect to Ableton</b>.<br>"
+                           "Stemforge only ever <i>adds</i> tracks and scenes; it never changes or deletes what is already in your set.")
+        self.hint.setObjectName("muted"); self.hint.setWordWrap(True); self.hint.setTextFormat(Qt.RichText)
+        l1.addWidget(self.hint)
         self.drop = DropArea(); self.drop.folderChosen.connect(self.load_folder); l1.addWidget(self.drop)
         self.stem_table = QTableWidget(0, 4); self.stem_table.setHorizontalHeaderLabels(["Use", "Stem", "What it is", "File"])
         self.stem_table.verticalHeader().setVisible(False); self.stem_table.setShowGrid(False)
@@ -183,10 +191,11 @@ class Window(QMainWindow):
         self.timeline = Timeline(); self.timeline.hide(); l2.addWidget(self.timeline)
         self.warn_label = QLabel(""); self.warn_label.setWordWrap(True); self.warn_label.setTextFormat(Qt.RichText)
         self.warn_label.hide(); l2.addWidget(self.warn_label)
-        self.res_table = QTableWidget(0, 4); self.res_table.setHorizontalHeaderLabels(["Stem", "Notes", "Result", "Detail"])
+        self.res_table = QTableWidget(0, 5); self.res_table.setHorizontalHeaderLabels(["Stem", "Notes", "Result", "Detail", "Build anyway"])
         self.res_table.verticalHeader().setVisible(False); self.res_table.setShowGrid(False)
         h = self.res_table.horizontalHeader(); h.setSectionResizeMode(3, QHeaderView.Stretch)
         self.res_table.setColumnWidth(0, 160); self.res_table.setColumnWidth(1, 60); self.res_table.setColumnWidth(2, 110)
+        self.res_table.setColumnWidth(4, 110)
         self.res_table.setMaximumHeight(0); self.res_table.setSelectionMode(QTableWidget.NoSelection)
         l2.addWidget(self.res_table)
 
@@ -208,6 +217,13 @@ class Window(QMainWindow):
         br.addStretch(); l3.addLayout(br)
         self.btn_live.clicked.connect(lambda: self.build("live")); self.btn_prev.clicked.connect(lambda: self.build("preview"))
         self.btn_mid.clicked.connect(lambda: self.build("midi"))
+        self.btn_install = QPushButton("Install / update Remote Script…")
+        self.btn_install.setToolTip("Copies Stemforge's Ableton script into Live's folder after backing up the old one. "
+                                    "Does not contact Ableton.")
+        self.btn_install.clicked.connect(self.install_script)
+        self.script_note = QLabel(""); self.script_note.setObjectName("muted"); self.script_note.setWordWrap(True)
+        sr = QHBoxLayout(); sr.addWidget(self.btn_install); sr.addWidget(self.script_note, 1); l3.addLayout(sr)
+        self.refresh_script_note()
         self.outcome = QLabel(""); self.outcome.setWordWrap(True); self.outcome.setTextFormat(Qt.RichText)
         self.outcome.setMinimumHeight(56); self.outcome.setAlignment(Qt.AlignTop | Qt.AlignLeft); l3.addWidget(self.outcome)
 
@@ -235,6 +251,47 @@ class Window(QMainWindow):
         self.facts.setText(msg) if self.btn_an.isEnabled() is False else None
         self.btn_an.setEnabled(self.folder is not None); self.log("ERROR: " + msg)
 
+    # ---- remote script
+    def refresh_script_note(self):
+        try:
+            ver = installer.source_version()
+            st = installer.status()
+        except Exception as e:
+            self.script_note.setText(actions.plain_error(e)); return
+        if not st:
+            self.script_note.setText("Script version %s ships with this app. Ableton's preferences folder was not found." % ver)
+            return
+        top = st[0]
+        word = {"current": "is up to date", "old": "is out of date", "missing": "is not installed"}[top["state"]]
+        self.script_note.setText("The Ableton script (version %s) %s in %s." % (ver, word, top["live"]))
+
+    def install_script(self):
+        try:
+            st = installer.status()
+        except Exception as e:
+            self.show_error(actions.plain_error(e)); return
+        if not st:
+            self.show_error("Could not find Ableton's preferences folder. Open Ableton Live once, then try again."); return
+        top = st[0]
+        if QMessageBox.question(self, "Install the Ableton script",
+                                "Copy Stemforge's script into:\n%s\n\nWhatever is there now is backed up first to "
+                                "~/Documents/ableton-backups/. Nothing is deleted, and Ableton is not contacted."
+                                % top["target"]) != QMessageBox.Yes:
+            return
+        try:
+            r = installer.install()
+        except Exception as e:
+            self.log(traceback.format_exc()); self.show_error(actions.plain_error(e)); return
+        self.refresh_script_note()
+        if r["installed"]:
+            msg = ("Installed script %s for %s.<br>Backup of the old one: %s<br><b>Now in Ableton:</b> Preferences > "
+                   "Link, Tempo &amp; MIDI, switch the AbletonMCP Control Surface to None and back (restart Live if the "
+                   "status pill still shows an old version), then press <b>Connect to Ableton</b>."
+                   % (r["version"], r["live"], r["backup"] or "none needed (nothing was installed)"))
+        else:
+            msg = "The script in %s is already up to date (%s)." % (r["live"], r["version"])
+        self.outcome.setText(msg)
+
     # ---- ableton status
     def connect_live(self):
         self.pill.setText("Checking Ableton…")
@@ -251,7 +308,16 @@ class Window(QMainWindow):
     def on_live(self, r):
         self.live = r
         color = theme.OK if r["connected"] else theme.WARN
-        self.pill.setText("●  " + r["message"]); self.pill.setStyleSheet(pill_style(color))
+        msg = r["message"]
+        try:
+            want = installer.source_version()
+        except Exception:
+            want = None
+        if r.get("connected") and r.get("version") and want and r["version"] != want:
+            msg += " · script is %s, this app ships %s: reinstall, then toggle the Control Surface" % (r["version"], want)
+            color = theme.WARN
+        self.pill.setText("●  " + msg); self.pill.setStyleSheet(pill_style(color))
+        self.pill.setToolTip(("Script loaded by Live: %s" % r["file"]) if r.get("file") else self.pill.toolTip())
         self.update_buttons()
 
     # ---- step 1
@@ -263,6 +329,7 @@ class Window(QMainWindow):
         if not stems:
             self.show_error("No audio files found in that folder."); return
         self.folder, self.stems, self.bp, self.report = folder, stems, None, None
+        self.hint.hide()
         self.drop.title.setText(Path(folder).name); self.drop.sub.setText("%d stems found  ·  click to choose another folder" % len(stems))
         t = self.stem_table; t.setRowCount(len(stems))
         for i, s in enumerate(stems):
@@ -307,6 +374,13 @@ class Window(QMainWindow):
             col = {"ok": theme.OK, "check": theme.WARN, "out": theme.BAD}[label]
             txt = {"ok": "● Good", "check": "● Check by ear", "out": "● Left out"}[label]
             vals = [n, str(len(s["transcription"]["notes"])), txt, detail]
+            n_notes = len(s["transcription"]["notes"])
+            if label == "out" and n_notes:     # force a left-out stem back in (the CLI's --include)
+                cb = QCheckBox(); cb.setToolTip("Build this stem even though the check says it is unreliable")
+                cell = QWidget(); hl = QHBoxLayout(cell); hl.addWidget(cb); hl.setAlignment(Qt.AlignCenter)
+                hl.setContentsMargins(0, 0, 0, 0); t.setCellWidget(i, 4, cell)
+            else:
+                t.removeCellWidget(i, 4)
             for j, v in enumerate(vals):
                 it = QTableWidgetItem(v); t.setItem(i, j, it)
                 if j == 2:
@@ -331,16 +405,26 @@ class Window(QMainWindow):
         self.rb_arr.setToolTip("" if arr_ok else "Needs the updated Remote Script in Live (shown in the status pill).")
         self.btn_live.setEnabled(bool(ready and self.live.get("connected")))
 
+    def forced_stems(self) -> set[str]:
+        out = set()
+        for i in range(self.res_table.rowCount()):
+            cell = self.res_table.cellWidget(i, 4)
+            cb = cell.findChild(QCheckBox) if cell else None
+            if cb is not None and cb.isChecked():
+                out.add(self.res_table.item(i, 0).text())
+        return out
+
     def build(self, target):
         if not self.bp:
             return
         mode = "arrangement" if self.rb_arr.isChecked() else "session"
+        include = self.forced_stems()
         out_dir = str(Path(self.folder) / "stemforge_midi")
         for b in (self.btn_live, self.btn_prev, self.btn_mid):
             b.setEnabled(False)
         self.progress.show(); self.outcome.setText("Working…")
         self.run(lambda log: actions.run_build(self.bp, self.report, mode=mode, target=target, out_dir=out_dir,
-                                               set_tempo=self.cb_tempo.isChecked(), include=set(), port=9877, log=log),
+                                               set_tempo=self.cb_tempo.isChecked(), include=include, port=9877, log=log),
                  lambda s: self.built(s, target, out_dir))
 
     def built(self, s, target, out_dir):
@@ -359,7 +443,54 @@ class Window(QMainWindow):
         self.outcome.setText(head + left)
 
 
+def selftest() -> int:
+    """`stemforge-app --selftest`: check the parts a packaged build can lose, without opening a window or touching Live."""
+    import importlib, json, os
+    os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+    checks = {}
+    for mod in ("numpy", "scipy", "librosa", "soundfile", "mido", "PySide6", "basic_pitch", "resampy"):
+        try:
+            importlib.import_module(mod); checks[mod] = "ok"
+        except Exception as e:
+            checks[mod] = "FAIL: %s" % e
+    try:
+        from basic_pitch import ICASSP_2022_MODEL_PATH
+        checks["basic_pitch model file"] = "ok" if Path(str(ICASSP_2022_MODEL_PATH)).exists() else "FAIL: %s missing" % ICASSP_2022_MODEL_PATH
+    except Exception as e:
+        checks["basic_pitch model file"] = "FAIL: %s" % e
+    try:
+        checks["remote script shipped"] = "ok (%s)" % installer.source_version()
+    except Exception as e:
+        checks["remote script shipped"] = "FAIL: %s" % e
+    try:
+        import soundfile as sf
+        checks["mp3 decoding (built in)"] = "ok" if "MP3" in sf.available_formats() else "MISSING: mp3 stems need ffmpeg (brew install ffmpeg)"
+    except Exception as e:
+        checks["mp3 decoding (built in)"] = "FAIL: %s" % e
+    try:   # run the heavy parts for real on a 2 s tone: this is what a broken bundle loses (numba JIT, Core ML)
+        import tempfile
+        import librosa, numpy as np, soundfile as sf
+        sr = 22050
+        y = (0.5 * np.sin(2 * np.pi * 110.0 * np.arange(2 * sr) / sr)).astype("float32")
+        f0, voiced, _ = librosa.pyin(y, fmin=30.0, fmax=400.0, sr=sr)
+        hz = float(np.nanmedian(f0))
+        checks["pitch tracker (pyin) runs"] = "ok (%.0f Hz)" % hz if 100 < hz < 120 else "FAIL: got %.1f Hz" % hz
+        from basic_pitch.inference import predict
+        with tempfile.TemporaryDirectory() as d:
+            sf.write(d + "/t.wav", y, sr)
+            _, _, events = predict(d + "/t.wav")
+        checks["note transcriber (Basic Pitch) runs"] = "ok (%d notes)" % len(events)
+    except Exception as e:
+        checks["heavy parts run"] = "FAIL: %s: %s" % (type(e).__name__, e)
+    print(json.dumps(checks, indent=1))
+    return 0 if not any(v.startswith("FAIL") for v in checks.values()) else 1
+
+
 def main():
+    if "--selftest" in sys.argv:
+        return selftest()
+    import os   # an app started from Finder has a minimal PATH: let it find Homebrew's ffmpeg for odd formats
+    os.environ["PATH"] = os.environ.get("PATH", "") + ":/opt/homebrew/bin:/usr/local/bin"
     app = QApplication.instance() or QApplication(sys.argv)
     app.setStyleSheet(theme.QSS)
     w = Window(); w.show()

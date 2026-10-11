@@ -97,3 +97,33 @@ def test_select_stems_leaves_out_failures():
     rep = {"a": {"onset_precision": 0.9, "coverage": 0.9}}
     keep, out = actions.select_stems(bp, rep, set())
     assert keep == ["a"] and out == {"b": "silent"}
+
+
+def test_left_out_stem_can_be_forced_in(qapp, song):
+    from PySide6.QtWidgets import QCheckBox
+    from stemforge.analyze.pipeline import analyze
+    from stemforge.app.window import Window
+    folder, _ = song
+    bp = analyze(str(folder), log=lambda *_: None)
+    names = [s["name"] for s in bp["stems"]]
+    good = {"onset_precision": 0.9, "onset_recall": 0.9, "onset_f1": 0.9, "coverage": 0.9, "verdict": ["no objective problem found"]}
+    rep = {n: dict(good) for n in names}
+    rep[names[0]] = dict(good, onset_precision=0.01)          # clearly failed -> left out, but it has notes
+    w = Window()
+    w.folder = str(folder)
+    w.analyzed((bp, {"stems": rep}))
+    assert w.res_table.cellWidget(0, 4) is not None and w.forced_stems() == set()
+    w.res_table.cellWidget(0, 4).findChild(QCheckBox).setChecked(True)
+    assert w.forced_stems() == {names[0]}
+    from stemforge import workflow
+    keep, out = workflow.select_stems(bp, rep, include=w.forced_stems())
+    assert names[0] in keep and not out
+    w.timer.stop()
+
+
+def test_plain_errors_are_plain():
+    assert "Reinstall" in actions.plain_error(ImportError("x", name="basic_pitch"))
+    assert "Connect to Ableton" in actions.plain_error(ConnectionRefusedError())
+    assert "No audio files" in actions.plain_error(RuntimeError("no audio files found in /x"))
+    msg = actions.plain_error(KeyError("zzz"))
+    assert "Show details" in msg and "Traceback" not in msg

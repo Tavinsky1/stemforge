@@ -39,3 +39,24 @@ def stems_from_folder(folder: str) -> list[Stem]:
 
 def make_stem(s: Stem, role: str) -> Stem:
     return Stem(name=s.name, path=s.path, role=role, mode=ROLE_MODE[role])
+
+
+def plain_error(exc: BaseException) -> str:
+    """One plain-English sentence for the window. The technical detail goes to 'Show details'."""
+    if isinstance(exc, ImportError):
+        return ("A part Stemforge needs is not installed (%s). Reinstall with: pip install -e \".[app,pitched]\" "
+                "using Python 3.11." % (getattr(exc, "name", None) or exc))
+    if isinstance(exc, FileNotFoundError):
+        return "Stemforge could not find a file it needs: %s" % (exc.filename or exc)
+    if isinstance(exc, PermissionError):
+        return "Stemforge is not allowed to read or write there (%s). Check the folder's permissions." % (exc.filename or exc)
+    if isinstance(exc, MemoryError):
+        return "The computer ran out of memory while analysing. Close other apps, or analyse fewer stems at a time."
+    if isinstance(exc, (ConnectionRefusedError, TimeoutError, ConnectionError)):
+        return ("Cannot reach Ableton. Open Live 12, select AbletonMCP as a Control Surface, then press "
+                "'Connect to Ableton'. You can also export .mid files instead.")
+    if isinstance(exc, RuntimeError) and "no audio files" in str(exc):
+        return "No audio files were found in that folder. Choose the folder that holds one file per stem."
+    if isinstance(exc, ValueError):
+        return "Something in the analysis did not add up (%s). Open 'Show details' and send me that text." % exc
+    return "Something went wrong (%s). Open 'Show details' for the technical message." % type(exc).__name__

@@ -16,3 +16,5 @@ out/
 *.m4a
 *Stems*/
 *.verify.json
+build/
+packaging/*.spec

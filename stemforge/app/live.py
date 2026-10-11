@@ -20,13 +20,15 @@ def probe(port: int = 9877, timeout: float = 0.8, known: dict | None = None) -> 
     except Exception as e:  # listening but misbehaving
         return {"connected": False, "arrangement": False, "message": "Ableton answered with an error: %s" % e}
     out = {"connected": True, "tracks": info.get("track_count"), "scenes": info.get("scene_count"),
-           "tempo": info.get("tempo"), "version": None, "arrangement": False}
+           "tempo": info.get("tempo"), "version": None, "arrangement": False, "file": None}
     try:
         if known and known.get("connected"):
             out["version"], out["arrangement"] = known.get("version"), known.get("arrangement", False)
+            out["file"] = known.get("file")
         else:
             r = b.send("list_commands")
             out["version"] = r.get("version")
+            out["file"] = r.get("file")
             out["arrangement"] = ARRANGEMENT_COMMANDS <= set(r.get("commands", []))
     except Exception:
         pass   # older Remote Script without list_commands: Session mode still works

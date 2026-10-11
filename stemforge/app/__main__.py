@@ -1,3 +1,5 @@
+import sys
+
 from .window import main
 
-main()
+sys.exit(main())

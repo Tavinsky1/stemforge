@@ -40,7 +40,9 @@ command that does not exist yet.
 `stemforge/app/` is a native PySide6 window (Stems -> Analyze -> Send to Ableton). Selection of stems, build and read-back
 live in `stemforge/workflow.py`, shared by the CLI and the app. The app never contacts Live until the user clicks
 "Connect to Ableton" (read-only probe, polls every 10 s afterwards, pauses during a build). Tested offscreen only
-(`tests/test_app.py`); not yet run against real Live; no `.app` bundle yet. Never run the app or tests with the
+(`tests/test_app.py`); not yet run against real Live. `packaging/build_app.sh` builds `dist/Stemforge.app` (PyInstaller;
+`Stemforge.app/Contents/MacOS/Stemforge --selftest` verifies the bundle runs pyin + Basic Pitch). The Remote Script ships in
+`ableton/AbletonMCP/` and the app's Install button backs up to `~/Documents/ableton-backups/` first. Never run the app or tests with the
 probe pointed at an open set you care about without the owner's go-ahead.
 
 ## Commands
