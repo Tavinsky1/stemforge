@@ -41,8 +41,11 @@ Pitch inside the bundle).
 
 ## Ableton side: Stemforge's OWN script, separate from the owner's AbletonMCP
 - `ableton/Stemforge/__init__.py`: its own Control Surface, port 9878. The installer writes only
-  `User Remote Scripts/Stemforge/__init__.py` and refuses any other path; it never reads, backs up, renames or deletes
-  `AbletonMCP` or any other script folder (tests prove it).
+  `<configured User Library>/Remote Scripts/Stemforge/__init__.py` (from Live's `Library.cfg`; fallback
+  `Preferences/.../User Remote Scripts/Stemforge/`) and refuses any other path; it never reads, backs up, renames or deletes
+  `AbletonMCP` or any other script folder (tests prove it). Every real install is logged in `INSTALL_LOG.md` with its revert.
+- The owner's Live keeps its User Library outside `~/Music` (`~/Documents/ableton projects/SharedAbleton`); a script in the
+  Preferences folder was NOT listed there. Two different AbletonMCP copies exist (Preferences, User Library): never touch either.
 - The script cannot delete, load devices or change the mixer/transport. It writes only to tracks and scenes it created in
   the current Live session, and never overwrites a clip. Ownership uses Live's object identity (`_live_ptr`/`==`); if that
   does not hold in real Live it fails CLOSED (refuses writes), which the smoke test will show.

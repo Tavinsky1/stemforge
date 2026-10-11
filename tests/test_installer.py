@@ -90,3 +90,60 @@ def test_shipped_script_is_stemforges_own():
     assert installer.script_source().parent.name == "Stemforge"
     assert "DEFAULT_PORT = 9878" in src and 'SCRIPT_NAME = "Stemforge"' in src
     assert "9877" not in src and "AbletonMCP" not in src.replace("NOT AbletonMCP", "").replace("it is NOT AbletonMCP", "")
+
+
+# --- custom User Library (Live scans <User Library>/Remote Scripts when Library.cfg points at one) -------------------
+
+def _live_with_library(tmp_path):
+    prefs, prefs_scripts = _live(tmp_path)
+    lib_root = tmp_path / "SharedAbleton"
+    lib_scripts = lib_root / "User Library" / "Remote Scripts"
+    for name in ("AbletonMCP", "TouchDesigner"):
+        (lib_scripts / name).mkdir(parents=True)
+        (lib_scripts / name / "__init__.py").write_text("OWNER'S %s" % name)
+    (lib_scripts / "AbletonMCP" / "__init__.py.bak").write_text("backup")
+    (prefs / "Live 12.2.1" / "Library.cfg").write_text(
+        '<ContentLibrary>\n<UserLibrary>\n<LibraryProject Id="1">\n<ProjectName Value="User Library" />\n'
+        '<ProjectPath Value="%s" />\n</LibraryProject>\n</UserLibrary>\n'
+        '<LibrarySliceInfo Id="1" Path="/x/Factory Packs/A" />\n</ContentLibrary>\n' % lib_root)
+    return prefs, prefs_scripts, lib_scripts
+
+
+def test_installs_into_the_configured_user_library_not_preferences(tmp_path):
+    prefs, prefs_scripts, lib_scripts = _live_with_library(tmp_path)
+    before_lib, before_prefs = _snapshot(lib_scripts), _snapshot(prefs_scripts)
+    p = installer.plan(prefs=prefs, backups=tmp_path / "bk")
+    assert p["writes"] == [str(lib_scripts / "Stemforge" / "__init__.py")]
+    assert p["left_alone"] == ["AbletonMCP", "TouchDesigner"] and p["backup_to"] is None
+    r = installer.install(prefs=prefs, backups=tmp_path / "bk")
+    assert r["installed"] and Path(r["target"]) == lib_scripts / "Stemforge" / "__init__.py"
+    after_lib = _snapshot(lib_scripts)
+    assert set(after_lib) - set(before_lib) == {os.path.join("Stemforge", "__init__.py")}
+    assert {k: v for k, v in after_lib.items() if k in before_lib} == before_lib      # AbletonMCP etc: byte+mtime identical
+    assert _snapshot(prefs_scripts) == before_prefs                                    # the Preferences folder untouched
+    assert not (tmp_path / "bk").exists()
+
+
+def test_library_install_never_touches_an_abletonmcp_path(tmp_path):
+    prefs, _, lib_scripts = _live_with_library(tmp_path)
+    for bad in (lib_scripts / "AbletonMCP" / "__init__.py", lib_scripts / "AbletonMCP" / "Stemforge" / "__init__.py",
+                lib_scripts / "TouchDesigner" / "__init__.py", lib_scripts / "Stemforge" / "other.py",
+                lib_scripts / "__init__.py"):
+        with pytest.raises(PermissionError):
+            installer._assert_safe(bad)
+
+
+def test_missing_library_folder_falls_back_to_preferences(tmp_path):
+    prefs, prefs_scripts = _live(tmp_path)
+    (prefs / "Live 12.2.1" / "Library.cfg").write_text(
+        '<UserLibrary><LibraryProject Id="1"><ProjectPath Value="%s" /></LibraryProject></UserLibrary>' % (tmp_path / "gone"))
+    assert installer.plan(prefs=prefs, backups=tmp_path / "bk")["writes"] == [str(prefs_scripts / "Stemforge" / "__init__.py")]
+
+
+def test_unused_stemforge_copy_in_preferences_is_reported_not_touched(tmp_path):
+    prefs, prefs_scripts, lib_scripts = _live_with_library(tmp_path)
+    (prefs_scripts / "Stemforge").mkdir()
+    (prefs_scripts / "Stemforge" / "__init__.py").write_text("OLD COPY")
+    r = installer.install(prefs=prefs, backups=tmp_path / "bk")
+    assert r["unused_copy"] == str(prefs_scripts / "Stemforge" / "__init__.py")
+    assert (prefs_scripts / "Stemforge" / "__init__.py").read_text() == "OLD COPY"

@@ -1,7 +1,9 @@
 """Install Stemforge's own Ableton script as a SEPARATE Control Surface. Touches only files on disk; never talks to Live.
 
-It writes exactly one file: <Live prefs>/Live <version>/User Remote Scripts/Stemforge/__init__.py.
-It never reads, writes, renames, backs up or deletes any other script folder (AbletonMCP and everyone else's stay as they are).
+It writes exactly one file: Stemforge/__init__.py inside the `Remote Scripts` folder of the User Library that Live itself
+is configured to use (Library.cfg). Only when no User Library is configured does it fall back to
+<Live prefs>/Live <version>/User Remote Scripts. It never reads, writes, renames, backs up or deletes any other script
+folder (AbletonMCP and everyone else's stay as they are).
 """
 from __future__ import annotations
 
@@ -38,10 +40,13 @@ def source_version() -> str | None:
     return m.group(1) if m else None
 
 
+SCRIPT_ROOT_NAMES = ("Remote Scripts", "User Remote Scripts")
+
+
 def _assert_safe(target: Path) -> None:
-    """Refuse to write anywhere except .../User Remote Scripts/Stemforge/__init__.py."""
-    if target.name != "__init__.py" or target.parent.name != SCRIPT_FOLDER or target.parent.parent.name != "User Remote Scripts":
-        raise PermissionError("Stemforge only installs into a folder named '%s' inside 'User Remote Scripts'; refusing %s"
+    """Refuse to write anywhere except .../(User) Remote Scripts/Stemforge/__init__.py."""
+    if target.name != "__init__.py" or target.parent.name != SCRIPT_FOLDER or target.parent.parent.name not in SCRIPT_ROOT_NAMES:
+        raise PermissionError("Stemforge only installs into a folder named '%s' inside a Remote Scripts folder; refusing %s"
                               % (SCRIPT_FOLDER, target))
     if any(part.lower() in ("abletonmcp",) for part in target.parts):
         raise PermissionError("Refusing to touch an AbletonMCP folder: %s" % target)
@@ -56,25 +61,50 @@ def live_script_dirs(prefs: Path = PREFS) -> list[Path]:
     return [s for _, s in sorted(found, key=lambda x: x[0], reverse=True)]
 
 
+def library_scripts_dir(live_dir: Path) -> Path | None:
+    """`<User Library>/Remote Scripts` of the User Library this Live version is configured with (Library.cfg), if that
+    User Library folder exists. Live scans this folder; a custom library location is common."""
+    try:
+        text = (live_dir / "Library.cfg").read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    m = re.search(r'<UserLibrary>.*?<ProjectPath Value="([^"]+)"', text, re.S)
+    if not m:
+        return None
+    lib = Path(m.group(1)) / "User Library"
+    return lib / "Remote Scripts" if lib.is_dir() else None
+
+
+def script_folders(prefs: Path = PREFS) -> list[tuple[str, Path, Path]]:
+    """(Live version, where Stemforge belongs, Live's own User Remote Scripts folder), most recently used Live first."""
+    out = []
+    for fallback in live_script_dirs(prefs):
+        out.append((fallback.parent.name, library_scripts_dir(fallback.parent) or fallback, fallback))
+    return out
+
+
 def plan(prefs: Path = PREFS, backups: Path = BACKUPS) -> dict | None:
     """Exactly what install() would do, without doing it. None when no Live preferences folder exists."""
-    dirs = live_script_dirs(prefs)
-    if not dirs:
+    folders = script_folders(prefs)
+    if not folders:
         return None
-    scripts = dirs[0]
+    live_name, scripts, prefs_scripts = folders[0]
     target = scripts / SCRIPT_FOLDER / "__init__.py"
     _assert_safe(target)
     src = script_source()
     state = "missing" if not target.exists() else ("current" if sha256(target) == sha256(src) else "different")
     others = sorted(p.name for p in scripts.iterdir() if p.is_dir() and p.name != SCRIPT_FOLDER) if scripts.is_dir() else []
-    return {"live": scripts.parent.name, "target": str(target), "state": state, "version": source_version(),
+    stale = prefs_scripts / SCRIPT_FOLDER / "__init__.py"
+    return {"live": live_name, "target": str(target), "state": state, "version": source_version(),
             "writes": [str(target)],
             "backup_to": str(backups / "Stemforge-<time>" / "__init__.py") if state == "different" else None,
-            "left_alone": others}
+            "left_alone": others,
+            # a Stemforge copy in a folder Live does not scan for this setup: reported, never touched here
+            "unused_copy": str(stale) if stale != target and stale.exists() else None}
 
 
 def install(prefs: Path = PREFS, backups: Path = BACKUPS) -> dict:
-    """Create User Remote Scripts/Stemforge/__init__.py for the most recently used Live version.
+    """Create Stemforge/__init__.py in the Remote Scripts folder Live scans, for the most recently used Live version.
 
     An existing, different Stemforge script is backed up first. Nothing else is read, changed or deleted.
     """
@@ -87,7 +117,7 @@ def install(prefs: Path = PREFS, backups: Path = BACKUPS) -> dict:
     src = script_source()
     if p["state"] == "current":
         return {"installed": False, "reason": "already current", "target": p["target"], "backup": None,
-                "version": p["version"], "live": p["live"]}
+                "version": p["version"], "live": p["live"], "unused_copy": p["unused_copy"]}
     backup = None
     if p["state"] == "different":
         backup = backups / ("Stemforge-%s" % time.strftime("%Y%m%d-%H%M%S")) / "__init__.py"
@@ -100,4 +130,4 @@ def install(prefs: Path = PREFS, backups: Path = BACKUPS) -> dict:
     if sha256(target) != sha256(src):
         raise OSError("The installed file does not match the one Stemforge ships.")
     return {"installed": True, "reason": None, "target": p["target"], "backup": str(backup) if backup else None,
-            "version": p["version"], "live": p["live"]}
+            "version": p["version"], "live": p["live"], "unused_copy": p["unused_copy"]}

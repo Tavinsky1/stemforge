@@ -50,8 +50,11 @@ Stemforge ships its **own** Control Surface script, `Stemforge`, in `ableton/Ste
 ([Live 12 manual](https://www.ableton.com/live-manual/12/midi-and-key-remote-control/)).
 
 1. In the app press **Install Stemforge's Ableton script…** and confirm. It creates exactly one file,
-   `~/Library/Preferences/Ableton/Live <version>/User Remote Scripts/Stemforge/__init__.py` (an existing, different Stemforge
-   script is backed up first to `~/Documents/ableton-backups/`). Nothing else is read, changed or deleted.
+   `Stemforge/__init__.py` inside the `Remote Scripts` folder of **the User Library your Live is configured with** (read from
+   Live's `Library.cfg`, e.g. `<your library>/User Library/Remote Scripts/`; only if none is configured it uses
+   `~/Library/Preferences/Ableton/Live <version>/User Remote Scripts/`). An existing, different Stemforge script is backed up
+   first to `~/Documents/ableton-backups/`. Nothing else is read, changed or deleted. `INSTALL_LOG.md` records every write
+   with its revert command.
 2. In Live: **Preferences > Link, Tempo & MIDI**. In an *empty* Control Surface slot choose **Stemforge** (Input and Output: None).
    Leave your other slots alone. Restart Live if Stemforge is not in the list.
 3. In the app press **Connect to Ableton**.

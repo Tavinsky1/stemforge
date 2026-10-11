@@ -218,8 +218,8 @@ class Window(QMainWindow):
         self.btn_live.clicked.connect(lambda: self.build("live")); self.btn_prev.clicked.connect(lambda: self.build("preview"))
         self.btn_mid.clicked.connect(lambda: self.build("midi"))
         self.btn_install = QPushButton("Install Stemforge's Ableton script…")
-        self.btn_install.setToolTip("Adds Stemforge's own, separate Control Surface script to Live's User Remote Scripts "
-                                    "folder. Your other scripts are not touched. Does not contact Ableton.")
+        self.btn_install.setToolTip("Adds Stemforge's own, separate Control Surface script to the Remote Scripts folder "
+                                    "of your Ableton User Library. Your other scripts are not touched. Does not contact Ableton.")
         self.btn_install.clicked.connect(self.install_script)
         self.script_note = QLabel(""); self.script_note.setObjectName("muted"); self.script_note.setWordWrap(True)
         sr = QHBoxLayout(); sr.addWidget(self.btn_install); sr.addWidget(self.script_note, 1); l3.addLayout(sr)
@@ -295,6 +295,9 @@ class Window(QMainWindow):
             "Leave your other slots as they are. If Stemforge is not in the list, restart Live. "
             "Then press <b>Connect to Ableton</b> here."
             % (r["version"], r["live"], ("<br>Backup of the previous Stemforge script: %s" % r["backup"]) if r["backup"] else ""))
+        if r.get("unused_copy"):
+            self.log("Note: an older Stemforge copy sits in %s. Live does not scan that folder on this setup; it can be "
+                     "deleted by hand." % r["unused_copy"])
 
     # ---- ableton status
     def connect_live(self):
