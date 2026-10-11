@@ -33,7 +33,8 @@ def _cmd_analyze(a):
     if a.skip:
         stems = [s for s in stems if s.name not in a.skip and s.role not in a.skip]
     bp = analyze(a.folder, stems, resolution=a.resolution, strength=a.strength, min_confidence=a.min_confidence)
-    out = a.out or str(Path(a.folder) / (Path(a.folder).name + ".blueprint.json"))
+    from .workflow import blueprint_path
+    out = a.out or str(blueprint_path(a.folder))
     blueprint.save(bp, out)
     g = bp["global"]
     print("\nblueprint -> %s" % out)
@@ -55,9 +56,8 @@ def _cmd_verify(a):
     bp = blueprint.load(a.blueprint)
     rep = verify(bp)
     print(format_report(rep))
-    out = a.blueprint.replace(".blueprint.json", "") + ".verify.json"
-    Path(out).write_text(json.dumps(rep, indent=1))
-    print("\nreport saved -> %s (build uses it to leave out stems that clearly failed)" % out)
+    from .workflow import save_verify
+    print("\nreport saved -> %s (build uses it to leave out stems that clearly failed)" % save_verify(a.blueprint, rep))
 
 
 def _cmd_clips(a):
@@ -69,33 +69,16 @@ def _cmd_clips(a):
 
 
 def _cmd_build(a):
-    from .build.backends import DryRunBackend, LiveBackend, MidiFilesBackend, NotSupported, build, compare_notes
-    from .build.plan import make_plan
+    from . import workflow
+    from .build.backends import NotSupported
     bp = blueprint.load(a.blueprint)
-    only = a.stems
-    vpath = Path(a.blueprint.replace(".blueprint.json", "") + ".verify.json")
-    if vpath.exists():
-        from .verify import below_floor
-        report = json.loads(vpath.read_text())["stems"]
-        keep = list(only) if only else [s["name"] for s in bp["stems"]]
-        for name in list(keep):
-            reason = below_floor(report[name]) if name in report else None
-            if reason and name not in (a.include or []):
-                print("EXCLUDED %s: %s (force with --include \"%s\")" % (name, reason, name))
-                keep.remove(name)
-        only = keep
-    else:
+    report = workflow.load_verify(a.blueprint)
+    if report is None:
         print("note: no verify report next to the blueprint; run `stemforge verify` first to auto-exclude failed stems")
-    plan = make_plan(bp, a.mode, only)
-    roles = {s["name"]: s["role"] for s in bp["stems"]}
-    if a.backend == "dry":
-        backend = DryRunBackend()
-    elif a.backend == "midi":
-        backend = MidiFilesBackend(a.out, bp["song"]["name"])
-    else:
-        backend = LiveBackend(port=a.port)
     try:
-        res = build(plan, backend, roles, set_tempo=a.set_tempo)
+        s = workflow.run_build(bp, report, mode=a.mode, target={"dry": "preview", "midi": "midi", "live": "live"}[a.backend],
+                               out_dir=a.out, set_tempo=a.set_tempo, include=set(a.include or []), only=a.stems,
+                               port=a.port, readback=a.readback)
     except NotSupported as e:
         print("NOT SUPPORTED:", e)
         return 2
@@ -103,20 +86,11 @@ def _cmd_build(a):
         print("Cannot reach Live on port %d (%s). Open Live 12 with the AbletonMCP Control Surface selected "
               "(Preferences > Link/Tempo/MIDI), or use --backend dry / midi." % (a.port, e))
         return 3
-    print("done: %d tracks, %d clips, %d notes" % (len(res["tracks"]), res["clips"], res["notes"]))
-    if a.backend == "live" and a.readback:
-        bad = 0
-        for stem, sec, cid, start, length, name in plan.placements:
-            if plan.mode == "session":
-                got = backend.read_back(res["tracks"][stem], res["scenes"][sec])
-            else:
-                got = backend.read_back_arrangement(res["tracks"][stem], start)
-            r = compare_notes(plan.clips[cid]["notes"], got)
-            if not r["match"]:
-                bad += 1
-                print("MISMATCH %s '%s': expected %d got %d, missing %d extra %d" % (stem, name, r["expected"], r["got"], len(r["missing"]), len(r["extra"])))
-        print("read-back: %d/%d clips match" % (len(plan.placements) - bad, len(plan.placements)))
-        return 1 if bad else 0
+    print("done: %d tracks, %d clips, %d notes" % (s["tracks"], s["clips"], s["notes"]))
+    if s["readback"]:
+        ok, total = s["readback"]
+        print("read-back: %d/%d clips match" % (ok, total))
+        return 0 if ok == total else 1
     return 0
 
 

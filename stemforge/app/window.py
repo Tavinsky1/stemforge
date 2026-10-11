@@ -39,8 +39,12 @@ class Worker(QThread):
 class Probe(QThread):
     result = Signal(dict)
 
+    def __init__(self, known=None):
+        super().__init__()
+        self.known = known
+
     def run(self):
-        self.result.emit(live.probe())
+        self.result.emit(live.probe(known=self.known))
 
 
 def card(title: str, step: str) -> tuple[QFrame, QVBoxLayout]:
@@ -125,7 +129,14 @@ class Timeline(QWidget):
 
 
 def pill_style(color: str) -> str:
-    return "QLabel{background:%s22;color:%s;border:1px solid %s66;border-radius:11px;padding:3px 10px;}" % (color, color, color)
+    return "QPushButton{background:%s22;color:%s;border:1px solid %s66;border-radius:11px;padding:3px 10px;}" % (color, color, color)
+
+
+def fit_rows(table: QTableWidget, n: int, row_h: int = 34) -> None:
+    """Show every row: the page scrolls, the table does not (nested scrollbars hid rows)."""
+    h = row_h * (n + 1) + 2
+    table.setMinimumHeight(h); table.setMaximumHeight(h)
+    table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
 
 class Window(QMainWindow):
@@ -144,7 +155,11 @@ class Window(QMainWindow):
         sub = QLabel("Rebuild a song from its stems as MIDI in Ableton Live"); sub.setObjectName("muted")
         tl = QVBoxLayout(); tl.setSpacing(0); tl.addWidget(t); tl.addWidget(sub)
         head.addLayout(tl); head.addStretch()
-        self.pill = QLabel("Checking Ableton…"); head.addWidget(self.pill)
+        # Live is only contacted after the user clicks this: opening the app never touches an open set.
+        self.pill = QPushButton("Connect to Ableton"); self.pill.setCursor(Qt.PointingHandCursor)
+        self.pill.setStyleSheet(pill_style(theme.MUTED)); self.pill.clicked.connect(self.connect_live)
+        self.pill.setToolTip("Checks that Ableton is reachable. Read-only: nothing in your set is changed.")
+        head.addWidget(self.pill)
         col.addLayout(head)
 
         # 1 stems
@@ -166,6 +181,8 @@ class Window(QMainWindow):
         r.addWidget(self.btn_an); r.addWidget(self.facts, 1); l2.addLayout(r)
         self.progress = QProgressBar(); self.progress.setRange(0, 0); self.progress.hide(); l2.addWidget(self.progress)
         self.timeline = Timeline(); self.timeline.hide(); l2.addWidget(self.timeline)
+        self.warn_label = QLabel(""); self.warn_label.setWordWrap(True); self.warn_label.setTextFormat(Qt.RichText)
+        self.warn_label.hide(); l2.addWidget(self.warn_label)
         self.res_table = QTableWidget(0, 4); self.res_table.setHorizontalHeaderLabels(["Stem", "Notes", "Result", "Detail"])
         self.res_table.verticalHeader().setVisible(False); self.res_table.setShowGrid(False)
         h = self.res_table.horizontalHeader(); h.setSectionResizeMode(3, QHeaderView.Stretch)
@@ -200,8 +217,7 @@ class Window(QMainWindow):
         self.logbox = QPlainTextEdit(); self.logbox.setReadOnly(True); self.logbox.setMaximumHeight(180); self.logbox.hide()
         col.addWidget(self.logbox); col.addStretch()
 
-        self.timer = QTimer(self); self.timer.timeout.connect(self.refresh_live); self.timer.start(3000)
-        QTimer.singleShot(100, self.refresh_live)
+        self.timer = QTimer(self); self.timer.timeout.connect(self.refresh_live)   # started by connect_live()
 
     # ---- helpers
     def log(self, s):
@@ -220,10 +236,17 @@ class Window(QMainWindow):
         self.btn_an.setEnabled(self.folder is not None); self.log("ERROR: " + msg)
 
     # ---- ableton status
-    def refresh_live(self):
+    def connect_live(self):
+        self.pill.setText("Checking Ableton…")
+        self.refresh_live(force=True)
+        self.timer.start(10000)           # slow poll so the pill follows Live opening/closing
+
+    def refresh_live(self, force=False):
         if getattr(self, "_probe", None) and self._probe.isRunning():
             return
-        self._probe = Probe(); self._probe.result.connect(self.on_live); self._probe.start()
+        if not force and self.worker is not None and self.worker.isRunning():
+            return                         # never compete with a build for Live's attention
+        self._probe = Probe(known=self.live); self._probe.result.connect(self.on_live); self._probe.start()
 
     def on_live(self, r):
         self.live = r
@@ -249,9 +272,10 @@ class Window(QMainWindow):
             combo = QComboBox(); combo.addItems(actions.ROLES); combo.setCurrentText(s.role); t.setCellWidget(i, 2, combo)
             t.setItem(i, 3, QTableWidgetItem(Path(s.path).name)); t.item(i, 3).setForeground(QColor(theme.MUTED))
             t.setRowHeight(i, 34)
-        t.setMaximumHeight(34 * len(stems) + 34)
+        fit_rows(t, len(stems))
         self.facts.setText("Check that each stem is labelled correctly, then analyze."); self.btn_an.setEnabled(True)
-        self.res_table.setMaximumHeight(0); self.timeline.hide(); self.outcome.setText(""); self.update_buttons()
+        self.res_table.setMaximumHeight(0); self.res_table.setMinimumHeight(0)
+        self.timeline.hide(); self.warn_label.hide(); self.outcome.setText(""); self.update_buttons()
 
     def chosen_stems(self):
         out = []
@@ -290,9 +314,13 @@ class Window(QMainWindow):
                 if j == 3:
                     it.setForeground(QColor(theme.MUTED))
             t.setRowHeight(i, 34)
-        t.setMaximumHeight(34 * len(rows) + 34)
-        if warn:
-            self.outcome.setText("<span style='color:%s'>Heads up: %s</span>" % (theme.WARN, " ".join(warn)))
+        fit_rows(t, len(rows))
+        if warn:   # its own label: a later build result must not overwrite these
+            self.warn_label.setText("<span style='color:%s'>Heads up:<br>%s</span>"
+                                    % (theme.WARN, "<br>".join("• " + x for x in warn)))
+            self.warn_label.show()
+        else:
+            self.warn_label.hide()
         self.update_buttons()
 
     # ---- step 3

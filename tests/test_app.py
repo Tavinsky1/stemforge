@@ -50,6 +50,37 @@ def test_window_flow(qapp, song):
     w.timer.stop()
 
 
+def test_opening_the_app_never_contacts_live(qapp, monkeypatch):
+    from stemforge.app.window import Window
+    called = []
+    monkeypatch.setattr(live, "probe", lambda *a, **k: called.append(1) or {"connected": False, "message": "x"})
+    w = Window()
+    w.show()
+    for _ in range(20):
+        qapp.processEvents()
+        time.sleep(0.02)
+    assert not called and not w.timer.isActive()
+    w.connect_live()                               # only an explicit click probes
+    pump(qapp, lambda: called)
+    assert w.timer.isActive()
+    w.timer.stop()
+
+
+def test_warnings_survive_a_build(qapp, song):
+    from stemforge.app.window import Window
+    folder, _ = song
+    w = Window()
+    w.load_folder(str(folder))
+    w.analyze()
+    pump(qapp, lambda: w.bp is not None)
+    shown = w.warn_label.text()
+    w.build("preview")
+    pump(qapp, lambda: "Preview" in w.outcome.text())
+    assert w.warn_label.text() == shown            # not overwritten by the build result
+    assert w.res_table.maximumHeight() >= 34 * w.res_table.rowCount()   # every row visible
+    w.timer.stop()
+
+
 def test_live_button_needs_a_connection(qapp, song):
     from stemforge.app.window import Window
     w = Window()

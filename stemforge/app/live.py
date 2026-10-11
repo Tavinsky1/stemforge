@@ -6,8 +6,11 @@ from ..build.backends import LiveBackend
 ARRANGEMENT_COMMANDS = {"create_arrangement_clip", "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}
 
 
-def probe(port: int = 9877, timeout: float = 0.8) -> dict:
-    """Returns {connected, tracks, scenes, tempo, version, arrangement, message}. Never raises, never changes the set."""
+def probe(port: int = 9877, timeout: float = 0.8, known: dict | None = None) -> dict:
+    """Returns {connected, tracks, scenes, tempo, version, arrangement, message}. Never raises, never changes the set.
+
+    `known` is a previous connected result: its script version / arrangement support are reused so a poll costs
+    a single read-only command (get_session_info) instead of two."""
     b = LiveBackend(port=port, timeout=timeout, log=lambda *_: None)
     try:
         info = b.send("get_session_info")
@@ -19,9 +22,12 @@ def probe(port: int = 9877, timeout: float = 0.8) -> dict:
     out = {"connected": True, "tracks": info.get("track_count"), "scenes": info.get("scene_count"),
            "tempo": info.get("tempo"), "version": None, "arrangement": False}
     try:
-        r = b.send("list_commands")
-        out["version"] = r.get("version")
-        out["arrangement"] = ARRANGEMENT_COMMANDS <= set(r.get("commands", []))
+        if known and known.get("connected"):
+            out["version"], out["arrangement"] = known.get("version"), known.get("arrangement", False)
+        else:
+            r = b.send("list_commands")
+            out["version"] = r.get("version")
+            out["arrangement"] = ARRANGEMENT_COMMANDS <= set(r.get("commands", []))
     except Exception:
         pass   # older Remote Script without list_commands: Session mode still works
     finally:
