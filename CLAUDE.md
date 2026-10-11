@@ -36,6 +36,12 @@ command that does not exist yet.
   has uncommitted changes vs git). Need `list_commands` to see which one Live loaded.
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
+## Desktop app (branch app-ui)
+`stemforge/app/` is a native PySide6 window (steps: Stems -> Analyze -> Send to Ableton, Ableton status pill). It calls the
+same library functions as the CLI. `app/actions.py` re-implements the CLI's stem auto-exclude and build/read-back logic;
+when merging, move that shared logic into one place (`stemforge/build/`) and have both the CLI and the app call it.
+Tested offscreen only (`tests/test_app.py`). Not yet run against real Live; no `.app` bundle yet.
+
 ## Commands
 ```bash
 python3 -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"

@@ -25,6 +25,24 @@ Each stage runs on its own. The blueprint JSON (`schema_version` 1) is the only 
 | Live Arrangement build | **Not implemented in the Remote Script.** Needs a new `create_arrangement_clip` command; see `HANDOVER_CLAUDE_CODE.md`. |
 | Audio A/B tracks (original stems as audio) | Not implemented. Depends on what Live 12.2.1's API allows. |
 
+## Desktop app (native window, not a browser)
+
+```bash
+pip install -e ".[app,pitched]"     # Python 3.11
+stemforge-app                       # or double-click Stemforge.command on macOS
+```
+
+1. **Stems:** drop the folder (or click). Each stem is labelled automatically; fix any label with the dropdown, untick what you don't want.
+2. **Analyze:** tempo, key, a colour timeline of the sections (hover a section to see why it was placed), and a Good / Check by ear / Left out verdict per stem.
+3. **Send to Ableton:** Session (one scene per section) or Arrangement. *Preview* changes nothing, *Export .mid* needs no Live,
+   *Build in Ableton* adds new tracks and scenes, then reads the notes back from Live and reports how many clips match.
+
+The coloured pill at the top shows whether Ableton is reachable (port 9877), the Remote Script version, and whether Arrangement
+mode is available. Live's tempo is left alone unless you tick the box. Screenshot (synthetic demo song): `docs/app-screenshot.png`.
+
+Status: the window is tested headless (offscreen) against the same library calls as the CLI. It has **not** been run against real
+Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
+
 ## Install
 
 ```bash
