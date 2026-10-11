@@ -12,6 +12,8 @@ def test_classify():
     assert classify("12 Vocals") == "vocals"
     assert classify("Drums") == "drums"
     assert classify("hi-hats") == "hat"
+    assert classify("7 Brass") == "brass"
+    assert classify("4 Percussion") == "drums"
     assert classify("mystery") == "other"
 
 

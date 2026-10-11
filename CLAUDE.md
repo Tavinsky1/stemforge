@@ -23,6 +23,19 @@ Written in a cloud container and tested only on synthetic stems and a fake Remot
 stems, with basic-pitch on Apple Silicon, and against real Live.** Arrangement mode needs a new Remote Script
 command that does not exist yet.
 
+## Phase 0 findings (done on the owner's Mac, 2026-10-10)
+- Use **Python 3.11** (`pip install -e ".[dev,pitched]"`). basic-pitch does not install on 3.14. Backend there is CoreML.
+- Live 12.2.1 has `add_new_notes` (appends, wants `MidiNoteSpecification`), `remove_notes_extended`,
+  `ClipSlot.create_clip`, `Track.create_midi_clip` (docstring present; owning class still to confirm by calling it).
+  `duplicate_clip_to_arrangement` is unconfirmed.
+- The AbletonMCP Remote Script builds `Live.Clip.MidiNote(...)` for `add_new_notes`; in 12.2.1 that raises and the code
+  silently falls back to deprecated `set_notes` (which replaces notes). Fix before any build.
+- Remote Script `create_clip` deletes an existing clip in the slot; stemforge must only use slots on tracks/scenes it created.
+- Commands time out after 10 s: chunk big note batches.
+- Three Remote Script copies disagree (Live prefs copy, repo working copy, SharedAbleton copy; the repo working copy
+  has uncommitted changes vs git). Need `list_commands` to see which one Live loaded.
+- Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
+
 ## Commands
 ```bash
 python3 -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"

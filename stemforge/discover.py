@@ -18,6 +18,7 @@ _ROLE_PATTERNS = [
     ("guitar", r"guitar|gtr"),
     ("keys", r"piano|keys|organ|rhodes|keyboard"),
     ("strings", r"string|violin|cello"),
+    ("brass", r"brass|horn|trumpet|trombone|sax"),
     ("synth", r"synth|lead|pad|arp|pluck|chord"),
     ("fx", r"\bfx\b|effect|noise|riser|sweep|atmos|ambien"),
 ]
@@ -26,7 +27,7 @@ _ROLE_PATTERNS = [
 ROLE_MODE = {
     "kick": "drums", "snare": "drums", "hat": "drums", "drums": "drums",
     "bass": "mono", "vocals": "mono", "guitar": "poly", "keys": "poly",
-    "strings": "poly", "synth": "poly", "other": "poly", "fx": "skip",
+    "strings": "poly", "brass": "poly", "synth": "poly", "other": "poly", "fx": "skip",
 }
 
 

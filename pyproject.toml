@@ -2,11 +2,11 @@
 name = "stemforge"
 version = "0.1.0"
 description = "Transcribe a song's stems into MIDI and rebuild it in Ableton Live 12 (Session or Arrangement)"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.13"   # basic-pitch pins old numpy: no wheels on 3.13/3.14
 dependencies = ["numpy", "scipy", "soundfile", "librosa>=0.10", "mido"]
 
 [project.optional-dependencies]
-pitched = ["basic-pitch"]   # polyphonic transcription; see README for the Apple Silicon backend
+pitched = ["basic-pitch", "setuptools<81"]   # polyphonic transcription; resampy needs pkg_resources. Use Python 3.11.
 dev = ["pytest"]
 
 [project.scripts]
