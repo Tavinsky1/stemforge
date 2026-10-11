@@ -214,9 +214,11 @@ class LiveBackend(Backend):
         self.scene_base = info.get("scene_count")
         if plan.mode == "arrangement":
             cmds = self.available_commands()
-            if "create_arrangement_clip" not in cmds:
-                raise NotSupported("arrangement mode needs the 'create_arrangement_clip' Remote Script command (not installed). "
-                                   "Use --mode session, or --backend midi for .mid files. See HANDOVER_CLAUDE_CODE.md.")
+            need = {"create_arrangement_clip", "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}
+            if need - cmds:
+                raise NotSupported("arrangement mode needs Remote Script commands %s (not installed). "
+                                   "Use --mode session, or --backend midi for .mid files. See HANDOVER_CLAUDE_CODE.md."
+                                   % sorted(need - cmds))
 
     def set_tempo(self, bpm):
         self.send("set_tempo", {"tempo": bpm})
@@ -239,25 +241,34 @@ class LiveBackend(Backend):
         if scene is not None and scene not in self.created_scenes:
             raise RuntimeError("refusing to touch scene %d: not created by this run" % scene)
 
+    @staticmethod
+    def _cmd_notes(notes):
+        return [{"pitch": n["pitch"], "start_time": n["start"], "duration": n["duration"],
+                 "velocity": n["velocity"], "mute": False} for n in notes]
+
     def create_session_clip(self, track, scene, name, length, notes):
         self._guard(track, scene)
         self.send("create_clip", {"track_index": track, "clip_index": scene, "length": float(length)})
         self.send("set_clip_name", {"track_index": track, "clip_index": scene, "name": name})
         for i in range(0, len(notes), self.CHUNK):
-            chunk = [{"pitch": n["pitch"], "start_time": n["start"], "duration": n["duration"],
-                      "velocity": n["velocity"], "mute": False} for n in notes[i:i + self.CHUNK]]
-            self.send("add_notes_to_clip", {"track_index": track, "clip_index": scene, "notes": chunk})
+            self.send("add_notes_to_clip", {"track_index": track, "clip_index": scene,
+                                            "notes": self._cmd_notes(notes[i:i + self.CHUNK])})
 
     def place_arrangement_clip(self, track, name, start_beat, length, notes):
         self._guard(track)
-        notes_p = [{"pitch": n["pitch"], "start_time": n["start"], "duration": n["duration"],
-                    "velocity": n["velocity"], "mute": False} for n in notes]
         self.send("create_arrangement_clip", {"track_index": track, "start_time": float(start_beat),
-                                              "length": float(length), "name": name, "notes": notes_p})
+                                              "length": float(length), "name": name, "notes": []})
+        for i in range(0, len(notes), self.CHUNK):
+            self.send("add_notes_to_arrangement_clip", {"track_index": track, "start_time": float(start_beat),
+                                                        "notes": self._cmd_notes(notes[i:i + self.CHUNK])})
 
     # --- Phase 3 read-back
     def read_back(self, track: int, scene: int) -> list[dict]:
         r = self.send("get_clip_notes", {"track_index": track, "clip_index": scene})
+        return r.get("notes", [])
+
+    def read_back_arrangement(self, track: int, start_beat: float) -> list[dict]:
+        r = self.send("get_arrangement_clip_notes", {"track_index": track, "start_time": float(start_beat)})
         return r.get("notes", [])
 
 

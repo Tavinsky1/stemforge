@@ -6,3 +6,12 @@ dist/
 .pytest_cache/
 *.blueprint.json
 out/
+.DS_Store
+# audio and stem folders (Suno output): never commit
+*.mp3
+*.wav
+*.flac
+*.aif
+*.aiff
+*.m4a
+*Stems*/

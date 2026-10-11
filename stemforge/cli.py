@@ -87,13 +87,17 @@ def _cmd_build(a):
               "(Preferences > Link/Tempo/MIDI), or use --backend dry / midi." % (a.port, e))
         return 3
     print("done: %d tracks, %d clips, %d notes" % (len(res["tracks"]), res["clips"], res["notes"]))
-    if a.backend == "live" and a.readback and plan.mode == "session":
+    if a.backend == "live" and a.readback:
         bad = 0
-        for stem, sec, cid, *_ in plan.placements:
-            r = compare_notes(plan.clips[cid]["notes"], backend.read_back(res["tracks"][stem], res["scenes"][sec]))
+        for stem, sec, cid, start, length, name in plan.placements:
+            if plan.mode == "session":
+                got = backend.read_back(res["tracks"][stem], res["scenes"][sec])
+            else:
+                got = backend.read_back_arrangement(res["tracks"][stem], start)
+            r = compare_notes(plan.clips[cid]["notes"], got)
             if not r["match"]:
                 bad += 1
-                print("MISMATCH %s scene %d: expected %d got %d, missing %d extra %d" % (stem, sec, r["expected"], r["got"], len(r["missing"]), len(r["extra"])))
+                print("MISMATCH %s '%s': expected %d got %d, missing %d extra %d" % (stem, name, r["expected"], r["got"], len(r["missing"]), len(r["extra"])))
         print("read-back: %d/%d clips match" % (len(plan.placements) - bad, len(plan.placements)))
         return 1 if bad else 0
     return 0

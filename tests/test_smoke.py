@@ -19,9 +19,14 @@ class SmokeFake(FakeLive):
         if cmd == "delete_track":
             self.tracks[p["track_index"]] = "<deleted>"; return {}
         if cmd == "create_arrangement_clip":
-            self.arr = p
-            return {"notes_sent": len(p["notes"]), "notes_readback": len(p["notes"]),
-                    "start_time": p["start_time"], "end_time": p["start_time"] + p["length"]}
+            self.arr = getattr(self, "arr", {})
+            self.arr[(p["track_index"], p["start_time"])] = list(p["notes"]); return {}
+        if cmd == "add_notes_to_arrangement_clip":
+            key = (p["track_index"], p["start_time"])
+            self.arr[key] = list(p["notes"]) if self.replace_on_add else self.arr[key] + p["notes"]
+            return {"note_count": len(p["notes"])}
+        if cmd == "get_arrangement_clip_notes":
+            return {"notes": self.arr[(p["track_index"], p["start_time"])]}
         if cmd == "add_notes_to_clip" and self.replace_on_add:
             self.clips[(p["track_index"], p["clip_index"])] = list(p["notes"]); return {}
         return super().handle(cmd, p)
@@ -40,7 +45,7 @@ def test_smoke_fails_when_adds_replace():
     fake.replace_on_add = True
     rep = smoke.run(port=fake.port, log=lambda *_: None)
     assert not rep["ok"]
-    assert [s["step"] for s in rep["steps"]][-1] == "session chunked append"
+    assert [s["step"] for s in rep["steps"]][-1] == "session chunked append"   # stops at first failure
 
 
 def test_smoke_flags_old_remote_script():

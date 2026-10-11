@@ -11,8 +11,8 @@ Checks, in order (stops at the first failure):
   2. Session clip: create_clip, then two add_notes_to_clip chunks, read back
      with get_clip_notes. Counts must add up and every note must match.
      (This is what proves chunked adds APPEND rather than replace.)
-  3. Arrangement clip: create_arrangement_clip with the same notes; Live's own
-     read-back count must equal the number sent.
+  3. Arrangement clip: create_arrangement_clip (empty), two note chunks, then
+     every note read back and compared.
 """
 from __future__ import annotations
 
@@ -20,7 +20,8 @@ from .build.backends import LiveBackend, NotSupported, compare_notes
 
 SMOKE_TRACK = "stemforge_smoke"
 REQUIRED = {"list_commands", "create_midi_track", "set_track_name", "create_clip",
-            "add_notes_to_clip", "get_clip_notes", "create_arrangement_clip"}
+            "add_notes_to_clip", "get_clip_notes", "create_arrangement_clip",
+            "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}
 
 
 def _fixture() -> tuple[list[dict], list[dict]]:
@@ -80,16 +81,18 @@ def run(host="127.0.0.1", port=9877, cleanup=False, log=print) -> dict:
                 missing=cmp["missing"][:3], extra=cmp["extra"][:3]):
         return _finish(live, track, cleanup, report, log)
 
-    # 3. arrangement clip, Live's own read-back count
+    # 3. arrangement clip: create empty, add two chunks, read every note back
     try:
-        a = live.send("create_arrangement_clip", {"track_index": track, "start_time": 0.0,
-                                                  "length": 8.0, "name": "smoke arr",
-                                                  "notes": _to_cmd(allnotes)})
-        step("arrangement clip", a.get("notes_readback") == len(allnotes),
-             sent=a.get("notes_sent"), readback=a.get("notes_readback"),
-             start=a.get("start_time"), end=a.get("end_time"))
+        live.send("create_arrangement_clip", {"track_index": track, "start_time": 0.0,
+                                              "length": 8.0, "name": "smoke arr", "notes": []})
+        live.send("add_notes_to_arrangement_clip", {"track_index": track, "start_time": 0.0, "notes": _to_cmd(first)})
+        live.send("add_notes_to_arrangement_clip", {"track_index": track, "start_time": 0.0, "notes": _to_cmd(second)})
+        got_arr = live.read_back_arrangement(track, 0.0)
+        cmp_arr = compare_notes(allnotes, got_arr)
+        step("arrangement chunked append", cmp_arr["match"], got=len(got_arr), expected=len(allnotes),
+             missing=cmp_arr["missing"][:3], extra=cmp_arr["extra"][:3])
     except Exception as exc:   # report, don't hide
-        step("arrangement clip", False, error=str(exc))
+        step("arrangement chunked append", False, error=str(exc))
 
     return _finish(live, track, cleanup, report, log)
 
