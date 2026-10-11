@@ -1,3 +1,6 @@
+> **Superseded in part (2026-10-11):** Stemforge no longer extends or installs over the owner's AbletonMCP script.
+> It ships its own separate Control Surface (`ableton/Stemforge/`, port 9878). See `CLAUDE.md` and `README.md > Ableton setup`.
+
 # Handover prompt for Claude Code (run on the Mac)
 
 Paste everything below the line into Claude Code, started inside a clone of this repo.

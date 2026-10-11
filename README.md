@@ -21,8 +21,8 @@ Each stage runs on its own. The blueprint JSON (`schema_version` 1) is the only 
 |---|---|
 | discover, grid/tempo, key, sections, drums, mono pitch (pyin), quantize, clips, verify, `.mid` export, dry run | Written; unit-tested **on synthetic stems only**. Never run on a real Suno song. |
 | Polyphonic transcription (`basic-pitch`) | Code path written, **not tested here** (not installed in the dev container). Must be checked on Apple Silicon. Without it, poly stems are skipped and reported. |
-| Live Session build via the AbletonMCP Remote Script | Written; tested only against a **fake** Remote Script. **Not tested against real Live 12.** |
-| Live Arrangement build | **Not implemented in the Remote Script.** Needs a new `create_arrangement_clip` command; see `HANDOVER_CLAUDE_CODE.md`. |
+| Live build via Stemforge's own Ableton script (separate Control Surface, port 9878) | Written; tested against stand-ins for Live's objects and a fake socket peer. **Not tested against real Live 12.** |
+| Live Arrangement build | Implemented in the script (`Track.create_midi_clip` + chunked notes); **not yet run in real Live**. |
 | Audio A/B tracks (original stems as audio) | Not implemented. Depends on what Live 12.2.1's API allows. |
 
 ## Desktop app (native window, not a browser)
@@ -37,11 +37,27 @@ stemforge-app                       # or double-click Stemforge.command on macOS
 3. **Send to Ableton:** Session (one scene per section) or Arrangement. *Preview* changes nothing, *Export .mid* needs no Live,
    *Build in Ableton* adds new tracks and scenes, then reads the notes back from Live and reports how many clips match.
 
-The coloured pill at the top shows whether Ableton is reachable (port 9877), the Remote Script version, and whether Arrangement
-mode is available. Live's tempo is left alone unless you tick the box. Screenshot (synthetic demo song): `docs/app-screenshot.png`.
+The button at the top (**Connect to Ableton**) checks whether Ableton is reachable (port 9878), shows the Stemforge script version, and
+whether Arrangement mode is available. Nothing contacts Live until you press it. Live's tempo is left alone unless you tick the box. Screenshot (synthetic demo song): `docs/app-screenshot.png`.
 
 Status: the window is tested headless (offscreen) against the same library calls as the CLI. It has **not** been run against real
 Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
+
+## Ableton setup (separate from your other scripts)
+
+Stemforge ships its **own** Control Surface script, `Stemforge`, in `ableton/Stemforge/`. It runs next to anything else you use
+(for example AbletonMCP) and never touches those folders. Live supports up to six control surfaces at once
+([Live 12 manual](https://www.ableton.com/live-manual/12/midi-and-key-remote-control/)).
+
+1. In the app press **Install Stemforge's Ableton script…** and confirm. It creates exactly one file,
+   `~/Library/Preferences/Ableton/Live <version>/User Remote Scripts/Stemforge/__init__.py` (an existing, different Stemforge
+   script is backed up first to `~/Documents/ableton-backups/`). Nothing else is read, changed or deleted.
+2. In Live: **Preferences > Link, Tempo & MIDI**. In an *empty* Control Surface slot choose **Stemforge** (Input and Output: None).
+   Leave your other slots alone. Restart Live if Stemforge is not in the list.
+3. In the app press **Connect to Ableton**.
+
+The script can only *create* (tracks, scenes, clips, notes) and read. It has no delete, no device loading and no mixer/transport
+commands, and it refuses to write to any track or scene it did not create itself.
 
 ## Install
 
@@ -66,8 +82,8 @@ stemforge clips   path/to/stems/<name>.blueprint.json --min-confidence 0.5   # r
 # Phase 2: build. Always dry-run first.
 stemforge build song.blueprint.json --backend dry  --mode session
 stemforge build song.blueprint.json --backend midi --out out/                # .mid per section + full.mid, no Live needed
-stemforge build song.blueprint.json --backend live --mode session --readback # needs Live 12 + AbletonMCP running
-stemforge build song.blueprint.json --backend live --mode arrangement        # needs the Remote Script extension
+stemforge build song.blueprint.json --backend live --mode session --readback # needs Live 12 + Stemforge's script selected as a Control Surface
+stemforge build song.blueprint.json --backend live --mode arrangement        # same, needs the script's arrangement commands
 ```
 
 Options worth knowing: `--resolution 0.25` (16th-note grid), `--strength 1.0` (1 = snap fully, lower keeps

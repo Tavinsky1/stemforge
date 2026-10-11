@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from . import blueprint
+from .build.backends import DEFAULT_PORT
 
 
 def _cmd_discover(a):
@@ -83,8 +84,8 @@ def _cmd_build(a):
         print("NOT SUPPORTED:", e)
         return 2
     except (ConnectionRefusedError, TimeoutError, OSError) as e:
-        print("Cannot reach Live on port %d (%s). Open Live 12 with the AbletonMCP Control Surface selected "
-              "(Preferences > Link/Tempo/MIDI), or use --backend dry / midi." % (a.port, e))
+        print("Cannot reach Live on port %d (%s). Open Live 12 with the Stemforge Control Surface selected "
+              "(Preferences > Link, Tempo & MIDI), or use --backend dry / midi." % (a.port, e))
         return 3
     print("done: %d tracks, %d clips, %d notes" % (s["tracks"], s["clips"], s["notes"]))
     if s["readback"]:
@@ -110,13 +111,13 @@ def _cmd_import_midi(a):
 def _cmd_smoke(a):
     if not a.confirm_set_ok:
         print("Refusing to connect to Live: pass --confirm-set-ok once you are happy for the open set to get one "
-              "new MIDI track named 'stemforge_smoke' (nothing existing is touched; use a scratch set the first time).")
+              "new MIDI track and one new scene named 'stemforge_smoke' (nothing existing is touched; use a scratch set the first time).")
         return 2
     from .smoke import run
     try:
-        report = run(port=a.port, cleanup=a.cleanup)
+        report = run(port=a.port)
     except OSError as e:
-        print("Cannot reach Live on port %d (%s). Open Live 12 with AbletonMCP selected." % (a.port, e))
+        print("Cannot reach Live on port %d (%s). Open Live 12 with the Stemforge Control Surface selected." % (a.port, e))
         return 3
     return 0 if report["ok"] else 1
 
@@ -136,7 +137,7 @@ def main(argv=None):
     b = sp.add_parser("build"); b.add_argument("blueprint")
     b.add_argument("--mode", choices=["session", "arrangement"], default="session")
     b.add_argument("--backend", choices=["dry", "midi", "live"], default="dry")
-    b.add_argument("--out", default="out"); b.add_argument("--port", type=int, default=9877)
+    b.add_argument("--out", default="out"); b.add_argument("--port", type=int, default=DEFAULT_PORT)
     b.add_argument("--stems", nargs="*"); b.add_argument("--readback", action="store_true")
     b.add_argument("--include", nargs="*", help="stems to build even though verify says they failed")
     b.add_argument("--set-tempo", action="store_true", help="change the open Live set's tempo to the song's (never done by default)")
@@ -148,11 +149,10 @@ def main(argv=None):
     im.add_argument("--min-confidence", type=float, default=0.0); im.add_argument("--out")
     im.set_defaults(fn=_cmd_import_midi)
     sm = sp.add_parser("smoke-live", help="write/read-back check against a SCRATCH Live set (adds one track)")
-    sm.add_argument("--port", type=int, default=9877)
+    sm.add_argument("--port", type=int, default=DEFAULT_PORT)
     sm.add_argument("--confirm-set-ok", "--confirm-scratch", dest="confirm_set_ok", action="store_true",
-                    help="required: you confirm it is fine to add a test track to the open Live set "
+                    help="required: you confirm it is fine to add a test track and scene to the open Live set "
                          "(use a scratch set for the first run)")
-    sm.add_argument("--cleanup", action="store_true", help="delete the smoke track afterwards (name-checked)")
     sm.set_defaults(fn=_cmd_smoke)
     a = p.parse_args(argv)
     return a.fn(a) or 0

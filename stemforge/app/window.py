@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox,
                                QRadioButton, QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem, QToolTip,
                                QVBoxLayout, QWidget)
 
-from ..build.backends import NotSupported
+from ..build.backends import DEFAULT_PORT, NotSupported
 from . import actions, installer, live, theme
 
 
@@ -217,9 +217,9 @@ class Window(QMainWindow):
         br.addStretch(); l3.addLayout(br)
         self.btn_live.clicked.connect(lambda: self.build("live")); self.btn_prev.clicked.connect(lambda: self.build("preview"))
         self.btn_mid.clicked.connect(lambda: self.build("midi"))
-        self.btn_install = QPushButton("Install / update Remote Script…")
-        self.btn_install.setToolTip("Copies Stemforge's Ableton script into Live's folder after backing up the old one. "
-                                    "Does not contact Ableton.")
+        self.btn_install = QPushButton("Install Stemforge's Ableton script…")
+        self.btn_install.setToolTip("Adds Stemforge's own, separate Control Surface script to Live's User Remote Scripts "
+                                    "folder. Your other scripts are not touched. Does not contact Ableton.")
         self.btn_install.clicked.connect(self.install_script)
         self.script_note = QLabel(""); self.script_note.setObjectName("muted"); self.script_note.setWordWrap(True)
         sr = QHBoxLayout(); sr.addWidget(self.btn_install); sr.addWidget(self.script_note, 1); l3.addLayout(sr)
@@ -251,46 +251,50 @@ class Window(QMainWindow):
         self.facts.setText(msg) if self.btn_an.isEnabled() is False else None
         self.btn_an.setEnabled(self.folder is not None); self.log("ERROR: " + msg)
 
-    # ---- remote script
+    # ---- stemforge's ableton script (a separate control surface; other scripts are never touched)
     def refresh_script_note(self):
         try:
             ver = installer.source_version()
-            st = installer.status()
+            pl = installer.plan()
         except Exception as e:
             self.script_note.setText(actions.plain_error(e)); return
-        if not st:
-            self.script_note.setText("Script version %s ships with this app. Ableton's preferences folder was not found." % ver)
+        if pl is None:
+            self.script_note.setText("Ableton's preferences folder was not found. Open Ableton Live once, then reopen Stemforge.")
             return
-        top = st[0]
-        word = {"current": "is up to date", "old": "is out of date", "missing": "is not installed"}[top["state"]]
-        self.script_note.setText("The Ableton script (version %s) %s in %s." % (ver, word, top["live"]))
+        word = {"current": "is installed and up to date", "different": "is installed but is a different version",
+                "missing": "is not installed yet"}[pl["state"]]
+        self.script_note.setText("Stemforge's Ableton script (%s) %s for %s. It is separate from your other scripts."
+                                 % (ver, word, pl["live"]))
 
     def install_script(self):
         try:
-            st = installer.status()
+            pl = installer.plan()
         except Exception as e:
             self.show_error(actions.plain_error(e)); return
-        if not st:
+        if pl is None:
             self.show_error("Could not find Ableton's preferences folder. Open Ableton Live once, then try again."); return
-        top = st[0]
-        if QMessageBox.question(self, "Install the Ableton script",
-                                "Copy Stemforge's script into:\n%s\n\nWhatever is there now is backed up first to "
-                                "~/Documents/ableton-backups/. Nothing is deleted, and Ableton is not contacted."
-                                % top["target"]) != QMessageBox.Yes:
+        if pl["state"] == "current":
+            self.outcome.setText("Stemforge's script is already installed and up to date (%s)." % pl["version"]); return
+        left = (", ".join(pl["left_alone"]) or "nothing else") if pl["left_alone"] else "no other scripts found"
+        text = ("Stemforge adds its OWN script as a separate Control Surface.\n\n"
+                "It will create exactly one file:\n%s\n\n"
+                "Not touched: %s.\n" % (pl["target"], left))
+        if pl["backup_to"]:
+            text += "\nA different Stemforge script is already there; it is backed up first to ~/Documents/ableton-backups/.\n"
+        text += "\nAbleton is not contacted and nothing is deleted."
+        if QMessageBox.question(self, "Install Stemforge's Ableton script", text) != QMessageBox.Yes:
             return
         try:
             r = installer.install()
         except Exception as e:
             self.log(traceback.format_exc()); self.show_error(actions.plain_error(e)); return
         self.refresh_script_note()
-        if r["installed"]:
-            msg = ("Installed script %s for %s.<br>Backup of the old one: %s<br><b>Now in Ableton:</b> Preferences > "
-                   "Link, Tempo &amp; MIDI, switch the AbletonMCP Control Surface to None and back (restart Live if the "
-                   "status pill still shows an old version), then press <b>Connect to Ableton</b>."
-                   % (r["version"], r["live"], r["backup"] or "none needed (nothing was installed)"))
-        else:
-            msg = "The script in %s is already up to date (%s)." % (r["live"], r["version"])
-        self.outcome.setText(msg)
+        self.outcome.setText(
+            "Installed Stemforge script %s for %s.%s<br><b>Now in Ableton:</b> Preferences &gt; Link, Tempo &amp; MIDI. "
+            "In an <i>empty</i> Control Surface slot choose <b>Stemforge</b> (leave Input and Output as None). "
+            "Leave your other slots as they are. If Stemforge is not in the list, restart Live. "
+            "Then press <b>Connect to Ableton</b> here."
+            % (r["version"], r["live"], ("<br>Backup of the previous Stemforge script: %s" % r["backup"]) if r["backup"] else ""))
 
     # ---- ableton status
     def connect_live(self):
@@ -314,7 +318,7 @@ class Window(QMainWindow):
         except Exception:
             want = None
         if r.get("connected") and r.get("version") and want and r["version"] != want:
-            msg += " · script is %s, this app ships %s: reinstall, then toggle the Control Surface" % (r["version"], want)
+            msg += " · script is %s, this app ships %s: reinstall it, then restart Live" % (r["version"], want)
             color = theme.WARN
         self.pill.setText("●  " + msg); self.pill.setStyleSheet(pill_style(color))
         self.pill.setToolTip(("Script loaded by Live: %s" % r["file"]) if r.get("file") else self.pill.toolTip())
@@ -402,7 +406,7 @@ class Window(QMainWindow):
         ready = self.bp is not None and self.report is not None
         self.btn_prev.setEnabled(ready); self.btn_mid.setEnabled(ready)
         arr_ok = self.live.get("connected") and self.live.get("arrangement")
-        self.rb_arr.setToolTip("" if arr_ok else "Needs the updated Remote Script in Live (shown in the status pill).")
+        self.rb_arr.setToolTip("" if arr_ok else "Needs Stemforge's script installed and selected in Live (see the status pill).")
         self.btn_live.setEnabled(bool(ready and self.live.get("connected")))
 
     def forced_stems(self) -> set[str]:
@@ -424,7 +428,7 @@ class Window(QMainWindow):
             b.setEnabled(False)
         self.progress.show(); self.outcome.setText("Working…")
         self.run(lambda log: actions.run_build(self.bp, self.report, mode=mode, target=target, out_dir=out_dir,
-                                               set_tempo=self.cb_tempo.isChecked(), include=include, port=9877, log=log),
+                                               set_tempo=self.cb_tempo.isChecked(), include=include, port=DEFAULT_PORT, log=log),
                  lambda s: self.built(s, target, out_dir))
 
     def built(self, s, target, out_dir):
@@ -459,9 +463,9 @@ def selftest() -> int:
     except Exception as e:
         checks["basic_pitch model file"] = "FAIL: %s" % e
     try:
-        checks["remote script shipped"] = "ok (%s)" % installer.source_version()
+        checks["ableton script shipped"] = "ok (%s)" % installer.source_version()
     except Exception as e:
-        checks["remote script shipped"] = "FAIL: %s" % e
+        checks["ableton script shipped"] = "FAIL: %s" % e
     try:
         import soundfile as sf
         checks["mp3 decoding (built in)"] = "ok" if "MP3" in sf.available_formats() else "MISSING: mp3 stems need ffmpeg (brew install ffmpeg)"

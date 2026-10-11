@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .build.backends import DryRunBackend, LiveBackend, MidiFilesBackend, build, compare_notes
+from .build.backends import DEFAULT_PORT, DryRunBackend, LiveBackend, MidiFilesBackend, build, compare_notes
 from .build.plan import make_plan
 from .verify import below_floor
 
@@ -57,7 +57,7 @@ def select_stems(bp: dict, report: dict | None, include=(), only=None) -> tuple[
 
 
 def run_build(bp: dict, report: dict | None, *, mode: str = "session", target: str = "preview", out_dir: str = "out",
-              set_tempo: bool = False, include=(), only=None, port: int = 9877, readback: bool = True,
+              set_tempo: bool = False, include=(), only=None, port: int = DEFAULT_PORT, readback: bool = True,
               log=print) -> dict:
     """target: preview | midi | live. Raises NotSupported (plain message) when the target cannot do this build.
 

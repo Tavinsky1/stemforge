@@ -14,10 +14,6 @@ class SmokeFake(FakeLive):
         if cmd == "list_commands":
             return {"version": "fake-1", "source_sha256": "ab" * 32, "file": "/fake/__init__.py",
                     "commands": self.COMMANDS}
-        if cmd == "get_track_info":
-            return {"name": self.tracks[p["track_index"]]}
-        if cmd == "delete_track":
-            self.tracks[p["track_index"]] = "<deleted>"; return {}
         if cmd == "create_arrangement_clip":
             self.arr = getattr(self, "arr", {})
             self.arr[(p["track_index"], p["start_time"])] = list(p["notes"]); return {}
@@ -55,11 +51,13 @@ def test_smoke_flags_old_remote_script():
     assert not rep["ok"] and rep["steps"][0]["missing"] == ["create_arrangement_clip"]
 
 
-def test_smoke_cleanup_only_deletes_own_track():
+def test_smoke_uses_its_own_scene_and_never_an_existing_row():
     fake = SmokeFake()
-    rep = smoke.run(port=fake.port, cleanup=True, log=lambda *_: None)
-    assert rep["ok"] and fake.tracks[rep["track_index"]] == "<deleted>"
-    assert fake.tracks[:2] == ["Existing 1", "Existing 2"]
+    rep = smoke.run(port=fake.port, log=lambda *_: None)
+    assert rep["ok"] and rep["scene_index"] == len(fake.scenes) - 1 and fake.scenes[-1] == smoke.SMOKE_TRACK
+    assert (rep["track_index"], rep["scene_index"]) in fake.clips
+    assert (rep["track_index"], 0) not in fake.clips            # not in "Scene A", which was already in the set
+    assert not any(c in ("delete_track", "delete_clip") for c, _ in fake.log)
 
 
 def test_cli_refuses_without_confirm_scratch(capsys):

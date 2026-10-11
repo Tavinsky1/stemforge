@@ -1,4 +1,4 @@
-"""Builder backends. DryRun prints, MidiFiles writes .mid, Live talks to the AbletonMCP Remote Script on TCP 9877."""
+"""Builder backends. DryRun prints, MidiFiles writes .mid, Live talks to Stemforge's own Ableton script on TCP 9878."""
 from __future__ import annotations
 
 import json
@@ -7,6 +7,9 @@ import time
 from pathlib import Path
 
 from .plan import Plan
+
+
+DEFAULT_PORT = 9878   # Stemforge's own Remote Script. Not 9877 (AbletonMCP): that is the owner's other tool.
 
 
 class NotSupported(RuntimeError):
@@ -166,15 +169,14 @@ class MidiFilesBackend(Backend):
 
 class LiveBackend(Backend):
     """
-    Talks to the AbletonMCP Remote Script (TCP 9877, JSON {"type","params"}).
-    Session mode uses commands the Remote Script already has. Arrangement mode needs a command
-    ("create_arrangement_clip") that must be added to the Remote Script after checking the Live 12.2.1 LOM.
-    Only new tracks/scenes are created; existing ones are never modified.
+    Talks to Stemforge's own Remote Script (TCP 9878, JSON {"type","params"}), installed as a separate
+    Control Surface next to anything else the owner runs. The script itself refuses to write to anything it
+    did not create, and has no delete commands. Only new tracks/scenes are created.
     """
     CHUNK = 80   # notes per add_notes_to_clip call (crash prevention)
     modifies_set = True
 
-    def __init__(self, host="127.0.0.1", port=9877, timeout=15.0, log=print):
+    def __init__(self, host="127.0.0.1", port=DEFAULT_PORT, timeout=15.0, log=print):
         self.host, self.port, self.timeout, self.log = host, port, timeout, log
         self.created_tracks: list[int] = []
         self.created_scenes: list[int] = []

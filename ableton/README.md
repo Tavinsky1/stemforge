@@ -1,9 +1,11 @@
 # Ableton side
 
-`AbletonMCP/__init__.py` is the Remote Script that runs inside Ableton Live (TCP port 9877). It is a copy of
-`AbletonMCP_Remote_Script/__init__.py` from the owner's ABLETON-AI repo (commit 9e5c9df, version `stemforge-2`),
-versioned here so the app and the script change together. The app's "Install / update Remote Script" button copies it
-into Live's `User Remote Scripts` folder after backing up whatever is there to `~/Documents/ableton-backups/`.
+`Stemforge/__init__.py` is Stemforge's **own** Control Surface script (TCP 9878). It is not AbletonMCP and never touches
+that folder or any other script.
 
-After installing: in Live, Preferences > Link, Tempo & MIDI, set a Control Surface slot to `AbletonMCP` (toggle it off and
-on to reload; restart Live if the version shown in Stemforge's status pill is still old).
+- Install from the app (**Install Stemforge's Ableton script...**) or copy this folder into
+  `~/Library/Preferences/Ableton/Live <version>/User Remote Scripts/`.
+- In Live: Preferences > Link, Tempo & MIDI, choose `Stemforge` in an empty Control Surface slot (Input/Output: None).
+  Live runs up to six control surfaces at once, so your other slots stay as they are.
+- It can create tracks, scenes, clips and notes and read them back. It has no delete, no device loading, no mixer or transport
+  commands, writes only to tracks/scenes it created itself, and never overwrites a clip.

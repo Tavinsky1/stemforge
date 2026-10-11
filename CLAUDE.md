@@ -19,31 +19,35 @@ tweak Serum 2, Pigments, Diva or any other VST.
 7. Check Live API facts in the official Live 12 Live Object Model docs, not from memory.
 
 ## State of the code
-Written in a cloud container and tested only on synthetic stems and a fake Remote Script. **Unproven on real
-stems, with basic-pitch on Apple Silicon, and against real Live.** Arrangement mode needs a new Remote Script
-command that does not exist yet.
+Written in a cloud container and tested on synthetic stems, the real Low Pressure stems (offline), and fakes of Live. **Unproven against real
+Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 9878).
 
 ## Phase 0 findings (done on the owner's Mac, 2026-10-10)
 - Use **Python 3.11** (`pip install -e ".[dev,pitched]"`). basic-pitch does not install on 3.14. Backend there is CoreML.
 - Live 12.2.1 has `add_new_notes` (appends, wants `MidiNoteSpecification`), `remove_notes_extended`,
   `ClipSlot.create_clip`, `Track.create_midi_clip` (docstring present; owning class still to confirm by calling it).
   `duplicate_clip_to_arrangement` is unconfirmed.
-- The AbletonMCP Remote Script builds `Live.Clip.MidiNote(...)` for `add_new_notes`; in 12.2.1 that raises and the code
-  silently falls back to deprecated `set_notes` (which replaces notes). Fix before any build.
-- Remote Script `create_clip` deletes an existing clip in the slot; stemforge must only use slots on tracks/scenes it created.
+- The owner's AbletonMCP script (a different tool) builds `Live.Clip.MidiNote(...)` for `add_new_notes`; in 12.2.1 that raises and
+  falls back to the deprecated replace-all `set_notes`. Stemforge's own script uses `MidiNoteSpecification` and has no fallback.
 - Commands time out after 10 s: chunk big note batches.
-- Three Remote Script copies disagree (Live prefs copy, repo working copy, SharedAbleton copy; the repo working copy
-  has uncommitted changes vs git). Need `list_commands` to see which one Live loaded.
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
 ## Desktop app
 `stemforge/app/` is a native PySide6 window (Stems -> Analyze -> Send to Ableton). Selection of stems, build and read-back
 live in `stemforge/workflow.py`, shared by the CLI and the app. The app never contacts Live until the user clicks
-"Connect to Ableton" (read-only probe, polls every 10 s afterwards, pauses during a build). Tested offscreen only
-(`tests/test_app.py`); not yet run against real Live. `packaging/build_app.sh` builds `dist/Stemforge.app` (PyInstaller;
-`Stemforge.app/Contents/MacOS/Stemforge --selftest` verifies the bundle runs pyin + Basic Pitch). The Remote Script ships in
-`ableton/AbletonMCP/` and the app's Install button backs up to `~/Documents/ableton-backups/` first. Never run the app or tests with the
-probe pointed at an open set you care about without the owner's go-ahead.
+"Connect to Ableton" (read-only probe, 10 s poll afterwards, paused during a build). Tested offscreen only (`tests/test_app.py`);
+never run against real Live. `packaging/build_app.sh` builds `dist/Stemforge.app` (PyInstaller; `--selftest` runs pyin + Basic
+Pitch inside the bundle).
+
+## Ableton side: Stemforge's OWN script, separate from the owner's AbletonMCP
+- `ableton/Stemforge/__init__.py`: its own Control Surface, port 9878. The installer writes only
+  `User Remote Scripts/Stemforge/__init__.py` and refuses any other path; it never reads, backs up, renames or deletes
+  `AbletonMCP` or any other script folder (tests prove it).
+- The script cannot delete, load devices or change the mixer/transport. It writes only to tracks and scenes it created in
+  the current Live session, and never overwrites a clip. Ownership uses Live's object identity (`_live_ptr`/`==`); if that
+  does not hold in real Live it fails CLOSED (refuses writes), which the smoke test will show.
+- The smoke test creates a track and a scene named `stemforge_smoke`; the script can't delete them, so the owner removes them.
+- Never contact port 9878 or 9877 without the owner's "scratch open, go".
 
 ## Commands
 ```bash
@@ -58,5 +62,5 @@ stemforge discover <stems>   # then analyze / verify / clips / build (see README
 contract between analyzer and builder.
 
 ## Related repo
-The Live side is the AbletonMCP Remote Script in `Tavinsky1/abletonai` (`AbletonMCP_Remote_Script/__init__.py`,
-TCP 9877, JSON `{"type","params"}`). Extending it is part of Phase 2; confirm with the owner before editing it.
+The owner's other tool, AbletonMCP (`Tavinsky1/abletonai`, TCP 9877), is NOT part of Stemforge and must not be modified or
+replaced by it. Stemforge no longer depends on it.

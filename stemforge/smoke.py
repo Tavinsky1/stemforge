@@ -1,8 +1,10 @@
 """Live smoke test: prove the Remote Script writes and reads back notes correctly.
 
 Run this on a SCRATCH Live set before any real build. It creates one new MIDI
-track ("stemforge_smoke") and only ever writes into clips on that track, so
-no existing track, clip or scene is touched. The notes are a fixed diagnostic
+track and one new scene (both named "stemforge_smoke") and only ever writes
+into clips at their intersection, so no existing track, clip or scene is
+touched. Stemforge's script cannot delete, so delete that track and scene by
+hand afterwards. The notes are a fixed diagnostic
 pattern, not music; nothing here is transcribed from a stem.
 
 Checks, in order (stops at the first failure):
@@ -16,10 +18,10 @@ Checks, in order (stops at the first failure):
 """
 from __future__ import annotations
 
-from .build.backends import LiveBackend, NotSupported, compare_notes
+from .build.backends import DEFAULT_PORT, LiveBackend, NotSupported, compare_notes
 
 SMOKE_TRACK = "stemforge_smoke"
-REQUIRED = {"list_commands", "create_midi_track", "set_track_name", "create_clip",
+REQUIRED = {"list_commands", "create_midi_track", "set_track_name", "create_scene_with_name", "create_clip",
             "add_notes_to_clip", "get_clip_notes", "create_arrangement_clip",
             "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}
 
@@ -36,7 +38,7 @@ def _to_cmd(notes):
              "velocity": n["velocity"], "mute": False} for n in notes]
 
 
-def run(host="127.0.0.1", port=9877, cleanup=False, log=print) -> dict:
+def run(host="127.0.0.1", port=DEFAULT_PORT, log=print) -> dict:
     live = LiveBackend(host=host, port=port, log=log)
     report = {"ok": False, "steps": []}
 
@@ -45,12 +47,12 @@ def run(host="127.0.0.1", port=9877, cleanup=False, log=print) -> dict:
         log("[%s] %s %s" % ("PASS" if ok else "FAIL", name, detail if detail else ""))
         return ok
 
-    # 1. which Remote Script is loaded?
+    # 1. which script is answering?
     try:
         info = live.send("list_commands")
     except NotSupported:
-        step("list_commands", False, why="loaded Remote Script is the OLD copy (no list_commands). "
-             "Install the updated one and reload it in Live.")
+        step("list_commands", False, why="the script on this port does not answer list_commands, so it is not "
+             "Stemforge's script. Select 'Stemforge' as a Control Surface in Live.")
         return report
     missing = sorted(REQUIRED - set(info.get("commands", [])))
     if not step("list_commands", not missing, version=info.get("version"),
@@ -69,17 +71,19 @@ def run(host="127.0.0.1", port=9877, cleanup=False, log=print) -> dict:
     live.created_tracks.append(track)
     live.send("set_track_name", {"track_index": track, "name": SMOKE_TRACK})
     live._guard(track)
-    live.send("create_clip", {"track_index": track, "clip_index": 0, "length": 8.0})
-    live.send("add_notes_to_clip", {"track_index": track, "clip_index": 0, "notes": _to_cmd(first)})
-    after_one = live.read_back(track, 0)
-    live.send("add_notes_to_clip", {"track_index": track, "clip_index": 0, "notes": _to_cmd(second)})
-    got = live.read_back(track, 0)
+    scene = live.create_scene(SMOKE_TRACK)      # its own scene row: never a clip in one of yours
+    live._guard(track, scene)
+    live.send("create_clip", {"track_index": track, "clip_index": scene, "length": 8.0})
+    live.send("add_notes_to_clip", {"track_index": track, "clip_index": scene, "notes": _to_cmd(first)})
+    after_one = live.read_back(track, scene)
+    live.send("add_notes_to_clip", {"track_index": track, "clip_index": scene, "notes": _to_cmd(second)})
+    got = live.read_back(track, scene)
     cmp = compare_notes(allnotes, got)
     appended = len(after_one) == len(first) and len(got) == len(allnotes)
     if not step("session chunked append", appended and cmp["match"],
                 after_chunk1=len(after_one), after_chunk2=len(got), expected=len(allnotes),
                 missing=cmp["missing"][:3], extra=cmp["extra"][:3]):
-        return _finish(live, track, cleanup, report, log)
+        return _finish(live, track, report, log)
 
     # 3. arrangement clip: create empty, add two chunks, read every note back
     try:
@@ -94,22 +98,14 @@ def run(host="127.0.0.1", port=9877, cleanup=False, log=print) -> dict:
     except Exception as exc:   # report, don't hide
         step("arrangement chunked append", False, error=str(exc))
 
-    return _finish(live, track, cleanup, report, log)
+    return _finish(live, track, report, log)
 
 
-def _finish(live, track, cleanup, report, log):
+def _finish(live, track, report, log):
     report["ok"] = all(s["ok"] for s in report["steps"])
     report["track_index"] = track
-    if cleanup:
-        # only ever our own track, and only if its name still matches
-        info = live.send("get_track_info", {"track_index": track})
-        if info.get("name") == SMOKE_TRACK and track in live.created_tracks:
-            live.send("delete_track", {"track_index": track})
-            log("deleted smoke track %d" % track)
-        else:
-            log("not deleting track %d: name is %r" % (track, info.get("name")))
-    else:
-        log("left track %d '%s' in the set for you to inspect; delete it by hand "
-            "(or rerun with --cleanup)" % (track, SMOKE_TRACK))
+    report["scene_index"] = live.created_scenes[-1] if live.created_scenes else None
+    log("left track %d and scene %s named '%s' in the set. Stemforge's script cannot delete, so delete them by hand."
+        % (track, report["scene_index"], SMOKE_TRACK))
     log("SMOKE TEST %s" % ("PASSED" if report["ok"] else "FAILED"))
     return report

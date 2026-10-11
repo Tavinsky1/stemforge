@@ -53,8 +53,8 @@ def plain_error(exc: BaseException) -> str:
     if isinstance(exc, MemoryError):
         return "The computer ran out of memory while analysing. Close other apps, or analyse fewer stems at a time."
     if isinstance(exc, (ConnectionRefusedError, TimeoutError, ConnectionError)):
-        return ("Cannot reach Ableton. Open Live 12, select AbletonMCP as a Control Surface, then press "
-                "'Connect to Ableton'. You can also export .mid files instead.")
+        return ("Cannot reach Ableton. Open Live 12, select Stemforge as a Control Surface (Preferences > Link, Tempo & MIDI), "
+                "then press 'Connect to Ableton'. You can also export .mid files instead.")
     if isinstance(exc, RuntimeError) and "no audio files" in str(exc):
         return "No audio files were found in that folder. Choose the folder that holds one file per stem."
     if isinstance(exc, ValueError):
