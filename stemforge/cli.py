@@ -99,6 +99,20 @@ def _cmd_build(a):
     return 0
 
 
+def _cmd_smoke(a):
+    if not a.confirm_scratch:
+        print("Refusing to connect to Live: pass --confirm-scratch once the open set is a scratch set "
+              "(this adds one MIDI track named 'stemforge_smoke').")
+        return 2
+    from .smoke import run
+    try:
+        report = run(port=a.port, cleanup=a.cleanup)
+    except OSError as e:
+        print("Cannot reach Live on port %d (%s). Open Live 12 with AbletonMCP selected." % (a.port, e))
+        return 3
+    return 0 if report["ok"] else 1
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="stemforge")
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -117,6 +131,12 @@ def main(argv=None):
     b.add_argument("--out", default="out"); b.add_argument("--port", type=int, default=9877)
     b.add_argument("--stems", nargs="*"); b.add_argument("--readback", action="store_true")
     b.set_defaults(fn=_cmd_build)
+    sm = sp.add_parser("smoke-live", help="write/read-back check against a SCRATCH Live set (adds one track)")
+    sm.add_argument("--port", type=int, default=9877)
+    sm.add_argument("--confirm-scratch", action="store_true",
+                    help="required: you confirm the open Live set is a scratch set, not a real project")
+    sm.add_argument("--cleanup", action="store_true", help="delete the smoke track afterwards (name-checked)")
+    sm.set_defaults(fn=_cmd_smoke)
     a = p.parse_args(argv)
     return a.fn(a) or 0
 
