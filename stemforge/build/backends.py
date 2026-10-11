@@ -180,6 +180,9 @@ class LiveBackend(Backend):
         self.host, self.port, self.timeout, self.log = host, port, timeout, log
         self.created_tracks: list[int] = []
         self.created_scenes: list[int] = []
+        self.claimed_scenes: list[int] = []    # existing, completely empty rows the script handed over (see start)
+        self._claiming = False
+        self._next_row = 0
         self.sock = None
 
     # --- transport
@@ -226,10 +229,16 @@ class LiveBackend(Backend):
     def start(self, plan):
         info = self.send("get_session_info")
         self.log("connected to Live: %s tracks, %s scenes" % (info.get("track_count", "?"), info.get("scene_count", "?")))
-        self.scene_base = info.get("scene_count")
+        self.scene_base = info.get("scene_count") or 0
         self.session_tempo = info.get("tempo")
+        cmds = self.available_commands()
+        if plan.mode == "session":
+            # A build starts at scene 1: leading, completely empty, unnamed rows are reused before any new scene is added.
+            self._claiming = "claim_scene" in cmds and self.scene_base > 0
+            if not self._claiming and self.scene_base > 0:
+                self.log("WARNING: this Stemforge script cannot reuse empty scenes, so the first section goes AFTER your "
+                         "%s existing scenes. Reinstall the script and restart Live to start at scene 1." % self.scene_base)
         if plan.mode == "arrangement":
-            cmds = self.available_commands()
             need = {"create_arrangement_clip", "add_notes_to_arrangement_clip", "get_arrangement_clip_notes"}
             if need - cmds:
                 raise NotSupported("arrangement mode needs Remote Script commands %s (not installed). "
@@ -247,6 +256,20 @@ class LiveBackend(Backend):
         return idx
 
     def create_scene(self, name):
+        if self._claiming and self._next_row < self.scene_base:
+            try:
+                r = self.send("claim_scene", {"scene_index": self._next_row, "name": name})
+            except RuntimeError as e:         # first row that is not empty/unnamed ends reuse, nothing is touched
+                self._claiming = False
+                self.log("scene row %d is not free (%s); the remaining sections get new scenes after it"
+                         % (self._next_row + 1, str(e).split(": ", 1)[-1][:90]))
+            else:
+                self._next_row += 1
+                self.claimed_scenes.append(r["scene_index"])
+                self.created_scenes.append(r["scene_index"])
+                return r["scene_index"]
+        else:
+            self._claiming = False
         r = self.send("create_scene_with_name", {"name": name})
         self.created_scenes.append(r["scene_index"])
         return r["scene_index"]

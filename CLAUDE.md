@@ -46,6 +46,8 @@ Pitch inside the bundle).
   `AbletonMCP` or any other script folder (tests prove it). Every real install is logged in `INSTALL_LOG.md` with its revert.
 - The owner's Live keeps its User Library outside `~/Music` (`~/Documents/ableton projects/SharedAbleton`); a script in the
   Preferences folder was NOT listed there. Two different AbletonMCP copies exist (Preferences, User Library): never touch either.
+- `claim_scene` (script-2) lets a build start at scene 1 by taking over leading scene rows that are completely empty
+  (no clip, no name, no tempo override); a non-empty row ends reuse and is never touched.
 - The script cannot delete, load devices or change the mixer/transport. It writes only to tracks and scenes it created in
   the current Live session, and never overwrites a clip. Ownership uses Live's object identity (`_live_ptr`/`==`); if that
   does not hold in real Live it fails CLOSED (refuses writes), which the smoke test will show.

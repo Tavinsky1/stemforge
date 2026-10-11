@@ -106,3 +106,44 @@ def test_arrangement_refused_when_set_tempo_differs(song):
     with pytest.raises(NotSupported, match="BPM"):
         build(plan, LiveBackend(port=fake.port), log=lambda *_: None)
     assert "create_midi_track" not in [c for c, _ in fake.log]    # refused before creating anything
+
+
+class FakeLiveWithClaim(FakeLive):
+    """Like the real script v2: empty unnamed leading rows can be claimed; anything else is refused."""
+    def __init__(self, scenes):
+        super().__init__()
+        self.scenes = list(scenes)          # "" = empty unnamed row, anything else = the owner's scene
+        self.claimed = []
+
+    def handle(self, cmd, p):
+        if cmd == "list_commands":
+            return {"commands": ["claim_scene", "create_scene_with_name"], "version": "stemforge-script-2"}
+        if cmd == "claim_scene":
+            i = p["scene_index"]
+            if self.scenes[i] != "":
+                raise RuntimeError("PermissionError: Scene %d is named %r" % (i, self.scenes[i]))
+            self.scenes[i] = p["name"]; self.claimed.append(i)
+            return {"scene_index": i, "name": p["name"], "claimed": True}
+        return super().handle(cmd, p)
+
+
+def test_session_build_starts_at_scene_one_by_reusing_empty_rows(song):
+    folder, _ = song
+    plan = make_plan(analyze(str(folder), log=lambda *_: None), "session")
+    fake = FakeLiveWithClaim(["", "", ""])
+    backend = LiveBackend(port=fake.port)
+    res = build(plan, backend, log=lambda *_: None)
+    n = len(plan.scenes)
+    assert res["scenes"] == {i: i for i in range(n)}                   # section 1 is scene row 0, in order, no gaps
+    assert fake.scenes[:min(3, n)] == plan.scenes[:min(3, n)] and len(fake.scenes) == max(3, n)
+    assert fake.claimed == list(range(min(3, n)))
+
+
+def test_build_stops_reusing_rows_at_the_first_owner_row(song):
+    folder, _ = song
+    plan = make_plan(analyze(str(folder), log=lambda *_: None), "session")
+    fake = FakeLiveWithClaim(["", "OWNER SCENE", ""])
+    backend = LiveBackend(port=fake.port)
+    res = build(plan, backend, log=lambda *_: None)
+    assert fake.scenes[1] == "OWNER SCENE" and fake.claimed == [0]    # owner row untouched, row 2 not reused
+    assert res["scenes"][0] == 0 and res["scenes"][1] == 3            # the rest appended after all existing rows

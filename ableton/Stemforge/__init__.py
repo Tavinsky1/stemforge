@@ -27,7 +27,7 @@ except ImportError:
 
 SCRIPT_NAME = "Stemforge"
 # Bump when behaviour changes. list_commands reports this plus a hash of the file Live actually loaded.
-SCRIPT_VERSION = "stemforge-script-1"
+SCRIPT_VERSION = "stemforge-script-2"
 DEFAULT_PORT = 9878
 HOST = "127.0.0.1"
 STATUS_FILE = "/tmp/stemforge_status.json"
@@ -51,7 +51,7 @@ _SOURCE_SHA256 = _hash_own_source()
 
 # Every command the dispatcher accepts. tests/test_stemforge_script.py keeps this honest.
 COMMAND_NAMES = (
-    "add_notes_to_arrangement_clip", "add_notes_to_clip", "create_arrangement_clip",
+    "add_notes_to_arrangement_clip", "add_notes_to_clip", "claim_scene", "create_arrangement_clip",
     "create_clip", "create_midi_track", "create_scene_with_name",
     "get_arrangement_clip_notes", "get_clip_notes", "get_session_info",
     "list_commands", "set_clip_name", "set_tempo", "set_track_name",
@@ -83,6 +83,7 @@ class Stemforge(ControlSurface):
             "create_midi_track": self._create_midi_track,
             "set_track_name": self._set_track_name,
             "create_scene_with_name": self._create_scene_with_name,
+            "claim_scene": self._claim_scene,
             "create_clip": self._create_clip,
             "set_clip_name": self._set_clip_name,
             "add_notes_to_clip": self._add_notes_to_clip,
@@ -308,6 +309,32 @@ class Stemforge(ControlSurface):
         if scene.name != name:
             raise ValueError("Scene name not applied: wanted %r, Live has %r" % (name, scene.name))
         return {"scene_index": index, "name": scene.name}
+
+    def _claim_scene(self, params):
+        """Take over an EXISTING scene row so a build can start at scene 1. Only a row that is completely empty is
+        taken: no clip on any track, no name (or just a number), no tempo / time-signature override. Anything else is
+        refused and left exactly as it is. The row is then Stemforge's own and gets the section name."""
+        index = int(params.get("scene_index", -1))
+        if index < 0 or index >= len(self._song.scenes):
+            raise IndexError("Scene index %d out of range" % index)
+        scene = self._song.scenes[index]
+        if self._is_created(scene, self._created_scenes):
+            raise ValueError("Scene %d is already Stemforge's" % index)
+        current = str(scene.name or "").strip()
+        if current and not current.isdigit():
+            raise PermissionError("Scene %d is named %r, so Stemforge leaves it alone" % (index, current))
+        if getattr(scene, "tempo_enabled", False) or getattr(scene, "time_signature_enabled", False):
+            raise PermissionError("Scene %d has its own tempo or time signature, so Stemforge leaves it alone" % index)
+        for t_index, t in enumerate(self._song.tracks):
+            if index < len(t.clip_slots) and t.clip_slots[index].has_clip:
+                raise PermissionError("Scene %d already holds a clip on track %d ('%s'), so Stemforge leaves it alone"
+                                      % (index, t_index, t.name))
+        name = str(params.get("name", "Section"))
+        scene.name = name
+        if scene.name != name:
+            raise ValueError("Scene name not applied: wanted %r, Live has %r" % (name, scene.name))
+        self._created_scenes.append(scene)
+        return {"scene_index": index, "name": scene.name, "claimed": True}
 
     def _create_clip(self, params):
         slot = self._owned_slot(params)

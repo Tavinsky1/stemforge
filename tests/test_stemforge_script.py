@@ -216,3 +216,54 @@ def test_tempo_is_range_checked(sf):
     assert sf.execute("set_tempo", {"tempo": 126.0})["tempo"] == 126.0
     with pytest.raises(ValueError):
         sf.execute("set_tempo", {"tempo": 5})
+
+
+# --- claim_scene: start a build at scene 1 by reusing completely empty rows -----------------------------------------
+
+def _song_with_empty_rows(sf, n=3):
+    song = sf.song_obj
+    for _ in range(n):
+        song.create_scene(len(song.scenes))
+    return len(song.scenes) - n          # index of the first empty row (row 0 'Scene A' holds a clip and a name)
+
+
+def test_claim_scene_takes_an_empty_unnamed_row_and_allows_clips(sf):
+    first = _song_with_empty_rows(sf)
+    t = sf.execute("create_midi_track", {})["index"]
+    r = sf.execute("claim_scene", {"scene_index": first, "name": "Intro"})
+    assert r["claimed"] and sf.song_obj.scenes[first].name == "Intro"
+    sf.execute("create_clip", {"track_index": t, "clip_index": first, "length": 4})
+    sf.execute("add_notes_to_clip", {"track_index": t, "clip_index": first, "notes": notes(3)})
+    assert len(sf.execute("get_clip_notes", {"track_index": t, "clip_index": first})["notes"]) == 3
+
+
+def test_claim_scene_refuses_named_rows_and_rows_with_clips_and_changes_nothing(sf):
+    song = sf.song_obj
+    before = [(s.name, [bool(t.clip_slots[i].has_clip) for t in song.tracks]) for i, s in enumerate(song.scenes)]
+    with pytest.raises(PermissionError):
+        sf.execute("claim_scene", {"scene_index": 0, "name": "Intro"})            # 'Scene A' is named and has a clip
+    first = _song_with_empty_rows(sf, 2)
+    song.scenes[first]._name = "My drop"
+    with pytest.raises(PermissionError, match="My drop"):
+        sf.execute("claim_scene", {"scene_index": first, "name": "Intro"})
+    song.scenes[first + 1]._name = ""
+    song.tracks[1].clip_slots[first + 1].create_clip(4.0)                          # the owner's clip in an unnamed row
+    with pytest.raises(PermissionError, match="holds a clip"):
+        sf.execute("claim_scene", {"scene_index": first + 1, "name": "Intro"})
+    assert song.scenes[first]._name == "My drop" and song.tracks[1].clip_slots[first + 1].has_clip
+    assert [(s.name, [bool(t.clip_slots[i].has_clip) for t in song.tracks]) for i, s in enumerate(song.scenes)][:1] == before[:1]
+
+
+def test_claim_scene_refuses_tempo_override_rows(sf):
+    first = _song_with_empty_rows(sf, 1)
+    sf.song_obj.scenes[first].tempo_enabled = True
+    with pytest.raises(PermissionError, match="tempo"):
+        sf.execute("claim_scene", {"scene_index": first, "name": "Intro"})
+
+
+def test_claimed_row_is_the_only_extra_row_clips_may_enter(sf):
+    first = _song_with_empty_rows(sf, 2)
+    t = sf.execute("create_midi_track", {})["index"]
+    sf.execute("claim_scene", {"scene_index": first, "name": "Intro"})
+    with pytest.raises(PermissionError, match="Scene"):
+        sf.execute("create_clip", {"track_index": t, "clip_index": first + 1, "length": 4})

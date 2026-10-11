@@ -29,6 +29,22 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
 - Live side (done by you in Live, not by Stemforge): Preferences > Link, Tempo & MIDI > a free Control Surface slot >
   `Stemforge`, Input/Output None. To revert, set that slot back to None.
 
+## 2026-10-11 15:49 — Stemforge script updated to stemforge-script-2 (adds `claim_scene`)
+- Why: the owner asked for the build to start at scene 1; the script could only write into scene rows it created itself,
+  so the first section would have landed at scene 9. `claim_scene` hands Stemforge an EXISTING scene row, but only when
+  the row is completely empty (no clip on any track, no name or just a number, no tempo/time-signature override).
+  Anything else is refused and untouched. Nothing else changed (still no delete, no devices, no mixer/transport).
+- Wrote (replaced our own file): `~/Documents/ableton projects/SharedAbleton/User Library/Remote Scripts/Stemforge/__init__.py`
+  now sha256 `899a1af97129125b91e7cc8d551f67cca5add41b983cc64fe7f930a5374dc763` (stemforge-script-2).
+- Backup of the previous file (script-1, sha `628cb866…`):
+  `~/Documents/ableton-backups/Stemforge-20261011-154907/__init__.py` (new folder, created by the installer).
+- Checked: before/after hashes of the three script folders differ only in that one line; AbletonMCP and TouchDesigner
+  untouched. 70 tests pass.
+- Revert to script-1:
+  `cp "$HOME/Documents/ableton-backups/Stemforge-20261011-154907/__init__.py" "$HOME/Documents/ableton projects/SharedAbleton/User Library/Remote Scripts/Stemforge/__init__.py"`
+  (then restart Live). The app/CLI then warn that the first section goes after the existing scenes.
+- Live loads scripts at launch: restart Live for v2 to take effect (the running Live still holds v1).
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
