@@ -45,6 +45,16 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
   (then restart Live). The app/CLI then warn that the first section goes after the existing scenes.
 - Live loads scripts at launch: restart Live for v2 to take effect (the running Live still holds v1).
 
+## 2026-10-11 15:55 — Session build of "Low Pressure" into the open scratch Live set (changes the SET, not files on disk)
+- Command: `stemforge build "Low Pressure Stems (126BPM).blueprint.json" --mode session --backend live --readback`
+  via Stemforge's script-2 on port 9878. Set tempo left at 147 (song is 126.01). Port 9877 / AbletonMCP not used.
+- Added 5 MIDI tracks after your 2: `0 Drums`, `1 Bass`, `3 Keyboard`, `4 Percussion`, `5 Synth` (track indexes 3–7 in Live).
+- Scenes: rows 1–8 (your empty, unnamed scenes) were claimed and renamed to the first 8 sections; rows 9–13 are new.
+  62 clips, 7,053 notes. Left out: `2 Guitar` (no notes), `6 Other` (coverage 1%), `7 Brass` (onset precision 0.01).
+- Verified twice: the CLI read-back (62/62) and a separate read-back of every clip (62/62 exact, 7,053 notes).
+- Revert (by hand in Live, Stemforge's script cannot delete): delete the 5 tracks above, delete scenes 9–13, and clear the
+  names of scenes 1–8 (they were unnamed before). Or close the set without saving.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
