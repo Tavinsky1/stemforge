@@ -37,4 +37,7 @@ QProgressBar {{ background: {BG}; border: none; border-radius: 4px; max-height: 
 QProgressBar::chunk {{ background: {ACCENT}; border-radius: 4px; }}
 QCheckBox::indicator {{ width: 16px; height: 16px; }}
 QScrollArea {{ border: none; }}
+QPushButton#style {{ background: {BG}; border: 1px solid {LINE}; border-radius: 10px; padding: 8px 10px; text-align: left; font-size: 12px; }}
+QPushButton#style:hover {{ border-color: #4a4f5c; }}
+QPushButton#style:checked {{ border: 2px solid {ACCENT}; background: #2a211d; }}
 """

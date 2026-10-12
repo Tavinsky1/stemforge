@@ -220,9 +220,9 @@ def test_start_from_zero_flow_needs_no_stems(qapp, tmp_path, monkeypatch):
     w.show()
     assert not w.rb_src_new.isEnabled() and not w.btn_prev.isEnabled()
     # choosing a style sets that style's tempo and key
-    w.style_box.setCurrentIndex(w.style_box.findData("house"))
+    w.pick_style("house")
     assert w.bpm_box.value() == 124 and w.key_box.currentData() == "A"
-    w.style_box.setCurrentIndex(w.style_box.findData("techno"))
+    w.pick_style("techno")
     assert w.bpm_box.value() == 128 and w.key_box.currentData() == "D"
     w.create_new()
     assert w.new_bp is not None and w.rb_src_new.isChecked() and w.rb_src_new.isEnabled()
@@ -253,4 +253,25 @@ def test_out_of_range_tempo_is_shown_not_hidden(qapp, tmp_path, monkeypatch):
     w.bpm_box.setValue(175)
     w.create_new()
     assert "outside the usual range" in w.new_view.text()
+    w.timer.stop()
+
+
+def test_all_four_styles_are_buttons_and_each_one_creates_its_own_song(qapp, tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from stemforge.app.window import Window
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    w = Window()
+    w.show()
+    assert set(w.style_btns) == {"techno", "house", "downtempo", "electro_cumbia"}
+    assert all(b.isCheckable() and b.isVisible() for b in w.style_btns.values())
+    assert w.current_style() == "techno"                       # one is always chosen
+    seen = {}
+    for key in ("house", "downtempo", "electro_cumbia", "techno"):
+        w.style_btns[key].click()
+        assert w.current_style() == key and sum(b.isChecked() for b in w.style_btns.values()) == 1
+        w.create_new()
+        seen[key] = w.new_bp["generation"]["style"]
+        assert w.new_bp["generation"]["bpm"] == w.styles_mod.style_info(key)["bpm"]["default"]
+    assert seen == {k: k for k in seen}
     w.timer.stop()

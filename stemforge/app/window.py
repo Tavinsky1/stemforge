@@ -173,12 +173,21 @@ class Window(QMainWindow):
                     "research, from real loops measured on this Mac, or from published recipes, and the window shows which. "
                     "<b>Nothing is random</b>: the same choices always give the same MIDI.")
         nw.setObjectName("muted"); nw.setWordWrap(True); nw.setTextFormat(Qt.RichText); lN.addWidget(nw)
-        nr = QHBoxLayout()
-        nr.addWidget(QLabel("Style"))
-        self.style_box = QComboBox()
+        # four styles as four clear buttons, each saying what it is
+        sr_ = QHBoxLayout(); sr_.setSpacing(10)
+        self.style_btns = {}
+        self.style_group = QButtonGroup(self); self.style_group.setExclusive(True)
+        blurbs = {"techno": "124-134 BPM · rolling bass", "house": "120-128 BPM · offbeat bass",
+                  "downtempo": "80-100 BPM · broken beat", "electro_cumbia": "88-108 BPM · tumbao, guacharaca"}
         for key, label in (("techno", "Techno"), ("house", "House"), ("downtempo", "Downtempo"), ("electro_cumbia", "Electro cumbia")):
-            self.style_box.addItem(label, key)
-        nr.addWidget(self.style_box)
+            b = QPushButton("%s\n%s" % (label, blurbs[key])); b.setCheckable(True); b.setObjectName("style")
+            b.setMinimumHeight(54); b.setMinimumWidth(0); b.setCursor(Qt.PointingHandCursor)
+            b.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
+            self.style_btns[key] = b; self.style_group.addButton(b); sr_.addWidget(b, 1)
+            b.clicked.connect(lambda _=False, k=key: self.pick_style(k))
+        self.style_btns["techno"].setChecked(True)
+        lN.addLayout(sr_)
+        nr = QHBoxLayout()
         nr.addWidget(QLabel("Key"))
         self.key_box = QComboBox()
         for t in styles_mod.TONICS:
@@ -200,7 +209,6 @@ class Window(QMainWindow):
         br0.addWidget(self.btn_new); br0.addWidget(self.new_status, 1); lN.addLayout(br0)
         self.new_view = QLabel(""); self.new_view.setWordWrap(True); self.new_view.setTextFormat(Qt.RichText)
         self.new_view.hide(); lN.addWidget(self.new_view)
-        self.style_box.currentIndexChanged.connect(self.style_changed)
         self.style_changed()
 
         # 1 stems
@@ -498,13 +506,20 @@ class Window(QMainWindow):
         self.update_buttons()
 
     # ---- step 0: start from zero
+    def current_style(self) -> str:
+        return next((k for k, b in self.style_btns.items() if b.isChecked()), "techno")
+
+    def pick_style(self, key: str):
+        self.style_btns[key].setChecked(True)
+        self.style_changed()
+
     def style_changed(self):
-        info = self.styles_mod.style_info(self.style_box.currentData())
+        info = self.styles_mod.style_info(self.current_style())
         self.bpm_box.setValue(info["bpm"]["default"])
         self.key_box.setCurrentIndex(self.styles_mod.TONICS.index(info["tonic"]))
 
     def create_new(self):
-        style, key = self.style_box.currentData(), self.key_box.currentData()
+        style, key = self.current_style(), self.key_box.currentData()
         try:
             bp = self.styles_mod.create(style, key, self.bpm_box.value(), take=self.new_take.value(), short=self.cb_short.isChecked())
         except Exception as e:
