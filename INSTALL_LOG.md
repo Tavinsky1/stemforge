@@ -80,6 +80,11 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
 - When you have quit the old one: `rm -rf ~/Desktop/Stemforge.app && mv ~/Desktop/"Stemforge (new).app" ~/Desktop/Stemforge.app`
 - Revert: `rm -rf ~/Desktop/"Stemforge (new).app"`.
 
+## 2026-10-12 — `Stemforge (new).app` refreshed (seed-driven "New song")
+- Replaced `~/Desktop/Stemforge (new).app` (my own copy) with the build where every New song is different (seed shown,
+  Keep this seed to recreate). The open `~/Desktop/Stemforge.app` was not touched.
+- Revert: `rm -rf ~/Desktop/"Stemforge (new).app"`.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
