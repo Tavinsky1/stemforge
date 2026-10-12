@@ -10,7 +10,9 @@ The owner assigns their own sounds afterwards. Produce MIDI, clips, scenes and t
 tweak Serum 2, Pigments, Diva or any other VST.
 
 ## Hard rules
-1. Never invent notes. No genre templates, no random generators. Uncertain parts are left out and reported.
+1. Transcription never invents notes: uncertain parts are left out and reported. `stemforge compose` is a SEPARATE, opt-in
+   mode (owner's decision 2026-10-12) that writes new Keys/Synth parts from the song's measured idea; every generated
+   note carries `source: "generated"` and its stem is named `G ...`. No genre templates: it uses only what the audio shows.
 2. Never delete or overwrite the owner's existing tracks, clips or scenes. Only touch what a run created.
 3. Do not say something works until it ran against a real Live 12 session and the notes were read back.
 4. You cannot hear audio. Say so, and say what to listen for.

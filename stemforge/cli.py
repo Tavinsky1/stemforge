@@ -108,6 +108,43 @@ def _cmd_import_midi(a):
           % (r["notes"], r["stem"], r["clips"]))
 
 
+def _idea_path(bp_path: str) -> str:
+    return bp_path[:-len(".blueprint.json")] + ".idea.json" if bp_path.endswith(".blueprint.json") else bp_path + ".idea.json"
+
+
+def _cmd_idea(a):
+    """Read the idea of the song (key colour, swing, structure, where the layers really hit) and save it."""
+    from . import idea
+    bp = blueprint.load(a.blueprint)
+    i = idea.extract(bp)
+    path = a.out or _idea_path(a.blueprint)
+    Path(path).write_text(json.dumps(i, indent=1))
+    md = Path(path).with_suffix(".md")
+    md.write_text(idea.to_markdown(i))
+    print(idea.to_markdown(i))
+    print("saved -> %s and %s (edit the json if the reading is wrong, then run `stemforge compose`)" % (path, md.name))
+
+
+def _cmd_compose(a):
+    """Write new Keys and Synth parts from the idea. Drums/Bass/Percussion stay as transcribed (re-swung)."""
+    from . import compose
+    bp = blueprint.load(a.blueprint)
+    ip = a.idea or _idea_path(a.blueprint)
+    if not Path(ip).exists():
+        print("No idea file at %s. Run `stemforge idea %s` first." % (ip, a.blueprint))
+        return 2
+    i = json.loads(Path(ip).read_text())
+    g = compose.compose(bp, i, seed=a.seed, swing_pct=a.swing, intro_bed=not a.no_intro_bed)
+    out = a.out or a.blueprint[:-len(".blueprint.json")] + ".generated.blueprint.json"
+    blueprint.save(g, out)
+    for name, r in compose.report(g, i).items():
+        print("%-8s %4d notes in %2d clips | %.1f notes/bar | velocity %d-%d (spread %.1f, %d distinct) | pitches %d-%d | "
+              "outside palette: %d | off-grid (swing/micro-timing) %.0f%%" % (
+                  name, r["notes"], r["clips"], r["notes_per_bar"], *r["velocity_min_max"], r["velocity_std"],
+                  r["distinct_velocities"], *r["pitch_range"], r["outside_palette"], r["off_grid_pct"]))
+    print("saved -> %s\nlisten: `stemforge build \"%s\" --backend midi` writes .mid files; --seed N gives a different take" % (out, out))
+
+
 def _cmd_smoke(a):
     if not a.confirm_set_ok:
         print("Refusing to connect to Live: pass --confirm-set-ok once you are happy for the open set to get one "
@@ -142,6 +179,14 @@ def main(argv=None):
     b.add_argument("--include", nargs="*", help="stems to build even though verify says they failed")
     b.add_argument("--set-tempo", action="store_true", help="change the open Live set's tempo to the song's (never done by default)")
     b.set_defaults(fn=_cmd_build)
+    ide = sp.add_parser("idea", help="read the key colour, swing, structure and layer rhythms of an analysed song")
+    ide.add_argument("blueprint"); ide.add_argument("--out"); ide.set_defaults(fn=_cmd_idea)
+    co = sp.add_parser("compose", help="write new Keys/Synth parts from the song's idea (labelled 'generated')")
+    co.add_argument("blueprint"); co.add_argument("--idea"); co.add_argument("--out")
+    co.add_argument("--seed", type=int, default=0, help="a different take with the same rules")
+    co.add_argument("--swing", type=float, help="override the measured swing %% (50 = straight)")
+    co.add_argument("--no-intro-bed", action="store_true", help="no fading D+A bed in the last 4 bars of the intro")
+    co.set_defaults(fn=_cmd_compose)
     im = sp.add_parser("import-midi", help="use a MIDI file (NeuralNote, DAW, hand-edited) as one stem's notes")
     im.add_argument("blueprint"); im.add_argument("midi"); im.add_argument("--stem", required=True)
     im.add_argument("--as-beats", action="store_true",

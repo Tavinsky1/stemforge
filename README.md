@@ -43,6 +43,19 @@ whether Arrangement mode is available. Nothing contacts Live until you press it.
 Status: the window is tested headless (offscreen) against the same library calls as the CLI. It has **not** been run against real
 Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
 
+## Idea and compose (when transcription is not enough)
+Dense polyphonic synths transcribe badly (about 40% recall). So there is a second route:
+
+```bash
+stemforge idea    "<song>.blueprint.json"            # key colour, swing, structure, where each layer really hits -> .idea.json/.md
+stemforge compose "<song>.blueprint.json" --seed 0   # new Keys + Synth from that idea -> .generated.blueprint.json
+stemforge build   "<song>.generated.blueprint.json" --backend midi    # or --backend live
+```
+Drums, Bass and Percussion stay as transcribed (16ths re-swung to the measured groove). Keys and Synth are written from
+the measured rhythm, dynamics, drone/fifth/colour tones and bass roots, with velocity accents, swing, micro-timing, an
+interlocking rhythm and a 5/7-note pitch cell that phases against the 16-step grid. Edit `.idea.json` to correct a reading,
+and use `--seed` for another take. `compose.report` checks the rules (palette, register, velocity spread); ears decide taste.
+
 ## Ableton setup (separate from your other scripts)
 
 Stemforge ships its **own** Control Surface script, `Stemforge`, in `ableton/Stemforge/`. It runs next to anything else you use
