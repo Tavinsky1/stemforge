@@ -31,7 +31,8 @@ QPushButton#primary:hover {{ background: #ff7e57; }}
 QPushButton#primary:disabled {{ background: #5b3a2f; color: #8c7a74; }}
 QTableWidget {{ background: {CARD}; border: none; gridline-color: {LINE}; selection-background-color: #2a2d36; }}
 QHeaderView::section {{ background: {CARD}; color: {MUTED}; border: none; border-bottom: 1px solid {LINE}; padding: 6px; }}
-QComboBox, QPlainTextEdit {{ background: {BG}; border: 1px solid {LINE}; border-radius: 6px; padding: 4px 8px; }}
+QComboBox, QPlainTextEdit, QSpinBox {{ background: {BG}; border: 1px solid {LINE}; border-radius: 6px; padding: 4px 8px; }}
+QSpinBox {{ min-width: 48px; }}
 QProgressBar {{ background: {BG}; border: none; border-radius: 4px; max-height: 6px; }}
 QProgressBar::chunk {{ background: {ACCENT}; border-radius: 4px; }}
 QCheckBox::indicator {{ width: 16px; height: 16px; }}

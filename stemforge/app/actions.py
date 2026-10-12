@@ -110,7 +110,7 @@ def idea_summary(idea: dict) -> list[str]:
                    "Colour tone: %s." % (k["tonic"], k["palette_ranked"][1] if len(k["palette_ranked"]) > 1 else "A", colour))
     said = k.get("analyzer_said") or {}
     if said.get("tonic"):
-        out.append("The analyzer's first guess was %s %s (confidence %.2f); the audio measurement above is used instead."
+        out.append("The analyzer's first guess was %s %s (confidence %.2f); the audio measurement is used instead."
                    % (said["tonic"], said.get("mode", ""), said.get("confidence", 0.0)))
     out.append("Swing: %.0f%% on the 16th notes (50%% would be straight). Tempo %.1f BPM, %d bars."
                % (g["swing_pct"], idea["tempo"], idea["bars"]))

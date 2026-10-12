@@ -471,6 +471,10 @@ class Window(QMainWindow):
 
     def idea_done(self, idea):
         self.idea = idea; self.progress.hide()
+        g = self.bp["global"]
+        k = idea["key"]
+        reading = ("%s drone" % k["tonic"]) if not k.get("has_clear_third") else k["tonic"]
+        self.facts.setText("%.1f BPM  ·  %s  ·  %d bars  ·  %d sections" % (g["tempo"], reading, g["n_bars"], len(self.bp["sections"])))
         self.idea_status.setText("Idea read and saved next to the stems (edit the .idea.json if a reading is wrong).")
         self.idea_view.setText("<br>".join("• " + x for x in actions.idea_summary(idea))); self.idea_view.show()
 
