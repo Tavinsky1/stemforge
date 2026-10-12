@@ -43,20 +43,24 @@ whether Arrangement mode is available. Nothing contacts Live until you press it.
 Status: the window is tested headless (offscreen) against the same library calls as the CLI. It has **not** been run against real
 Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
 
-## Idea and compose (when transcription is not enough)
-Dense polyphonic synths transcribe badly (about 40% recall). So there is a second route:
+## Clean rebuild (when the transcription of a synth/bass part is not good enough)
+Dense polyphonic parts transcribe badly. `stemforge rebuild` reads Bass, Keys and Synth **hit by hit from their own audio**:
 
 ```bash
-stemforge idea    "<song>.blueprint.json"            # key colour, swing, structure, where each layer really hits -> .idea.json/.md
-stemforge compose "<song>.blueprint.json" --seed 0   # new Keys + Synth from that idea -> .generated.blueprint.json
-stemforge build   "<song>.generated.blueprint.json" --backend midi    # or --backend live
+stemforge rebuild "<song>.blueprint.json"                  # -> .rebuilt.blueprint.json (+ .idea.json, .events.json cache)
+stemforge build   "<song>.rebuilt.blueprint.json" --backend midi    # or --backend live
 ```
-In the window this is step 3, **Idea & Compose**: *Read the song's idea*, *Write new Keys & Synth*, *Another take*, then
-choose **Composed** under *Build from* in step 4 (Preview, Export .mid, or Build in Ableton).
-Drums, Bass and Percussion stay as transcribed (16ths re-swung to the measured groove). Keys and Synth are written from
-the measured rhythm, dynamics, drone/fifth/colour tones and bass roots, with velocity accents, swing, micro-timing, an
-interlocking rhythm and a 5/7-note pitch cell that phases against the 16-step grid. Edit `.idea.json` to correct a reading,
-and use `--seed` for another take. `compose.report` checks the rules (palette, register, velocity spread); ears decide taste.
+- **When:** onset detection on the stem, snapped to the 16th grid with the song's *measured* swing positions.
+- **What note:** the stem's fundamental at that moment (period tracker), so a low-cut synth keeps its true register.
+- **How hard / how long:** the hit's loudness ranked within the stem; how long it really rings.
+- **Clean loops:** repeating bars are merged into their majority pattern; fills that really happen stay.
+- **Deterministic:** no randomness; the same stems always give the same MIDI. Tracks are named `R Bass`, `R Keys`, `R Synth`.
+- `--octave-bass/--octave-keys/--octave-synth N` shift a layer by whole octaves; `--straight` ignores the swing.
+
+Measured on the Low Pressure stems (onset agreement with each stem's own hits, F1): Bass 0.47 -> **0.91**,
+Keys 0.57 -> **0.84**, Synth 0.53 -> **0.84** (original transcription -> rebuild). The window's step 3 does the same.
+The older `stemforge compose` (writes new notes from rules) scored *worse* than the transcription (Keys 0.25, Synth 0.35)
+and is kept only as an experiment.
 
 ## Ableton setup (separate from your other scripts)
 

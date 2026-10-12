@@ -116,3 +116,24 @@ def idea_summary(idea: dict) -> list[str]:
                % (g["swing_pct"], idea["tempo"], idea["bars"]))
     out.extend(production_notes(idea["tempo"], k["tonic"])[:2])
     return out
+
+
+def rebuild_layers(bp: dict, folder: str, straight: bool, octaves: dict, log, idea: dict | None = None):
+    """Read the idea if needed (it holds the measured swing positions), then rebuild Bass/Keys/Synth from their audio.
+    Returns (idea, rebuilt blueprint, check against the stems, saved path)."""
+    from .. import blueprint, resynth
+    if idea is None:
+        idea = read_idea(bp, folder, log)
+    cache = idea_path(folder)[:-len(".idea.json")] + ".events.json"
+    gen = resynth.rebuild(bp, idea, log=log, straight=straight, octaves=octaves, cache_path=cache)
+    path = rebuilt_path(folder)
+    blueprint.save(gen, path)
+    log("checking the rebuilt MIDI against the stems...")
+    check = resynth.check_against_audio(bp, gen)
+    for r in resynth.RULES:
+        log("rule: " + r)
+    return idea, gen, check, path
+
+
+def rebuilt_path(folder: str) -> str:
+    return str(blueprint_path(folder))[:-len(".blueprint.json")] + ".rebuilt.blueprint.json"

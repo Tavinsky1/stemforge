@@ -34,7 +34,13 @@ Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 98
 - Commands time out after 10 s: chunk big note batches.
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
-## Compose rules (stemforge/compose.py, `RULES`)
+## Clean rebuild (stemforge/resynth.py) is the recommended route for Bass/Keys/Synth
+Measured, deterministic, no generation. Score it with `resynth.check_against_audio` (onset F1 vs the stem). Learned on
+Low Pressure: Keys/Synth are D2 (MIDI 38) with the fundamental filtered (their energy sits in harmonics 2-4; a harmonic
+sum reads them an octave up); the bass is a D1 sub (MIDI 26); the chroma 'A' is the 3rd harmonic, not a chord tone.
+Do NOT reintroduce random step choice or invented registers: the rule-based `compose` scored below the transcription.
+
+## Compose rules (older, experimental: stemforge/compose.py, `RULES`)
 Sources: owner's NotebookLM base (`ABLETON-AI/knowledge/HYPNOTIC_TECHNO_NOTEBOOKLM_KNOWLEDGE_BASE.md`, `knowledge/research/
 arrangement_conventions.md`, `knowledge/arrangement/arrangement_rules.json`) plus web research on techno structure, dub chords,
 polymeter and swing. Rules are about structure and dynamics and are checked by `compose.report`; taste is judged by ears.

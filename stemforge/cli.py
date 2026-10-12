@@ -145,6 +145,30 @@ def _cmd_compose(a):
     print("saved -> %s\nlisten: `stemforge build \"%s\" --backend midi` writes .mid files; --seed N gives a different take" % (out, out))
 
 
+def _cmd_rebuild(a):
+    """Rebuild Bass, Keys and Synth hit by hit from their own audio (no randomness). Drums/Percussion stay transcribed."""
+    from . import idea as idea_mod, resynth
+    bp = blueprint.load(a.blueprint)
+    ip = a.idea or _idea_path(a.blueprint)
+    if Path(ip).exists():
+        i = json.loads(Path(ip).read_text())
+    else:
+        print("reading the song's idea first (swing, groove positions)...")
+        i = idea_mod.extract(bp)
+        Path(ip).write_text(json.dumps(i, indent=1))
+    cache = ip[:-len(".idea.json")] + ".events.json" if ip.endswith(".idea.json") else ip + ".events.json"
+    octaves = {"bass": a.octave_bass, "keys": a.octave_keys, "synth": a.octave_synth}
+    gen = resynth.rebuild(bp, i, log=print, straight=a.straight, octaves=octaves, cache_path=cache)
+    out = a.out or a.blueprint[:-len(".blueprint.json")] + ".rebuilt.blueprint.json"
+    blueprint.save(gen, out)
+    chk = resynth.check_against_audio(bp, gen)
+    for name, r in gen["generation"]["report"].items():
+        c = chk.get(name, {})
+        print("%-8s from %-12s %4d notes | matches the stem's hits: F1 %.2f (found %.0f%%, false %.0f%%)" % (
+            name, r["from"], r["notes"], c.get("hit_match", 0), 100 * c.get("found", 0), 100 * c.get("false", 0)))
+    print("saved -> %s\nlisten: `stemforge build \"%s\" --backend midi` (or --backend live)" % (out, out))
+
+
 def _cmd_smoke(a):
     if not a.confirm_set_ok:
         print("Refusing to connect to Live: pass --confirm-set-ok once you are happy for the open set to get one "
@@ -181,7 +205,13 @@ def main(argv=None):
     b.set_defaults(fn=_cmd_build)
     ide = sp.add_parser("idea", help="read the key colour, swing, structure and layer rhythms of an analysed song")
     ide.add_argument("blueprint"); ide.add_argument("--out"); ide.set_defaults(fn=_cmd_idea)
-    co = sp.add_parser("compose", help="write new Keys/Synth parts from the song's idea (labelled 'generated')")
+    rb = sp.add_parser("rebuild", help="rebuild Bass/Keys/Synth hit by hit from their audio (deterministic, no generation)")
+    rb.add_argument("blueprint"); rb.add_argument("--idea"); rb.add_argument("--out")
+    rb.add_argument("--straight", action="store_true", help="straight 16ths instead of the song's measured swing")
+    for nm in ("bass", "keys", "synth"):
+        rb.add_argument("--octave-" + nm, type=int, default=0, help="shift the %s layer by whole octaves (default 0 = as in the song)" % nm)
+    rb.set_defaults(fn=_cmd_rebuild)
+    co = sp.add_parser("compose", help="OLDER, experimental: writes new notes; scored far worse than `rebuild` against the stems")
     co.add_argument("blueprint"); co.add_argument("--idea"); co.add_argument("--out")
     co.add_argument("--seed", type=int, default=0, help="a different take with the same rules")
     co.add_argument("--swing", type=float, help="override the measured swing %% (50 = straight)")
