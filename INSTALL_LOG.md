@@ -85,6 +85,12 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
   Keep this seed to recreate). The open `~/Desktop/Stemforge.app` was not touched.
 - Revert: `rm -rf ~/Desktop/"Stemforge (new).app"`.
 
+## 2026-10-12 — one app icon on the Desktop
+- Removed the old `~/Desktop/Stemforge.app` (not running at the time) and renamed `Stemforge (new).app` to
+  `~/Desktop/Stemforge.app`. There is now a single Stemforge on the Desktop (the build with the four styles and "New song").
+- Update later: `bash packaging/build_app.sh`, quit the app, then
+  `rm -rf ~/Desktop/Stemforge.app && ditto dist/Stemforge.app ~/Desktop/Stemforge.app`.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
