@@ -206,6 +206,13 @@ class Window(QMainWindow):
         self.seed_box.setToolTip("Every song has a seed. The same seed (with the same choices) always gives the same song.")
         nr.addWidget(self.seed_box)
         self.cb_keep_seed = QCheckBox("Keep this seed"); nr.addWidget(self.cb_keep_seed)
+        nr.addWidget(QLabel("Arrangement"))
+        self.arr_box = QComboBox()
+        self.arr_box.addItem("Full song", "full")
+        self.arr_box.addItem("Club mix (long DJ intro/outro)", "club")
+        self.arr_box.setToolTip("Full song: complete length, percussion keeps going, the outro strips layer by layer.\n"
+                                "Club mix: the style template as written, with long drum-only intros and outros.")
+        nr.addWidget(self.arr_box)
         self.cb_short = QCheckBox("Short (sections capped at 16 bars)"); nr.addWidget(self.cb_short)
         nr.addStretch(); lN.addLayout(nr)
         br0 = QHBoxLayout()
@@ -533,7 +540,8 @@ class Window(QMainWindow):
         else:
             seed = random.SystemRandom().randrange(100000, 1000000)     # a new song every press
         try:
-            bp = self.styles_mod.create(style, key, bpm, seed=seed, short=self.cb_short.isChecked())
+            bp = self.styles_mod.create(style, key, bpm, seed=seed, short=self.cb_short.isChecked(),
+                                        mode=self.arr_box.currentData())
         except Exception as e:
             self.show_error(actions.plain_error(e)); return
         self.new_bp = bp
@@ -552,6 +560,9 @@ class Window(QMainWindow):
             facts.append("bass lands on the main kick steps in %.0f%% of its notes" % chk["bass_on_kick_steps_pct"])
         if "bass_on_offbeat_8ths_pct" in chk:
             facts.append("%.0f%% of bass notes sit on the offbeat 8ths" % chk["bass_on_offbeat_8ths_pct"])
+        if "sections_with_percussion" in chk:
+            facts.append("percussion plays in %s sections%s" % (chk["sections_with_percussion"],
+                         ", including the last" if chk.get("percussion_in_last_section") else ""))
         warn = "".join("<br><span style='color:%s'>%s</span>" % (theme.WARN, w) for w in bp["warnings"])
         self.new_view.setText("<b>%s</b>: %.0f BPM, %d bars, %d sections, swing %.0f%%.<br>%s<br><span style='color:%s'>Checks: %s.</span>%s"
                               "<br><span style='color:%s'>Saved in %s. Now choose <b>Created from zero</b> in step 4.</span>"

@@ -172,7 +172,7 @@ def _cmd_rebuild(a):
 def _cmd_create(a):
     """Create a song skeleton from zero in a style: deterministic, patterns from the library with their sources."""
     from .styles import create as C
-    bp = C.create(a.style, a.key, a.bpm, seed=a.seed, short=a.short)
+    bp = C.create(a.style, a.key, a.bpm, seed=a.seed, short=a.short, mode=a.mode)
     g = bp["generation"]
     out_dir = Path(a.out or "created")
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -232,6 +232,9 @@ def main(argv=None):
     cr.add_argument("--seed", type=int, help="default: a new random seed, so every run is a different song; the same seed "
                                               "always gives the same song")
     cr.add_argument("--short", action="store_true", help="cap every section at 16 bars")
+    cr.add_argument("--mode", choices=["full", "club"], default="full",
+                    help="full = a full-length song, percussion keeps going, outro strips layer by layer (default); "
+                         "club = the template's long DJ intros/outros and drum-free breaks")
     cr.add_argument("--out", help="folder for the blueprint (default ./created)")
     cr.set_defaults(fn=_cmd_create)
     rb = sp.add_parser("rebuild", help="rebuild Bass/Keys/Synth hit by hit from their audio (deterministic, no generation)")

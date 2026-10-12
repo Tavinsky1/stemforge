@@ -8455,6 +8455,55 @@
     "G2-40",
     "G2-41"
    ],
+   "profiles": {
+    "intro": [
+     "kick",
+     "hats",
+     "percussion"
+    ],
+    "build": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion"
+    ],
+    "groove": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion",
+     "texture"
+    ],
+    "breakdown": [
+     "percussion",
+     "pad"
+    ],
+    "peak": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion",
+     "texture",
+     "pad",
+     "lead"
+    ],
+    "outro": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion"
+    ]
+   },
+   "outro_removal": [
+    "bass",
+    "hat",
+    "perc",
+    "clap"
+   ],
    "refs": [
     "https://www.attackmagazine.com/technique/tutorials/warehouse-rolling-techno-bass/",
     "https://www.studiobrootle.com/rolling-techno-bassline-ableton/",
@@ -8729,6 +8778,56 @@
    },
    "fill": [
     "G2-41"
+   ],
+   "profiles": {
+    "intro": [
+     "kick",
+     "hats"
+    ],
+    "build": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords"
+    ],
+    "groove": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "pad",
+     "percussion"
+    ],
+    "breakdown": [
+     "pad",
+     "chords"
+    ],
+    "peak": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "pad",
+     "lead",
+     "percussion"
+    ],
+    "outro": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion",
+     "chords"
+    ]
+   },
+   "outro_removal": [
+    "chords",
+    "perc",
+    "clap",
+    "bass"
    ],
    "refs": [
     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
@@ -9038,6 +9137,55 @@
     "G2-36",
     "G2-35"
    ],
+   "profiles": {
+    "intro": [
+     "pad",
+     "percussion",
+     "hats"
+    ],
+    "build": [
+     "kick",
+     "hats",
+     "bass",
+     "percussion",
+     "pad"
+    ],
+    "groove": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "percussion"
+    ],
+    "breakdown": [
+     "bass",
+     "chords",
+     "percussion"
+    ],
+    "peak": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "pad",
+     "lead",
+     "percussion"
+    ],
+    "outro": [
+     "kick",
+     "hats",
+     "bass",
+     "pad",
+     "percussion"
+    ]
+   },
+   "outro_removal": [
+    "bass",
+    "hat",
+    "kick"
+   ],
    "refs": [
     "https://www.attackmagazine.com/technique/beat-dissected/chillout-beat-raw-strip-hop/"
    ],
@@ -9313,6 +9461,56 @@
     "P04",
     "G2-22",
     "G2-27"
+   ],
+   "profiles": {
+    "intro": [
+     "pad",
+     "percussion",
+     "hats"
+    ],
+    "build": [
+     "kick",
+     "hats",
+     "clap",
+     "percussion",
+     "bass"
+    ],
+    "groove": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "percussion"
+    ],
+    "breakdown": [
+     "hats",
+     "bass",
+     "percussion"
+    ],
+    "peak": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "chords",
+     "pad",
+     "lead",
+     "percussion"
+    ],
+    "outro": [
+     "kick",
+     "hats",
+     "clap",
+     "bass",
+     "percussion",
+     "pad"
+    ]
+   },
+   "outro_removal": [
+    "clap",
+    "kick",
+    "bass"
    ],
    "refs": [
     "https://bassscalespdf.org/blog/how-to-play-cumbia-bass/",

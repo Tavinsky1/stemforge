@@ -33,6 +33,7 @@ LAYERS = {
 }
 ORDER = ["kick", "clap", "hat", "perc", "bass", "chords", "pad", "lead"]
 PITCHED = {"bass", "chords", "pad", "lead"}
+ELEMENT_ALIAS = {"hats": "hat", "percussion": "perc", "claps": "clap", "snare": "clap"}
 
 
 @lru_cache(maxsize=1)
@@ -77,15 +78,28 @@ def _snap8(bars: float) -> int:
 
 LONG_KINDS = {"groove", "peak", "full_groove", "remate"}
 EDGE_KINDS = {"intro", "outro", "ritmo_entra"}
+KIND_MAP = {"intro": "intro", "outro": "outro", "build": "build", "ritmo_entra": "build", "groove": "groove",
+            "full_groove": "groove", "breakdown": "breakdown", "puente": "breakdown", "peak": "peak", "remate": "peak"}
+MIN_TOTAL_BARS = 120          # a full song is not shorter than this (about 4 minutes at 128 BPM)
 
 
-def structure(template: list[dict], rng: random.Random, short: bool) -> list[dict]:
+def structure(template: list[dict], rng: random.Random, short: bool, mode: str = "full") -> list[dict]:
     """The style's own arrangement, varied in 8-bar steps: section lengths, and sometimes the peak returns after a short
-    breakdown. Elements and energies are copied from the template, never made up."""
+    breakdown. Elements and energies are copied from the template, never made up. In 'full' mode sections are not
+    halved and the song is extended with another groove block until it is a full-length song."""
     secs = [{"name": t["name"], "bars": t["bars"], "elements": list(t["elements"]), "energy": t["energy"]} for t in template]
     for s in secs:
         b = s["bars"]
-        if s["name"] in LONG_KINDS or s["name"] in EDGE_KINDS:
+        if mode == "full":
+            if s["name"] == "intro" or s["name"] == "ritmo_entra":
+                opts = sorted({max(8, _snap8(b * 0.5)), max(16, _snap8(b * 0.75)) if b >= 24 else _snap8(b)})
+            elif s["name"] == "outro":
+                opts = sorted({max(16, _snap8(b * 0.75)), max(16, _snap8(b))})
+            elif s["name"] in LONG_KINDS:
+                opts = sorted({_snap8(b * 0.75), _snap8(b)})
+            else:
+                opts = [b]
+        elif s["name"] in LONG_KINDS or s["name"] in EDGE_KINDS:
             opts = sorted({_snap8(b * 0.5), _snap8(b * 0.75), _snap8(b)})
         elif b >= 16:
             opts = sorted({_snap8(b * 0.5), _snap8(b)})
@@ -100,6 +114,16 @@ def structure(template: list[dict], rng: random.Random, short: bool) -> list[dic
         again = dict(secs[i])
         again["bars"] = _snap8(secs[i]["bars"] * 0.5)
         secs[i + 1:i + 1] = [bd, again]
+    if mode == "full" and not short:
+        grooves = [i for i, s in enumerate(secs) if KIND_MAP.get(s["name"]) == "groove"]
+        guard = 0
+        while sum(s["bars"] for s in secs) < MIN_TOTAL_BARS and grooves and guard < 4:
+            i = grooves[0]
+            extra = dict(secs[i])
+            extra["bars"] = 16
+            secs.insert(i + 1, extra)
+            grooves = [j for j, s in enumerate(secs) if KIND_MAP.get(s["name"]) == "groove"]
+            guard += 1
     if short:
         for s in secs:
             s["bars"] = min(s["bars"], 16)
@@ -119,8 +143,12 @@ def _kick_overlap(option: list[str], lib_patterns: dict, kick_steps: set[int]) -
 
 
 def create(style: str, tonic: str | None = None, bpm: float | None = None, seed: int | None = None, short: bool = False,
-           swing_pct: float | None = None) -> dict:
-    """tonic/bpm/swing_pct = None means 'let the seed choose, inside what suits the style'."""
+           swing_pct: float | None = None, mode: str = "full") -> dict:
+    """tonic/bpm/swing_pct = None means 'let the seed choose, inside what suits the style'.
+    mode 'full': a full-length song where percussion keeps going and layers enter and leave in order;
+    mode 'club': the template as written (long DJ intros/outros, drum-only breaks)."""
+    if mode not in ("full", "club"):
+        raise ValueError("mode must be 'full' or 'club'")
     lib = library()
     if style not in lib["styles"]:
         raise ValueError("unknown style %r; choose one of %s" % (style, ", ".join(STYLES)))
@@ -155,7 +183,7 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, seed:
         pools[lay] = opts
     occurrence: dict[str, int] = {}
 
-    arrangement = structure(sd["arrangement"], rng, short)
+    arrangement = structure(sd["arrangement"], rng, short, mode)
     used_fills: list[str] = []
     secs_in = arrangement
     sections, clips, placements = [], [], []
@@ -163,26 +191,46 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, seed:
     used: dict[str, dict] = {}
     log: list[dict] = []
     start_bar = 0
+    windows: dict[tuple[str, int], tuple[int, int]] = {}
+    kinds = [KIND_MAP.get(x["name"], x["name"]) for x in secs_in]
     for i, s in enumerate(secs_in):
         bars = min(s["bars"], 16) if short else s["bars"]
+        kind = kinds[i]
+        if mode == "full" and sd.get("profiles") and kind in sd["profiles"]:
+            els = list(sd["profiles"][kind])
+            if kind == "intro":                                   # the template may add elements (a second intro adds bass)
+                els += [e for e in s["elements"] if e not in els and e != "drums"]   # the profile decides the drum layers
+        else:
+            els = list(s["elements"])
         layers: list[str] = []
-        for el in s["elements"]:
-            for lay in sd["element_map"].get(el, []):
+        entry_group: dict[str, int] = {}
+        for gi, el in enumerate(els):
+            mapped = sd["element_map"].get(el)
+            if mapped is None or el in ELEMENT_ALIAS:
+                a_ = ELEMENT_ALIAS.get(el, el)
+                mapped = [a_] if a_ in LAYERS else (mapped or [])
+            for lay in mapped:
                 if lay not in layers:
                     layers.append(lay)
-        tier = _tier(s["energy"])
+                    entry_group[lay] = gi
+        if mode == "full":
+            tier = "dense" if kind == "peak" else ("sparse" if kind in ("intro", "breakdown", "outro") else "base")
+        else:
+            tier = _tier(s["energy"])
+        present: list[str] = []
         for lay in ORDER:
             if lay not in layers:
                 continue
             spec = sd["layers"].get(lay)
-            if not spec or s["energy"] < spec.get("min_energy", 0.0):
+            if not spec or (mode == "club" and s["energy"] < spec.get("min_energy", 0.0)):
                 continue
             if tier == "sparse":
-                ids = spec["sparse"]
+                ids = spec["sparse"] or (pools[lay][0] if mode == "full" else None)
             elif tier == "dense":
                 ids = spec["dense"]
             else:
-                if lay in ("perc", "lead") and rng.random() < 0.3:
+                omit = 0.3 if mode == "club" and lay in ("perc", "lead") else (0.25 if mode == "full" and lay in ("lead", "pad") else 0.0)
+                if omit and rng.random() < omit:
                     continue                                   # an optional layer sits this section out
                 k = occurrence.get(lay, 0)
                 occurrence[lay] = k + 1
@@ -195,9 +243,32 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, seed:
             if not notes:
                 continue
             notes_by[(lay, i)] = notes
+            present.append(lay)
             used[pid] = P[pid]
             log.append({"section": i, "layer": lay, "pattern": "+".join(ids),
                         "name": " + ".join(P[x]["name"] for x in ids), "kind": P[ids[0]]["source"]["kind"]})
+        if mode == "full":
+            # one new element per 4-bar phrase while a section builds (the owner's one-element rule)
+            if kind in ("intro", "build") and bars >= 8:
+                eg = {l: (0 if (kind == "build" and l in ("kick", "hat", "clap")) else entry_group[l]) for l in present}
+                groups = sorted(set(eg.values()))
+                for l in present:
+                    windows[(l, i)] = (min(4 * groups.index(eg[l]), bars - 4), bars)
+            # strip back two elements in the 4 bars before a peak
+            if i + 1 < len(kinds) and kinds[i + 1] == "peak" and kind != "peak" and bars >= 8:
+                # only elements that were already playing can be taken away
+                playing = [x for x in ("lead", "pad", "chords", "hat", "clap") if x in present
+                           and windows.get((x, i), (0, bars))[0] < bars - 4]
+                for l in playing[:2]:
+                    lo, _ = windows.get((l, i), (0, bars))
+                    windows[(l, i)] = (lo, bars - 4)
+            # the outro takes elements away in reverse order of entry, so percussion is not dropped at the first bar
+            if kind == "outro" and bars >= 8:
+                rem = [l for l in sd.get("outro_removal", []) if l in present]
+                phases = bars // 4
+                for j, l in enumerate(rem):
+                    when = 4 * max(1, min(phases - 1, 1 + round(j * (phases - 2) / max(len(rem) - 1, 1))))
+                    windows[(l, i)] = (0, when)
         # transition: a short fill on the percussion in the last bar before a clearly bigger section
         nxt = secs_in[i + 1] if i + 1 < len(secs_in) else None
         if nxt and nxt["energy"] >= s["energy"] + 0.2 and sd.get("fill") and bars >= 4:
@@ -212,6 +283,15 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, seed:
                          "energy_slope_db_per_bar": 0.0, "active_stems": [], "evidence": [], "label": s["name"],
                          "name": "%02d %s | %d" % (i + 1, s["name"].upper(), bars)})
         start_bar += bars
+
+    # apply the entry/exit windows (stagger, strip-back, outro)
+    for (lay, i), (lo, hi) in windows.items():
+        ns = notes_by.get((lay, i))
+        if ns is None:
+            continue
+        lo_b, hi_b = lo * BEATS_PER_BAR, hi * BEATS_PER_BAR
+        notes_by[(lay, i)] = [{**n, "duration": min(n["duration"], hi_b - n["start"])} for n in ns
+                              if lo_b <= n["start"] < hi_b and hi_b - n["start"] > 0.04]
 
     # swing on the 16ths, then the clips
     stems_used: list[str] = []
@@ -250,7 +330,8 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, seed:
         "clip_min_confidence": 0.0,
     }
     bp["generation"] = {"method": "styles.create/1", "style": style, "tonic": tonic, "bpm": bpm, "swing_pct": swing, "seed": seed,
-                        "short": short, "layers": log, "refs": sd["refs"], "checks": checks(bp)}
+                        "short": short, "mode": mode,
+                        "windows": [{"layer": l, "section": i, "from_bar": lo + 1, "to_bar": hi} for (l, i), (lo, hi) in sorted(windows.items())], "layers": log, "refs": sd["refs"], "checks": checks(bp)}
     return bp
 
 
@@ -277,6 +358,13 @@ def checks(bp: dict) -> dict:
         out["bass_on_offbeat_8ths_pct"] = round(100.0 * sum(1 for s in bass if s % 4 == 2) / len(bass), 1)
     out["layers"] = sorted({c["stem"] for c in bp["clips"]})
     out["bars"] = bp["global"]["n_bars"]
+    # rhythm continuity: how many sections have some percussion (hats or perc), and does the last section still have it
+    secs = bp["sections"]
+    has = [any(n in s["active_stems"] for n in ("Hats", "Perc")) for s in secs]
+    out["sections_with_percussion"] = "%d of %d" % (sum(has), len(secs))
+    out["percussion_in_last_section"] = bool(has and has[-1])
+    out["empty_core_slots"] = sum(1 for s in secs if s["label"] not in ("breakdown", "puente", "intro") for n in ("Kick", "Bass")
+                                  if n not in s["active_stems"] and n in out["layers"])
     return out
 
 

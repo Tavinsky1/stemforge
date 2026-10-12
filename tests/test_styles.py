@@ -149,8 +149,8 @@ def test_arrangement_comes_from_the_styles_own_template_and_short_caps_sections(
     assert max(s["length_bars"] for s in short["sections"]) <= 16
 
 
-def test_intro_is_kick_only_in_techno_and_sections_never_overflow():
-    bp = C.create("techno", seed=4)
+def test_club_mix_keeps_the_kick_only_intro_and_sections_never_overflow():
+    bp = C.create("techno", seed=4, mode="club")
     intro = bp["sections"][0]
     assert intro["active_stems"] == ["Kick"]
     for c in bp["clips"]:
@@ -173,3 +173,90 @@ def test_the_library_json_is_in_sync_with_its_builder(tmp_path):
     shipped = json.loads(C.LIB_PATH.read_text())
     assert set(fresh["patterns"]) == set(shipped["patterns"])
     assert fresh["styles"].keys() == shipped["styles"].keys()
+
+
+
+# --- full-song mode: the owner's arrangement rules (percussion stays, elements enter and leave in order) -------------------
+
+def _last_bar(bp, section_index, stem):
+    clips = {c["id"]: c for c in bp["clips"]}
+    for p in bp["placements"]:
+        if p["stem"] == stem and p["section"] == section_index:
+            return int(max(n["start"] for n in clips[p["clip"]]["notes"]) // 4) + 1
+    return 0
+
+
+def _first_bar(bp, section_index, stem):
+    clips = {c["id"]: c for c in bp["clips"]}
+    for p in bp["placements"]:
+        if p["stem"] == stem and p["section"] == section_index:
+            return int(min(n["start"] for n in clips[p["clip"]]["notes"]) // 4) + 1
+    return None
+
+
+@pytest.mark.parametrize("style", C.STYLES)
+def test_full_song_is_full_length_and_percussion_never_gets_lost(style):
+    for seed in range(1, 16):
+        bp = C.create(style, seed=seed)
+        blueprint.validate(bp)
+        assert bp["global"]["n_bars"] >= 112, (style, seed)
+        have = {(p["stem"], p["section"]) for p in bp["placements"]}
+        last = bp["sections"][-1]["index"]
+        assert ("Hats", last) in have or ("Perc", last) in have, (style, seed, "no percussion in the last section")
+        with_perc = [s for s in bp["sections"] if ("Hats", s["index"]) in have or ("Perc", s["index"]) in have]
+        assert len(with_perc) >= len(bp["sections"]) - 1, (style, seed)
+
+
+@pytest.mark.parametrize("style", C.STYLES)
+def test_every_full_song_has_the_core_layers_in_every_groove_and_peak(style):
+    for seed in range(1, 11):
+        bp = C.create(style, seed=seed)
+        have = {(p["stem"], p["section"]) for p in bp["placements"]}
+        for s in bp["sections"]:
+            if s["label"] in ("groove", "full_groove", "peak", "remate"):
+                for need in ("Kick", "Hats", "Bass", "Perc"):
+                    assert (need, s["index"]) in have, (style, seed, s["name"], need)
+
+
+def test_techno_outro_strips_in_the_documented_order_bass_then_hats_until_only_the_kick():
+    for seed in range(1, 11):
+        bp = C.create("techno", seed=seed)
+        out = bp["sections"][-1]
+        assert out["label"] == "outro"
+        bass, hats, perc, clap, kick = (_last_bar(bp, out["index"], x) for x in ("Bass", "Hats", "Perc", "Clap", "Kick"))
+        assert 0 < bass < hats <= out["length_bars"] and bass < perc and hats <= clap <= kick == out["length_bars"], (seed, bass, hats, perc, clap, kick)
+
+
+def test_intro_adds_one_new_element_per_four_bars():
+    bp = C.create("techno", seed=3)
+    intro = bp["sections"][0]
+    starts = {}
+    for stem in intro["active_stems"]:
+        starts[stem] = _first_bar(bp, intro["index"], stem)
+    assert starts["Kick"] == 1
+    assert all((b - 1) % 4 == 0 for b in starts.values())                 # entries sit on 4-bar phrase boundaries
+    assert len({b for st, b in starts.items() if st != "Clap"}) == len(starts)    # no two elements enter together
+
+
+def test_up_to_two_elements_that_were_playing_are_stripped_back_before_a_peak():
+    checked = 0
+    for style in C.STYLES:
+        for seed in range(1, 8):
+            bp = C.create(style, seed=seed)
+            secs = bp["sections"]
+            for i, s in enumerate(secs[:-1]):
+                if secs[i + 1]["label"] in ("peak", "remate") and s["label"] not in ("peak", "remate") and s["length_bars"] >= 8:
+                    cand = [st for st in s["active_stems"] if st in ("Lead", "Pad", "Chords", "Hats", "Clap")
+                            and (_first_bar(bp, s["index"], st) or 99) <= s["length_bars"] - 4]
+                    ended_early = [st for st in cand if _last_bar(bp, s["index"], st) <= s["length_bars"] - 4]
+                    assert len(ended_early) == min(2, len(cand)), (style, seed, s["name"], cand, ended_early)
+                    checked += 1
+    assert checked >= 10
+
+
+def test_full_mode_is_never_shorter_than_club_halving_and_club_mode_still_exists():
+    full = [C.create("downtempo", seed=s)["global"]["n_bars"] for s in range(1, 11)]
+    assert min(full) >= 112
+    assert C.create("downtempo", seed=1, mode="club")["generation"]["mode"] == "club"
+    with pytest.raises(ValueError, match="mode"):
+        C.create("downtempo", mode="radio")

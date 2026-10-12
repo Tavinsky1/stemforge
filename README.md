@@ -47,6 +47,11 @@ Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
 `stemforge create --style techno|house|downtempo|electro_cumbia [--key D] [--bpm 128] [--seed N] [--short]` assembles a song
 skeleton: the style's own arrangement (from `knowledge/arrangement/*.json`), drums, a bass with that style's groove and note
 placement, chords, pad and lead. In the window it is the first card ("Start from zero"); then choose *Created from zero* in step 4.
+- **Full song (default) or Club mix** (`--mode full|club`, "Arrangement" in the window). Full song follows the owner's
+  arrangement rules: a full-length song (>= 112 bars), percussion keeps going in every section including the last, one new
+  element per 4-bar phrase in intros and builds, two elements stripped back in the 4 bars before a peak, and the outro takes
+  layers away in reverse order of entry (techno: bass first, then hats and percussion, until only the kick remains).
+  Club mix keeps the template as written (long DJ intros, drum-free breakdowns).
 - **Every run is a different song, and nothing is invented.** A seed (random unless you give one) chooses, from sourced
   material only: key and tempo inside the style's range, swing, section lengths (8-bar steps) and whether the peak returns,
   which of the library's alternatives each layer uses and how they alternate, which optional layers sit a section out, and

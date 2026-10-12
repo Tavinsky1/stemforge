@@ -287,3 +287,20 @@ def test_all_four_styles_are_buttons_and_each_one_creates_its_own_song(qapp, tmp
         assert info["bpm"]["min"] <= w.new_bp["generation"]["bpm"] <= info["bpm"]["max"]
     assert seen == {k: k for k in seen}
     w.timer.stop()
+
+
+def test_arrangement_choice_full_song_or_club_mix(qapp, tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from stemforge.app.window import Window
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    w = Window()
+    assert [w.arr_box.itemData(i) for i in range(w.arr_box.count())] == ["full", "club"] and w.arr_box.currentData() == "full"
+    w.pick_style("techno")
+    w.create_new()
+    assert w.new_bp["generation"]["mode"] == "full" and w.new_bp["global"]["n_bars"] >= 112
+    assert "percussion plays in" in w.new_view.text()
+    w.arr_box.setCurrentIndex(1)
+    w.create_new()
+    assert w.new_bp["generation"]["mode"] == "club"
+    w.timer.stop()

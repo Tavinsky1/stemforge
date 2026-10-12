@@ -35,6 +35,8 @@ Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 98
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
 ## Create from zero (stemforge/styles/)
+Presence rules (`create(mode='full')`) come from knowledge/arrangement/arrangement_rules.json + arrangement_conventions.md:
+per-style `profiles` and `outro_removal` live in build_library.styles(); percussion must stay to the last section.
 Variety = seed-driven CHOICE among sourced patterns/arrangement variants (`create(seed=...)`); same seed = same song.
 Never add free note generation; widen a layer's `base` pool in `build_library.styles()` with sourced patterns instead.
 Deterministic assembly from `styles/library/styles.json` (177 patterns, each with `source.kind` notebooklm | documented |
