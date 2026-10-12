@@ -209,3 +209,48 @@ def test_how_it_works_is_shown_in_the_window(qapp):
     text = w.logbox.toPlainText()
     assert all(r in text for r in resynth.RULES)
     w.timer.stop()
+
+
+def test_start_from_zero_flow_needs_no_stems(qapp, tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from stemforge.app.window import Window
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))       # never write into the real Documents
+    w = Window()
+    w.show()
+    assert not w.rb_src_new.isEnabled() and not w.btn_prev.isEnabled()
+    # choosing a style sets that style's tempo and key
+    w.style_box.setCurrentIndex(w.style_box.findData("house"))
+    assert w.bpm_box.value() == 124 and w.key_box.currentData() == "A"
+    w.style_box.setCurrentIndex(w.style_box.findData("techno"))
+    assert w.bpm_box.value() == 128 and w.key_box.currentData() == "D"
+    w.create_new()
+    assert w.new_bp is not None and w.rb_src_new.isChecked() and w.rb_src_new.isEnabled()
+    assert w.btn_prev.isEnabled() and w.btn_mid.isEnabled()                     # no analysis was needed
+    assert "Rolling 16ths" in w.new_view.text() and "NotebookLM" in w.new_view.text()
+    assert (Path(w.new_dir) / "song.created.blueprint.json").exists()
+    w.build("preview")
+    pump(qapp, lambda: "Preview of the song created from zero" in w.outcome.text())
+    w.build("midi")
+    pump(qapp, lambda: "Saved MIDI files of the song created from zero" in w.outcome.text())
+    assert list((Path(w.new_dir) / "midi").glob("*.mid"))
+    # same choices -> same music; another take -> different
+    first = w.new_bp["clips"]
+    w.create_new()
+    assert w.new_bp["clips"] == first
+    w.new_take.setValue(1)
+    w.create_new()
+    assert w.new_bp["clips"] != first
+    w.timer.stop()
+
+
+def test_out_of_range_tempo_is_shown_not_hidden(qapp, tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from stemforge.app.window import Window
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    w = Window()
+    w.bpm_box.setValue(175)
+    w.create_new()
+    assert "outside the usual range" in w.new_view.text()
+    w.timer.stop()

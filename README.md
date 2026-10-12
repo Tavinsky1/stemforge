@@ -43,6 +43,22 @@ whether Arrangement mode is available. Nothing contacts Live until you press it.
 Status: the window is tested headless (offscreen) against the same library calls as the CLI. It has **not** been run against real
 Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
 
+## Start from zero (no stems): four styles
+`stemforge create --style techno|house|downtempo|electro_cumbia [--key D] [--bpm 128] [--take N] [--short]` assembles a song
+skeleton: the style's own arrangement (from `knowledge/arrangement/*.json`), drums, a bass with that style's groove and note
+placement, chords, pad and lead. In the window it is the first card ("Start from zero"); then choose *Created from zero* in step 4.
+- **Deterministic, nothing generated.** Each section picks the pattern its energy and elements call for from
+  `stemforge/styles/library/styles.json`, tiles it over the bars, transposes pitched parts to the key and applies the
+  style's swing. `--take N` rotates through the library's alternatives.
+- **Every pattern has a source:** `notebooklm` (your research export, `knowledge/research/patterns_*.json`), `measured`
+  (bar patterns measured from real loops by `stemforge/styles/mine.py`), or `documented` (published recipe + URL).
+- **Bass groove per style:** techno = rolling 16ths with the downbeat 16th free for the kick (matches the documented recipe
+  and the most frequent bar of the Low Pressure bass); house = offbeat bass answering the kick; downtempo = sparse, anchored to
+  the break; electro cumbia = the traditional root/fifth/octave figures plus the dub sub offbeat. `create` prints checks
+  such as the share of bass notes on the main kick steps.
+- **Add more research:** drop NotebookLM exports in the same JSON format as `patterns_*.json` into `knowledge/notebooklm/`
+  and run `python -m stemforge.styles.build_library`.
+
 ## Clean rebuild (when the transcription of a synth/bass part is not good enough)
 Dense polyphonic parts transcribe badly. `stemforge rebuild` reads Bass, Keys and Synth **hit by hit from their own audio**:
 

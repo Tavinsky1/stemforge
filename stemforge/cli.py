@@ -169,6 +169,25 @@ def _cmd_rebuild(a):
     print("saved -> %s\nlisten: `stemforge build \"%s\" --backend midi` (or --backend live)" % (out, out))
 
 
+def _cmd_create(a):
+    """Create a song skeleton from zero in a style: deterministic, patterns from the library with their sources."""
+    from .styles import create as C
+    bp = C.create(a.style, a.key, a.bpm, take=a.take, short=a.short)
+    g = bp["generation"]
+    out_dir = Path(a.out or "created")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    name = "%s-%s-%d.created.blueprint.json" % (a.style, g["tonic"], round(g["bpm"]))
+    path = out_dir / name
+    blueprint.save(bp, str(path))
+    print("%s | %.0f BPM | %d bars | swing %.0f%% | take %d" % (bp["song"]["name"], g["bpm"], bp["global"]["n_bars"], g["swing_pct"], a.take))
+    for line in C.describe(bp):
+        print("  " + line)
+    print("  checks:", {k: v for k, v in g["checks"].items() if k.startswith("bass_on")})
+    for w in bp["warnings"]:
+        print("  WARNING:", w)
+    print("saved -> %s\nnext: `stemforge build \"%s\" --backend midi --out \"%s\"` (or --backend live)" % (path, path, out_dir))
+
+
 def _cmd_smoke(a):
     if not a.confirm_set_ok:
         print("Refusing to connect to Live: pass --confirm-set-ok once you are happy for the open set to get one "
@@ -205,6 +224,13 @@ def main(argv=None):
     b.set_defaults(fn=_cmd_build)
     ide = sp.add_parser("idea", help="read the key colour, swing, structure and layer rhythms of an analysed song")
     ide.add_argument("blueprint"); ide.add_argument("--out"); ide.set_defaults(fn=_cmd_idea)
+    cr = sp.add_parser("create", help="create a song skeleton from zero in a style (techno, house, downtempo, electro_cumbia)")
+    cr.add_argument("--style", required=True, choices=["techno", "house", "downtempo", "electro_cumbia"])
+    cr.add_argument("--key", help="tonic, e.g. D, F#, A (default: the style's)"); cr.add_argument("--bpm", type=float)
+    cr.add_argument("--take", type=int, default=0, help="rotate through the library's alternatives (deterministic)")
+    cr.add_argument("--short", action="store_true", help="cap every section at 16 bars")
+    cr.add_argument("--out", help="folder for the blueprint (default ./created)")
+    cr.set_defaults(fn=_cmd_create)
     rb = sp.add_parser("rebuild", help="rebuild Bass/Keys/Synth hit by hit from their audio (deterministic, no generation)")
     rb.add_argument("blueprint"); rb.add_argument("--idea"); rb.add_argument("--out")
     rb.add_argument("--straight", action="store_true", help="straight 16ths instead of the song's measured swing")

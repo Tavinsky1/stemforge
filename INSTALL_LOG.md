@@ -67,6 +67,13 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
   now "Clean rebuild" (Bass, Keys, Synth from the audio); the random "compose" card is gone from the app.
 - Revert: `rm -r ~/Desktop/Stemforge.app` (the previous version is in git history; rebuild with `packaging/build_app.sh`).
 
+## 2026-10-12 — "Start from zero" added (code only; no machine changes outside the repo)
+- New: `stemforge/styles/` (library JSON built from your NotebookLM export + measured loops + documented recipes), CLI
+  `stemforge create`, app card "Start from zero". Created songs are saved under `~/Documents/Stemforge/created/<style>-<key>-<bpm>-take<N>/`
+  when made from the app (a new folder; delete it any time).
+- Read-only on your disk: the sample loops used for measuring (Desktop cumbia pack, Downloads/Urban Cumbia, Ableton
+  samples, LotusTunes, Cymatics); nothing there was changed.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).

@@ -1,4 +1,4 @@
-"""Native Stemforge window: 1 Stems -> 2 Analyze -> 3 Clean rebuild (optional) -> 4 Send, with a live Ableton status pill."""
+"""Native Stemforge window: 0 Start from zero | 1 Stems -> 2 Analyze -> 3 Clean rebuild -> 4 Send, with a live Ableton status pill."""
 from __future__ import annotations
 
 import sys
@@ -9,7 +9,7 @@ from PySide6.QtCore import QPointF, QRectF, Qt, QThread, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QPainter, QPen
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox, QFileDialog, QFrame, QHBoxLayout,
                                QHeaderView, QLabel, QMainWindow, QMessageBox, QPlainTextEdit, QProgressBar, QPushButton,
-                               QRadioButton, QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem, QToolTip,
+                               QDoubleSpinBox, QRadioButton, QScrollArea, QSizePolicy, QSpinBox, QTableWidget, QTableWidgetItem, QToolTip,
                                QVBoxLayout, QWidget)
 
 from ..build.backends import DEFAULT_PORT, NotSupported
@@ -145,6 +145,7 @@ class Window(QMainWindow):
         self.setWindowTitle("Stemforge"); self.resize(1000, 820)
         self.folder = None; self.stems = []; self.bp = None; self.report = None; self.worker = None; self.live = {}
         self.idea = None; self.gen_bp = None; self.gen_report = None; self.busy = False
+        self.new_bp = None; self.new_dir = None
         root = QWidget(); root.setObjectName("root"); self.setCentralWidget(root)
         outer = QVBoxLayout(root); outer.setContentsMargins(0, 0, 0, 0)
         sc = QScrollArea(); sc.setWidgetResizable(True); outer.addWidget(sc)
@@ -163,8 +164,47 @@ class Window(QMainWindow):
         head.addWidget(self.pill)
         col.addLayout(head)
 
+        # 0 start from zero
+        cN, lN = card("Start from zero  ·  no stems needed", "0"); col.addWidget(cN)
+        from ..styles import create as styles_mod
+        self.styles_mod = styles_mod
+        nw = QLabel("Choose a style and Stemforge assembles a song skeleton: the style's own arrangement, drums, a bass with "
+                    "the groove and note placement of that style, chords, pad and lead. Every pattern comes from your NotebookLM "
+                    "research, from real loops measured on this Mac, or from published recipes, and the window shows which. "
+                    "<b>Nothing is random</b>: the same choices always give the same MIDI.")
+        nw.setObjectName("muted"); nw.setWordWrap(True); nw.setTextFormat(Qt.RichText); lN.addWidget(nw)
+        nr = QHBoxLayout()
+        nr.addWidget(QLabel("Style"))
+        self.style_box = QComboBox()
+        for key, label in (("techno", "Techno"), ("house", "House"), ("downtempo", "Downtempo"), ("electro_cumbia", "Electro cumbia")):
+            self.style_box.addItem(label, key)
+        nr.addWidget(self.style_box)
+        nr.addWidget(QLabel("Key"))
+        self.key_box = QComboBox()
+        for t in styles_mod.TONICS:
+            self.key_box.addItem(t, t)
+        nr.addWidget(self.key_box)
+        nr.addWidget(QLabel("Tempo"))
+        self.bpm_box = QDoubleSpinBox(); self.bpm_box.setRange(60, 180); self.bpm_box.setDecimals(0); self.bpm_box.setSuffix(" BPM")
+        nr.addWidget(self.bpm_box)
+        nr.addWidget(QLabel("Take"))
+        self.new_take = QSpinBox(); self.new_take.setRange(0, 9)
+        self.new_take.setToolTip("Another set of alternatives from the same library. Same number = same music.")
+        nr.addWidget(self.new_take)
+        self.cb_short = QCheckBox("Short (sections capped at 16 bars)"); nr.addWidget(self.cb_short)
+        nr.addStretch(); lN.addLayout(nr)
+        br0 = QHBoxLayout()
+        self.btn_new = QPushButton("Create song"); self.btn_new.setObjectName("primary")
+        self.btn_new.clicked.connect(self.create_new)
+        self.new_status = QLabel("Pick a style, then press Create."); self.new_status.setObjectName("muted"); self.new_status.setWordWrap(True)
+        br0.addWidget(self.btn_new); br0.addWidget(self.new_status, 1); lN.addLayout(br0)
+        self.new_view = QLabel(""); self.new_view.setWordWrap(True); self.new_view.setTextFormat(Qt.RichText)
+        self.new_view.hide(); lN.addWidget(self.new_view)
+        self.style_box.currentIndexChanged.connect(self.style_changed)
+        self.style_changed()
+
         # 1 stems
-        c1, l1 = card("Stems", "1"); col.addWidget(c1)
+        c1, l1 = card("Stems  ·  or start here to rebuild a song you have", "1"); col.addWidget(c1)
         self.hint = QLabel("<b>How to use</b><br>"
                            "1. Drop the folder that holds one audio file per stem (a song's stems from Suno, Demucs, etc.).<br>"
                            "2. Check each stem's label, then press <b>Analyze song</b> (a couple of minutes for a full track).<br>"
@@ -233,11 +273,14 @@ class Window(QMainWindow):
         # 4 send
         c3, l3 = card("Send to Ableton", "4"); col.addWidget(c3)
         sr0 = QHBoxLayout(); sr0.addWidget(QLabel("Build from"))
-        self.rb_src_tr = QRadioButton("Transcription  ·  as analyzed"); self.rb_src_gen = QRadioButton("Rebuilt  ·  clean Bass, Keys & Synth")
+        self.rb_src_tr = QRadioButton("Transcription  ·  as analyzed"); self.rb_src_gen = QRadioButton("Rebuilt  ·  clean Bass, Keys && Synth")
+        self.rb_src_new = QRadioButton("Created from zero"); self.rb_src_new.setEnabled(False)
         self.rb_src_tr.setChecked(True); self.rb_src_gen.setEnabled(False)
-        gs = QButtonGroup(self); gs.addButton(self.rb_src_tr); gs.addButton(self.rb_src_gen)
-        sr0.addWidget(self.rb_src_tr); sr0.addWidget(self.rb_src_gen); sr0.addStretch(); l3.addLayout(sr0)
+        gs = QButtonGroup(self); gs.addButton(self.rb_src_tr); gs.addButton(self.rb_src_gen); gs.addButton(self.rb_src_new)
+        sr0.addWidget(self.rb_src_tr); sr0.addWidget(self.rb_src_gen); sr0.addWidget(self.rb_src_new); sr0.addStretch()
+        l3.addLayout(sr0)
         self.rb_src_tr.toggled.connect(lambda _=None: self.update_buttons())
+        self.rb_src_new.toggled.connect(lambda _=None: self.update_buttons())
         mr = QHBoxLayout(); mr.addWidget(QLabel("Layout"))
         self.rb_sess = QRadioButton("Session  ·  one scene per section"); self.rb_arr = QRadioButton("Arrangement  ·  clips on the timeline")
         self.rb_sess.setChecked(True); g = QButtonGroup(self); g.addButton(self.rb_sess); g.addButton(self.rb_arr)
@@ -454,6 +497,42 @@ class Window(QMainWindow):
             self.warn_label.hide()
         self.update_buttons()
 
+    # ---- step 0: start from zero
+    def style_changed(self):
+        info = self.styles_mod.style_info(self.style_box.currentData())
+        self.bpm_box.setValue(info["bpm"]["default"])
+        self.key_box.setCurrentIndex(self.styles_mod.TONICS.index(info["tonic"]))
+
+    def create_new(self):
+        style, key = self.style_box.currentData(), self.key_box.currentData()
+        try:
+            bp = self.styles_mod.create(style, key, self.bpm_box.value(), take=self.new_take.value(), short=self.cb_short.isChecked())
+        except Exception as e:
+            self.show_error(actions.plain_error(e)); return
+        self.new_bp = bp
+        g = bp["generation"]
+        out = Path.home() / "Documents" / "Stemforge" / "created" / ("%s-%s-%d-take%d" % (style, key.replace("#", "s"), round(g["bpm"]), g["take"]))
+        out.mkdir(parents=True, exist_ok=True)
+        from .. import blueprint
+        blueprint.save(bp, str(out / "song.created.blueprint.json"))
+        self.new_dir = str(out)
+        lines = self.styles_mod.describe(bp)
+        chk = g["checks"]
+        facts = []
+        if "bass_on_kick_steps_pct" in chk:
+            facts.append("bass lands on the main kick steps in %.0f%% of its notes" % chk["bass_on_kick_steps_pct"])
+        if "bass_on_offbeat_8ths_pct" in chk:
+            facts.append("%.0f%% of bass notes sit on the offbeat 8ths" % chk["bass_on_offbeat_8ths_pct"])
+        warn = "".join("<br><span style='color:%s'>%s</span>" % (theme.WARN, w) for w in bp["warnings"])
+        self.new_view.setText("<b>%s</b>: %d bars, %d sections, swing %.0f%%.<br>%s<br><span style='color:%s'>Checks: %s.</span>%s"
+                              "<br><span style='color:%s'>Saved in %s. Now choose <b>Created from zero</b> in step 4.</span>"
+                              % (bp["song"]["name"], bp["global"]["n_bars"], len(bp["sections"]), g["swing_pct"],
+                                 "<br>".join("• " + x for x in lines), theme.MUTED, "; ".join(facts) or "none", warn, theme.MUTED, self.new_dir))
+        self.new_view.show()
+        self.new_status.setText("Created. Preview, export or build it in step 4 (choose 'Created from zero').")
+        self.rb_src_new.setEnabled(True); self.rb_src_new.setChecked(True)
+        self.update_buttons()
+
     # ---- step 3: clean rebuild
     def reset_compose(self):
         self.idea = None; self.gen_bp = None; self.gen_report = None
@@ -505,7 +584,8 @@ class Window(QMainWindow):
     def update_buttons(self):
         idle = not self.busy
         use_gen = self.rb_src_gen.isChecked() and self.gen_bp is not None
-        ready = idle and (use_gen or (self.bp is not None and self.report is not None))
+        use_new = self.rb_src_new.isChecked() and self.new_bp is not None
+        ready = idle and (use_gen or use_new or (self.bp is not None and self.report is not None))
         self.btn_prev.setEnabled(ready); self.btn_mid.setEnabled(ready)
         arr_ok = self.live.get("connected") and self.live.get("arrangement")
         self.rb_arr.setToolTip("" if arr_ok else "Needs Stemforge's script installed and selected in Live (see the status pill).")
@@ -522,22 +602,27 @@ class Window(QMainWindow):
         return out
 
     def build(self, target):
-        use_gen = self.rb_src_gen.isChecked() and self.gen_bp is not None
-        bp = self.gen_bp if use_gen else self.bp
+        use_new = self.rb_src_new.isChecked() and self.new_bp is not None
+        use_gen = (not use_new) and self.rb_src_gen.isChecked() and self.gen_bp is not None
+        bp = self.new_bp if use_new else (self.gen_bp if use_gen else self.bp)
         if not bp:
             return
-        report = None if use_gen else self.report
+        report = None if (use_gen or use_new) else self.report
         mode = "arrangement" if self.rb_arr.isChecked() else "session"
-        include = set() if use_gen else self.forced_stems()
-        out_dir = str(Path(self.folder) / ("stemforge_rebuilt" if use_gen else "stemforge_midi"))
+        include = set() if (use_gen or use_new) else self.forced_stems()
+        if use_new:
+            out_dir = str(Path(self.new_dir) / "midi")
+        else:
+            out_dir = str(Path(self.folder) / ("stemforge_rebuilt" if use_gen else "stemforge_midi"))
         self.progress.show(); self.outcome.setText("Working…")
         self.run(lambda log: actions.run_build(bp, report, mode=mode, target=target, out_dir=out_dir,
                                                set_tempo=self.cb_tempo.isChecked(), include=include, port=DEFAULT_PORT, log=log),
-                 lambda s: self.built(s, target, out_dir, use_gen))
+                 lambda s: self.built(s, target, out_dir, use_gen, use_new))
 
-    def built(self, s, target, out_dir, composed=False):
+    def built(self, s, target, out_dir, composed=False, created=False):
         self.progress.hide(); self.update_buttons()
-        what = "rebuilt version (clean Bass, Keys & Synth)" if composed else "transcription"
+        what = ("song created from zero" if created else
+                ("rebuilt version (clean Bass, Keys & Synth)" if composed else "transcription"))
         left = "".join("<br>Left out: %s (%s)" % (n, r) for n, r in s["excluded"].items())
         if target == "preview":
             head = ("Preview of the %s: would create %d tracks and %d clips (%d notes). Nothing was changed. See details."
@@ -598,6 +683,12 @@ def selftest() -> int:
         checks["tempo-synced notes"] = "ok" if any("357 ms" in n for n in idea_mod.production_notes(126.0)) else "FAIL: wrong delay time"
     except Exception as e:
         checks["idea + rebuild modules"] = "FAIL: %s: %s" % (type(e).__name__, e)
+    try:
+        from ..styles import create as styles_create
+        made = [styles_create.create(st) for st in styles_create.STYLES]
+        checks["create from zero (4 styles)"] = "ok (%s)" % ", ".join("%s %d notes" % (b["generation"]["style"], sum(len(c["notes"]) for c in b["clips"])) for b in made)
+    except Exception as e:
+        checks["create from zero (4 styles)"] = "FAIL: %s: %s" % (type(e).__name__, e)
     print(json.dumps(checks, indent=1))
     return 0 if not any(v.startswith("FAIL") for v in checks.values()) else 1
 

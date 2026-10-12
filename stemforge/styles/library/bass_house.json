@@ -1,0 +1,1823 @@
+{
+ "loops": [
+  {
+   "file": "LT_DO_Bass Groove_01_Bender_120 BPM_C#min.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav",
+   "bpm": 120,
+   "bars": 16
+  },
+  {
+   "file": "LT_DO_Bass Groove_03_Squelch_120 BPM_Fmin.wav",
+   "bpm": 120,
+   "bars": 8
+  },
+  {
+   "file": "LT_DO_Bass Groove_04_Thumper_120 BPM_Amin.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_05_Hypnotizer_120 BPM_G#min.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_06_Glider_120 BPM_G#min.wav",
+   "bpm": 120,
+   "bars": 8
+  },
+  {
+   "file": "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav",
+   "bpm": 120,
+   "bars": 8
+  },
+  {
+   "file": "LT_DO_Bass Groove_08_Burrows_120 BPM_Bmin.wav",
+   "bpm": 120,
+   "bars": 16
+  },
+  {
+   "file": "LT_DO_Bass Groove_09_Nightlife_120 BPM_A#min.wav",
+   "bpm": 120,
+   "bars": 8
+  },
+  {
+   "file": "LT_DO_Bass Groove_10_Casual_120 BPM_A#min.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_11_Guts_120 BPM_Amin.wav",
+   "bpm": 120,
+   "bars": 8
+  },
+  {
+   "file": "LT_DO_Bass Groove_12_Subtle_120 BPM_F#min.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_13_Prog_120 BPM_C#min.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_14_Reso_120 BPM_Fmin.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_15_Transient_120 BPM_Fmin.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "LT_DO_Bass Groove_16_Our House_120 BPM_Emin.wav",
+   "bpm": 120,
+   "bars": 4
+  },
+  {
+   "file": "FL_FMT_Kit02_120_Bass_Loop_02_Amin.wav",
+   "bpm": 120,
+   "bars": 8
+  }
+ ],
+ "n_bars": 115,
+ "notes_per_bar_median": 6.0,
+ "step_probability": [
+  0.072,
+  0.045,
+  0.056,
+  0.114,
+  0.06,
+  0.058,
+  0.053,
+  0.047,
+  0.066,
+  0.033,
+  0.086,
+  0.043,
+  0.075,
+  0.063,
+  0.081,
+  0.048
+ ],
+ "kick_step_share": 0.273,
+ "interval_share": {
+  "0": 0.385,
+  "12": 0.069,
+  "5": 0.056,
+  "-1": 0.052,
+  "-11": 0.048,
+  "-10": 0.035,
+  "9": 0.034,
+  "2": 0.031,
+  "-2": 0.027,
+  "3": 0.022
+ },
+ "velocity_by_step": {
+  "0": 0.49,
+  "1": 0.61,
+  "2": 0.57,
+  "3": 0.37,
+  "4": 0.54,
+  "5": 0.52,
+  "6": 0.52,
+  "7": 0.51,
+  "8": 0.44,
+  "9": 0.39,
+  "10": 0.57,
+  "11": 0.46,
+  "12": 0.46,
+  "13": 0.47,
+  "14": 0.6,
+  "15": 0.53
+ },
+ "duration_by_step": {
+  "0": 0.26,
+  "1": 0.46,
+  "2": 0.26,
+  "3": 0.23,
+  "4": 0.26,
+  "5": 0.21,
+  "6": 0.19,
+  "7": 0.11,
+  "8": 0.26,
+  "9": 0.21,
+  "10": 0.3,
+  "11": 0.26,
+  "12": 0.26,
+  "13": 0.26,
+  "14": 0.28,
+  "15": 0.23
+ },
+ "patterns": [
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -12
+    },
+    {
+     "step": 3,
+     "semi": 11
+    },
+    {
+     "step": 10,
+     "semi": 2
+    },
+    {
+     "step": 12,
+     "semi": 12
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 6,
+   "sources": [
+    "LT_DO_Bass Groove_09_Nightlife_120 BPM_A#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 9
+    },
+    {
+     "step": 3,
+     "semi": 16
+    },
+    {
+     "step": 7,
+     "semi": 5
+    },
+    {
+     "step": 10,
+     "semi": 15
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 3,
+   "sources": [
+    "LT_DO_Bass Groove_04_Thumper_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 3,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": -14
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 3,
+   "sources": [
+    "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 5
+    },
+    {
+     "step": 7,
+     "semi": 4
+    },
+    {
+     "step": 10,
+     "semi": 6
+    }
+   ],
+   "count": 3,
+   "sources": [
+    "LT_DO_Bass Groove_14_Reso_120 BPM_Fmin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 1
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -1
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 16
+    },
+    {
+     "step": 1,
+     "semi": 17
+    },
+    {
+     "step": 3,
+     "semi": 3
+    },
+    {
+     "step": 4,
+     "semi": 4
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 3
+    },
+    {
+     "step": 12,
+     "semi": 9
+    },
+    {
+     "step": 13,
+     "semi": 8
+    },
+    {
+     "step": 15,
+     "semi": 16
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_03_Squelch_120 BPM_Fmin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -10
+    },
+    {
+     "step": 4,
+     "semi": -3
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_05_Hypnotizer_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -5
+    },
+    {
+     "step": 3,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": -14
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 3,
+     "semi": -10
+    },
+    {
+     "step": 5,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": -14
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": -11
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": -11
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": -1
+    },
+    {
+     "step": 13,
+     "semi": 12
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_08_Burrows_120 BPM_Bmin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": -14
+    },
+    {
+     "step": 8,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": -9
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_11_Guts_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": -13
+    },
+    {
+     "step": 8,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": -9
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_11_Guts_120 BPM_Amin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 2
+    },
+    {
+     "step": 3,
+     "semi": 9
+    },
+    {
+     "step": 4,
+     "semi": 2
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": -1
+    },
+    {
+     "step": 8,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 12
+    },
+    {
+     "step": 14,
+     "semi": 19
+    },
+    {
+     "step": 15,
+     "semi": 2
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "LT_DO_Bass Groove_15_Transient_120 BPM_Fmin.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": -4
+    },
+    {
+     "step": 8,
+     "semi": -1
+    },
+    {
+     "step": 11,
+     "semi": 1
+    },
+    {
+     "step": 13,
+     "semi": -1
+    },
+    {
+     "step": 14,
+     "semi": -4
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_01_Bender_120 BPM_C#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -1
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": -4
+    },
+    {
+     "step": 8,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": -4
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_01_Bender_120 BPM_C#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -2
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": -1
+    },
+    {
+     "step": 6,
+     "semi": -3
+    },
+    {
+     "step": 8,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -1
+    },
+    {
+     "step": 14,
+     "semi": -4
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_01_Bender_120 BPM_C#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -2
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": -4
+    },
+    {
+     "step": 8,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": -4
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_01_Bender_120 BPM_C#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 4
+    },
+    {
+     "step": 11,
+     "semi": -1
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -11
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": -1
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 4
+    },
+    {
+     "step": 11,
+     "semi": 11
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -11
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 3
+    },
+    {
+     "step": 11,
+     "semi": 12
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -10
+    },
+    {
+     "step": 14,
+     "semi": -3
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": -1
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 3
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -10
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 2
+    },
+    {
+     "step": 2,
+     "semi": -1
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 4
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -11
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": -1
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 4
+    },
+    {
+     "step": 11,
+     "semi": 12
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -2
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 6,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": -1
+    },
+    {
+     "step": 8,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 5
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -10
+    },
+    {
+     "step": 14,
+     "semi": -2
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav"
+   ],
+   "n_sources": 1
+  }
+ ],
+ "style": "house",
+ "cells": [
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5,
+     "vel": 0.21,
+     "dur": 0.1
+    },
+    {
+     "step": 1,
+     "semi": -5,
+     "vel": 0.52,
+     "dur": 0.39
+    },
+    {
+     "step": 3,
+     "semi": -10,
+     "vel": 0.76,
+     "dur": 0.73
+    },
+    {
+     "step": 10,
+     "semi": -14,
+     "vel": 0.9,
+     "dur": 0.45
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.13,
+     "dur": 0.49
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.44,
+     "dur": 0.42
+    }
+   ],
+   "share": 0.75,
+   "bars": 6,
+   "file": "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav",
+   "bpm": 120,
+   "typicality": 0.388
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5,
+     "vel": 0.32,
+     "dur": 0.1
+    },
+    {
+     "step": 3,
+     "semi": -10,
+     "vel": 0.69,
+     "dur": 0.53
+    },
+    {
+     "step": 5,
+     "semi": -10,
+     "vel": 0.23,
+     "dur": 0.28
+    },
+    {
+     "step": 10,
+     "semi": -14,
+     "vel": 0.93,
+     "dur": 0.42
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.04,
+     "dur": 0.5
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.33,
+     "dur": 0.38
+    }
+   ],
+   "share": 0.25,
+   "bars": 2,
+   "file": "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav",
+   "bpm": 120,
+   "typicality": 0.371
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 16,
+     "vel": 0.53,
+     "dur": 0.26
+    },
+    {
+     "step": 1,
+     "semi": 17,
+     "vel": 0.4,
+     "dur": 0.35
+    },
+    {
+     "step": 3,
+     "semi": 3,
+     "vel": 0.34,
+     "dur": 0.14
+    },
+    {
+     "step": 4,
+     "semi": 4,
+     "vel": 0.03,
+     "dur": 0.1
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.12,
+     "dur": 0.1
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.23,
+     "dur": 0.14
+    },
+    {
+     "step": 10,
+     "semi": 3,
+     "vel": 0.94,
+     "dur": 0.48
+    },
+    {
+     "step": 12,
+     "semi": 9,
+     "vel": 0.79,
+     "dur": 0.29
+    },
+    {
+     "step": 13,
+     "semi": 8,
+     "vel": 0.76,
+     "dur": 0.33
+    },
+    {
+     "step": 15,
+     "semi": 16,
+     "vel": 0.62,
+     "dur": 0.13
+    }
+   ],
+   "share": 1.0,
+   "bars": 8,
+   "file": "LT_DO_Bass Groove_03_Squelch_120 BPM_Fmin.wav",
+   "bpm": 120,
+   "typicality": 0.368
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 2,
+     "vel": 0.97,
+     "dur": 0.1
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.51,
+     "dur": 0.34
+    },
+    {
+     "step": 10,
+     "semi": -12,
+     "vel": 0.14,
+     "dur": 0.49
+    },
+    {
+     "step": 12,
+     "semi": 10,
+     "vel": 0.35,
+     "dur": 0.1
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.64,
+     "dur": 0.29
+    }
+   ],
+   "share": 0.25,
+   "bars": 2,
+   "file": "LT_DO_Bass Groove_06_Glider_120 BPM_G#min.wav",
+   "bpm": 120,
+   "typicality": 0.367
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -12,
+     "vel": 0.6,
+     "dur": 0.46
+    },
+    {
+     "step": 3,
+     "semi": 11,
+     "vel": 0.12,
+     "dur": 0.89
+    },
+    {
+     "step": 10,
+     "semi": 2,
+     "vel": 0.4,
+     "dur": 0.39
+    },
+    {
+     "step": 12,
+     "semi": 12,
+     "vel": 0.29,
+     "dur": 0.44
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.91,
+     "dur": 0.45
+    }
+   ],
+   "share": 1.0,
+   "bars": 8,
+   "file": "LT_DO_Bass Groove_09_Nightlife_120 BPM_A#min.wav",
+   "bpm": 120,
+   "typicality": 0.359
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.76,
+     "dur": 0.16
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.55,
+     "dur": 0.26
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.04,
+     "dur": 0.1
+    },
+    {
+     "step": 4,
+     "semi": 5,
+     "vel": 0.66,
+     "dur": 0.26
+    },
+    {
+     "step": 5,
+     "semi": 12,
+     "vel": 0.56,
+     "dur": 0.1
+    },
+    {
+     "step": 6,
+     "semi": 12,
+     "vel": 0.49,
+     "dur": 0.1
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.72,
+     "dur": 0.1
+    },
+    {
+     "step": 8,
+     "semi": 5,
+     "vel": 0.47,
+     "dur": 0.26
+    },
+    {
+     "step": 9,
+     "semi": 4,
+     "vel": 0.55,
+     "dur": 0.2
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.45,
+     "dur": 0.24
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.26,
+     "dur": 0.1
+    },
+    {
+     "step": 13,
+     "semi": -10,
+     "vel": 0.14,
+     "dur": 0.23
+    },
+    {
+     "step": 14,
+     "semi": -2,
+     "vel": 0.68,
+     "dur": 0.26
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.66,
+     "dur": 0.26
+    }
+   ],
+   "share": 1.0,
+   "bars": 16,
+   "file": "LT_DO_Bass Groove_02_Acid Love_120 BPM_G#min.wav",
+   "bpm": 120,
+   "typicality": 0.349
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.18,
+     "dur": 0.42
+    },
+    {
+     "step": 2,
+     "semi": -11,
+     "vel": 0.29,
+     "dur": 0.26
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.56,
+     "dur": 0.26
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.91,
+     "dur": 0.26
+    },
+    {
+     "step": 5,
+     "semi": 0,
+     "vel": 0.75,
+     "dur": 0.74
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 0.12,
+     "dur": 0.38
+    },
+    {
+     "step": 10,
+     "semi": -11,
+     "vel": 0.28,
+     "dur": 0.26
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.54,
+     "dur": 0.26
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.91,
+     "dur": 0.26
+    },
+    {
+     "step": 13,
+     "semi": 0,
+     "vel": 0.76,
+     "dur": 0.74
+    }
+   ],
+   "share": 1.0,
+   "bars": 16,
+   "file": "LT_DO_Bass Groove_08_Burrows_120 BPM_Bmin.wav",
+   "bpm": 120,
+   "typicality": 0.337
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 7,
+     "vel": 0.24,
+     "dur": 0.26
+    },
+    {
+     "step": 1,
+     "semi": 8,
+     "vel": 0.83,
+     "dur": 0.26
+    },
+    {
+     "step": 2,
+     "semi": 9,
+     "vel": 0.93,
+     "dur": 0.21
+    },
+    {
+     "step": 3,
+     "semi": 14,
+     "vel": 0.06,
+     "dur": 0.34
+    },
+    {
+     "step": 5,
+     "semi": 12,
+     "vel": 0.21,
+     "dur": 0.1
+    },
+    {
+     "step": 6,
+     "semi": 13,
+     "vel": 0.62,
+     "dur": 0.38
+    },
+    {
+     "step": 8,
+     "semi": 15,
+     "vel": 0.46,
+     "dur": 0.2
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.33,
+     "dur": 0.23
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.72,
+     "dur": 0.26
+    },
+    {
+     "step": 13,
+     "semi": 9,
+     "vel": 0.74,
+     "dur": 0.31
+    }
+   ],
+   "share": 1.0,
+   "bars": 4,
+   "file": "LT_DO_Bass Groove_13_Prog_120 BPM_C#min.wav",
+   "bpm": 120,
+   "typicality": 0.33
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 2,
+     "vel": 0.73,
+     "dur": 0.26
+    },
+    {
+     "step": 3,
+     "semi": 9,
+     "vel": 0.17,
+     "dur": 0.1
+    },
+    {
+     "step": 4,
+     "semi": 2,
+     "vel": 0.41,
+     "dur": 0.1
+    },
+    {
+     "step": 5,
+     "semi": 0,
+     "vel": 0.58,
+     "dur": 0.23
+    },
+    {
+     "step": 6,
+     "semi": -1,
+     "vel": 0.95,
+     "dur": 0.5
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 0.83,
+     "dur": 0.26
+    },
+    {
+     "step": 9,
+     "semi": 12,
+     "vel": 0.05,
+     "dur": 0.1
+    },
+    {
+     "step": 14,
+     "semi": 19,
+     "vel": 0.29,
+     "dur": 0.2
+    },
+    {
+     "step": 15,
+     "semi": 2,
+     "vel": 0.5,
+     "dur": 0.23
+    }
+   ],
+   "share": 1.0,
+   "bars": 4,
+   "file": "LT_DO_Bass Groove_15_Transient_120 BPM_Fmin.wav",
+   "bpm": 120,
+   "typicality": 0.328
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.24,
+     "dur": 0.26
+    },
+    {
+     "step": 2,
+     "semi": 5,
+     "vel": 0.8,
+     "dur": 0.27
+    },
+    {
+     "step": 3,
+     "semi": 6,
+     "vel": 0.65,
+     "dur": 0.27
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.02,
+     "dur": 0.36
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.5,
+     "dur": 0.51
+    },
+    {
+     "step": 8,
+     "semi": -1,
+     "vel": 0.13,
+     "dur": 0.16
+    },
+    {
+     "step": 14,
+     "semi": 1,
+     "vel": 0.94,
+     "dur": 0.26
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.35,
+     "dur": 0.23
+    }
+   ],
+   "share": 1.0,
+   "bars": 4,
+   "file": "LT_DO_Bass Groove_16_Our House_120 BPM_Emin.wav",
+   "bpm": 120,
+   "typicality": 0.327
+  }
+ ]
+}

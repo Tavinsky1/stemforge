@@ -1,0 +1,1372 @@
+{
+ "loops": [
+  {
+   "file": "FL_RSC_Kit05_Bass_Loop_84_C#.wav",
+   "bpm": 84,
+   "bars": 4
+  },
+  {
+   "file": "FL_RSC_Kit04_Bass_Loop_91_D.wav",
+   "bpm": 91,
+   "bars": 8
+  },
+  {
+   "file": "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav",
+   "bpm": 108,
+   "bars": 8
+  },
+  {
+   "file": "90_D_Bass_Loop_19.flac",
+   "bpm": 90,
+   "bars": 8
+  },
+  {
+   "file": "90_Db_Bass_Loop_22.flac",
+   "bpm": 90,
+   "bars": 8
+  },
+  {
+   "file": "90_Eb_Bass_Loop_05.flac",
+   "bpm": 90,
+   "bars": 8
+  },
+  {
+   "file": "AMM2_BASS_E_96bpm(3).flac",
+   "bpm": 96,
+   "bars": 4
+  },
+  {
+   "file": "AMM2_BASS_G#_77bpm_4(2).flac",
+   "bpm": 77,
+   "bars": 1
+  }
+ ],
+ "n_bars": 48,
+ "notes_per_bar_median": 4.5,
+ "step_probability": [
+  0.142,
+  0.018,
+  0.055,
+  0.05,
+  0.078,
+  0.073,
+  0.059,
+  0.059,
+  0.046,
+  0.046,
+  0.064,
+  0.046,
+  0.091,
+  0.05,
+  0.037,
+  0.087
+ ],
+ "kick_step_share": 0.356,
+ "interval_share": {
+  "0": 0.416,
+  "-7": 0.064,
+  "3": 0.059,
+  "5": 0.055,
+  "-10": 0.05,
+  "-2": 0.046,
+  "-3": 0.041,
+  "-15": 0.032,
+  "2": 0.027,
+  "-12": 0.023
+ },
+ "velocity_by_step": {
+  "0": 0.73,
+  "1": 0.43,
+  "2": 0.36,
+  "3": 0.32,
+  "4": 0.4,
+  "5": 0.62,
+  "6": 0.63,
+  "7": 0.39,
+  "8": 0.53,
+  "9": 0.4,
+  "10": 0.6,
+  "11": 0.43,
+  "12": 0.46,
+  "13": 0.47,
+  "14": 0.65,
+  "15": 0.3
+ },
+ "duration_by_step": {
+  "0": 0.75,
+  "1": 0.22,
+  "2": 0.51,
+  "3": 0.19,
+  "4": 0.3,
+  "5": 0.25,
+  "6": 0.75,
+  "7": 0.29,
+  "8": 0.27,
+  "9": 0.37,
+  "10": 0.29,
+  "11": 0.21,
+  "12": 0.73,
+  "13": 0.25,
+  "14": 0.24,
+  "15": 0.24
+ },
+ "patterns": [
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": -8
+    },
+    {
+     "step": 5,
+     "semi": -7
+    },
+    {
+     "step": 11,
+     "semi": -7
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 5
+    },
+    {
+     "step": 3,
+     "semi": 5
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 9,
+     "semi": 3
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "90_Db_Bass_Loop_22.flac"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 6
+    },
+    {
+     "step": 12,
+     "semi": 5
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "90_Eb_Bass_Loop_05.flac"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -12
+    },
+    {
+     "step": 2,
+     "semi": -12
+    },
+    {
+     "step": 3,
+     "semi": -15
+    },
+    {
+     "step": 5,
+     "semi": -13
+    },
+    {
+     "step": 6,
+     "semi": -15
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 4
+    },
+    {
+     "step": 14,
+     "semi": -10
+    },
+    {
+     "step": 15,
+     "semi": -8
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit05_Bass_Loop_84_C#.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -15
+    },
+    {
+     "step": 4,
+     "semi": -11
+    },
+    {
+     "step": 5,
+     "semi": -11
+    },
+    {
+     "step": 6,
+     "semi": -10
+    },
+    {
+     "step": 12,
+     "semi": -11
+    },
+    {
+     "step": 13,
+     "semi": -12
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit05_Bass_Loop_84_C#.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 5
+    },
+    {
+     "step": 3,
+     "semi": 3
+    },
+    {
+     "step": 5,
+     "semi": -12
+    },
+    {
+     "step": 6,
+     "semi": -11
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit05_Bass_Loop_84_C#.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -15
+    },
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": -1
+    },
+    {
+     "step": 5,
+     "semi": -12
+    },
+    {
+     "step": 6,
+     "semi": -15
+    },
+    {
+     "step": 7,
+     "semi": -15
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -15
+    },
+    {
+     "step": 14,
+     "semi": -1
+    },
+    {
+     "step": 15,
+     "semi": -1
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit05_Bass_Loop_84_C#.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": -1
+    },
+    {
+     "step": 11,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": -4
+    },
+    {
+     "step": 5,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": -2
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": -6
+    },
+    {
+     "step": 5,
+     "semi": -5
+    },
+    {
+     "step": 11,
+     "semi": -5
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": -2
+    },
+    {
+     "step": 5,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": -2
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 4,
+     "semi": -6
+    },
+    {
+     "step": 5,
+     "semi": -5
+    },
+    {
+     "step": 12,
+     "semi": -9
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_RSC_Kit04_Bass_Loop_91_D.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -10
+    },
+    {
+     "step": 3,
+     "semi": -10
+    },
+    {
+     "step": 7,
+     "semi": -10
+    },
+    {
+     "step": 8,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": 2
+    },
+    {
+     "step": 13,
+     "semi": -10
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -7
+    },
+    {
+     "step": 7,
+     "semi": -7
+    },
+    {
+     "step": 8,
+     "semi": -7
+    },
+    {
+     "step": 10,
+     "semi": -7
+    },
+    {
+     "step": 13,
+     "semi": -7
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -3
+    },
+    {
+     "step": 7,
+     "semi": -3
+    },
+    {
+     "step": 8,
+     "semi": -3
+    },
+    {
+     "step": 10,
+     "semi": -3
+    },
+    {
+     "step": 13,
+     "semi": 9
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 1
+    },
+    {
+     "step": 12,
+     "semi": 12
+    },
+    {
+     "step": 13,
+     "semi": 12
+    },
+    {
+     "step": 15,
+     "semi": 7
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -10
+    },
+    {
+     "step": 2,
+     "semi": -6
+    },
+    {
+     "step": 3,
+     "semi": -7
+    },
+    {
+     "step": 7,
+     "semi": -10
+    },
+    {
+     "step": 8,
+     "semi": -10
+    },
+    {
+     "step": 10,
+     "semi": 2
+    },
+    {
+     "step": 13,
+     "semi": -10
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -7
+    },
+    {
+     "step": 7,
+     "semi": -7
+    },
+    {
+     "step": 8,
+     "semi": -6
+    },
+    {
+     "step": 10,
+     "semi": -7
+    },
+    {
+     "step": 13,
+     "semi": -7
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -3
+    },
+    {
+     "step": 2,
+     "semi": -4
+    },
+    {
+     "step": 7,
+     "semi": -3
+    },
+    {
+     "step": 8,
+     "semi": -3
+    },
+    {
+     "step": 10,
+     "semi": -3
+    },
+    {
+     "step": 13,
+     "semi": 9
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": -1
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 10
+    },
+    {
+     "step": 13,
+     "semi": 12
+    },
+    {
+     "step": 15,
+     "semi": 7
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 2
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "90_D_Bass_Loop_19.flac"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "90_D_Bass_Loop_19.flac"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 2
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "90_D_Bass_Loop_19.flac"
+   ],
+   "n_sources": 1
+  }
+ ],
+ "style": "downtempo",
+ "cells": [
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.99,
+     "dur": 0.45
+    },
+    {
+     "step": 2,
+     "semi": -1,
+     "vel": 0.04,
+     "dur": 0.1
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.87,
+     "dur": 0.27
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.17,
+     "dur": 0.23
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.4,
+     "dur": 0.29
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.51,
+     "dur": 0.19
+    },
+    {
+     "step": 12,
+     "semi": 10,
+     "vel": 0.09,
+     "dur": 0.27
+    },
+    {
+     "step": 13,
+     "semi": 12,
+     "vel": 0.17,
+     "dur": 0.15
+    },
+    {
+     "step": 15,
+     "semi": 7,
+     "vel": 0.09,
+     "dur": 0.19
+    }
+   ],
+   "share": 0.25,
+   "bars": 2,
+   "file": "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav",
+   "bpm": 108,
+   "typicality": 0.321
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0,
+     "vel": 1.0,
+     "dur": 0.17
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.94,
+     "dur": 0.2
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.76,
+     "dur": 0.24
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.88,
+     "dur": 0.32
+    },
+    {
+     "step": 5,
+     "semi": 0,
+     "vel": 0.82,
+     "dur": 0.5
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.41,
+     "dur": 0.22
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 0.35,
+     "dur": 0.24
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.47,
+     "dur": 0.43
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.65,
+     "dur": 0.54
+    },
+    {
+     "step": 13,
+     "semi": 0,
+     "vel": 0.71,
+     "dur": 0.28
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.59,
+     "dur": 0.24
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.53,
+     "dur": 0.48
+    }
+   ],
+   "share": 0.33,
+   "bars": 1,
+   "file": "AMM2_BASS_E_96bpm(3).flac",
+   "bpm": 96,
+   "typicality": 0.29
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -15,
+     "vel": 0.58,
+     "dur": 0.26
+    },
+    {
+     "step": 1,
+     "semi": 0,
+     "vel": 0.13,
+     "dur": 0.23
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.19,
+     "dur": 0.26
+    },
+    {
+     "step": 4,
+     "semi": -1,
+     "vel": 0.03,
+     "dur": 0.11
+    },
+    {
+     "step": 5,
+     "semi": -12,
+     "vel": 0.84,
+     "dur": 0.21
+    },
+    {
+     "step": 6,
+     "semi": -15,
+     "vel": 0.74,
+     "dur": 0.24
+    },
+    {
+     "step": 7,
+     "semi": -15,
+     "vel": 0.77,
+     "dur": 0.75
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.0,
+     "dur": 0.2
+    },
+    {
+     "step": 13,
+     "semi": -15,
+     "vel": 0.55,
+     "dur": 0.26
+    },
+    {
+     "step": 14,
+     "semi": -1,
+     "vel": 0.32,
+     "dur": 0.24
+    },
+    {
+     "step": 15,
+     "semi": -1,
+     "vel": 0.06,
+     "dur": 0.15
+    }
+   ],
+   "share": 0.25,
+   "bars": 1,
+   "file": "FL_RSC_Kit05_Bass_Loop_84_C#.wav",
+   "bpm": 84,
+   "typicality": 0.287
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.2,
+     "dur": 0.51
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.8,
+     "dur": 0.36
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 1.0,
+     "dur": 0.4
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.4,
+     "dur": 0.49
+    },
+    {
+     "step": 12,
+     "semi": -3,
+     "vel": 0.6,
+     "dur": 0.25
+    },
+    {
+     "step": 15,
+     "semi": -8,
+     "vel": 0.0,
+     "dur": 0.12
+    }
+   ],
+   "share": 1.0,
+   "bars": 1,
+   "file": "AMM2_BASS_G#_77bpm_4(2).flac",
+   "bpm": 77,
+   "typicality": 0.278
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.13,
+     "dur": 0.61
+    },
+    {
+     "step": 5,
+     "semi": 0,
+     "vel": 0.07,
+     "dur": 0.3
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 0.01,
+     "dur": 0.49
+    },
+    {
+     "step": 10,
+     "semi": -2,
+     "vel": 0.98,
+     "dur": 0.45
+    },
+    {
+     "step": 12,
+     "semi": 3,
+     "vel": 0.69,
+     "dur": 0.75
+    },
+    {
+     "step": 15,
+     "semi": 3,
+     "vel": 0.34,
+     "dur": 0.11
+    }
+   ],
+   "share": 0.38,
+   "bars": 3,
+   "file": "90_Db_Bass_Loop_22.flac",
+   "bpm": 90,
+   "typicality": 0.268
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.57,
+     "dur": 0.78
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.96,
+     "dur": 0.68
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.54,
+     "dur": 1.02
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.24,
+     "dur": 0.37
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.89,
+     "dur": 0.37
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.3,
+     "dur": 0.24
+    }
+   ],
+   "share": 0.25,
+   "bars": 2,
+   "file": "90_D_Bass_Loop_19.flac",
+   "bpm": 90,
+   "typicality": 0.262
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 5,
+     "vel": 0.61,
+     "dur": 0.75
+    },
+    {
+     "step": 3,
+     "semi": 5,
+     "vel": 0.27,
+     "dur": 0.16
+    },
+    {
+     "step": 6,
+     "semi": 3,
+     "vel": 0.87,
+     "dur": 0.75
+    },
+    {
+     "step": 9,
+     "semi": 3,
+     "vel": 0.42,
+     "dur": 0.57
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.78,
+     "dur": 0.75
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.47,
+     "dur": 0.26
+    }
+   ],
+   "share": 0.62,
+   "bars": 5,
+   "file": "90_Db_Bass_Loop_22.flac",
+   "bpm": 90,
+   "typicality": 0.258
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -12,
+     "vel": 0.29,
+     "dur": 0.26
+    },
+    {
+     "step": 2,
+     "semi": -12,
+     "vel": 0.71,
+     "dur": 0.23
+    },
+    {
+     "step": 3,
+     "semi": -15,
+     "vel": 0.52,
+     "dur": 0.44
+    },
+    {
+     "step": 5,
+     "semi": -13,
+     "vel": 0.23,
+     "dur": 0.31
+    },
+    {
+     "step": 6,
+     "semi": -15,
+     "vel": 0.81,
+     "dur": 1.25
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.16,
+     "dur": 0.15
+    },
+    {
+     "step": 12,
+     "semi": 4,
+     "vel": 0.68,
+     "dur": 0.15
+    },
+    {
+     "step": 14,
+     "semi": -10,
+     "vel": 0.9,
+     "dur": 0.21
+    },
+    {
+     "step": 15,
+     "semi": -8,
+     "vel": 0.87,
+     "dur": 0.1
+    }
+   ],
+   "share": 0.25,
+   "bars": 1,
+   "file": "FL_RSC_Kit05_Bass_Loop_84_C#.wav",
+   "bpm": 84,
+   "typicality": 0.253
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -15,
+     "vel": 0.48,
+     "dur": 0.52
+    },
+    {
+     "step": 4,
+     "semi": -11,
+     "vel": 0.26,
+     "dur": 0.23
+    },
+    {
+     "step": 5,
+     "semi": -11,
+     "vel": 0.35,
+     "dur": 0.24
+    },
+    {
+     "step": 6,
+     "semi": -10,
+     "vel": 0.94,
+     "dur": 1.48
+    },
+    {
+     "step": 12,
+     "semi": -11,
+     "vel": 0.1,
+     "dur": 0.1
+    },
+    {
+     "step": 13,
+     "semi": -12,
+     "vel": 0.97,
+     "dur": 0.24
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.61,
+     "dur": 0.1
+    }
+   ],
+   "share": 0.25,
+   "bars": 1,
+   "file": "FL_RSC_Kit05_Bass_Loop_84_C#.wav",
+   "bpm": 84,
+   "typicality": 0.242
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.78,
+     "dur": 1.72
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.33,
+     "dur": 0.84
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.41,
+     "dur": 0.73
+    },
+    {
+     "step": 15,
+     "semi": 2,
+     "vel": 0.09,
+     "dur": 0.3
+    }
+   ],
+   "share": 0.62,
+   "bars": 5,
+   "file": "90_D_Bass_Loop_19.flac",
+   "bpm": 90,
+   "typicality": 0.22
+  }
+ ]
+}

@@ -1,0 +1,1337 @@
+{
+ "loops": [
+  {
+   "file": "emergency cumbia bassline (90bpm).aif",
+   "bpm": 90,
+   "bars": 2
+  },
+  {
+   "file": "salude slap bass (80bpm).aif",
+   "bpm": 80,
+   "bars": 2
+  },
+  {
+   "file": "Urban Cumbia Ska (Bass).wav",
+   "bpm": 95.703125,
+   "bars": 48
+  },
+  {
+   "file": "Bleepolar - Cumbia Magdalena 110 BPM_01.mp3",
+   "bpm": 110,
+   "bars": 32
+  },
+  {
+   "file": "Bleepolar - Cumbia Trueno 88 BPM_01.mp3",
+   "bpm": 88,
+   "bars": 32
+  },
+  {
+   "file": "Bleepolar - Cumbia Maquina 100 BPM_01.mp3",
+   "bpm": 100,
+   "bars": 32
+  },
+  {
+   "file": "Bleepolar - Cumbia Feliz 100 BPM_01.mp3",
+   "bpm": 100,
+   "bars": 32
+  }
+ ],
+ "n_bars": 134,
+ "notes_per_bar_median": 6.0,
+ "step_probability": [
+  0.086,
+  0.034,
+  0.084,
+  0.058,
+  0.083,
+  0.033,
+  0.07,
+  0.05,
+  0.077,
+  0.043,
+  0.089,
+  0.064,
+  0.079,
+  0.043,
+  0.073,
+  0.035
+ ],
+ "kick_step_share": 0.325,
+ "interval_share": {
+  "0": 0.305,
+  "3": 0.078,
+  "1": 0.077,
+  "-1": 0.047,
+  "2": 0.046,
+  "-17": 0.044,
+  "5": 0.04,
+  "-16": 0.035,
+  "-5": 0.033,
+  "-2": 0.031
+ },
+ "velocity_by_step": {
+  "0": 0.52,
+  "1": 0.35,
+  "2": 0.47,
+  "3": 0.45,
+  "4": 0.5,
+  "5": 0.54,
+  "6": 0.5,
+  "7": 0.42,
+  "8": 0.48,
+  "9": 0.4,
+  "10": 0.49,
+  "11": 0.51,
+  "12": 0.55,
+  "13": 0.57,
+  "14": 0.6,
+  "15": 0.59
+ },
+ "duration_by_step": {
+  "0": 0.26,
+  "1": 0.24,
+  "2": 0.24,
+  "3": 0.26,
+  "4": 0.24,
+  "5": 0.16,
+  "6": 0.15,
+  "7": 0.24,
+  "8": 0.26,
+  "9": 0.19,
+  "10": 0.23,
+  "11": 0.26,
+  "12": 0.26,
+  "13": 0.21,
+  "14": 0.25,
+  "15": 0.24
+ },
+ "patterns": [
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 3
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 8,
+     "semi": 7
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -5
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 2
+    },
+    {
+     "step": 11,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 3,
+     "semi": 3
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 3
+    },
+    {
+     "step": 11,
+     "semi": 7
+    },
+    {
+     "step": 13,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 36
+    },
+    {
+     "step": 6,
+     "semi": 36
+    },
+    {
+     "step": 10,
+     "semi": 36
+    },
+    {
+     "step": 14,
+     "semi": 36
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Bleepolar - Cumbia Maquina 100 BPM_01.mp3"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -17
+    },
+    {
+     "step": 4,
+     "semi": -17
+    },
+    {
+     "step": 8,
+     "semi": -17
+    },
+    {
+     "step": 12,
+     "semi": -17
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Bleepolar - Cumbia Feliz 100 BPM_01.mp3"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 9
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 3
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": -3
+    },
+    {
+     "step": 8,
+     "semi": 9
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 1
+    },
+    {
+     "step": 12,
+     "semi": 3
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": -3
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "emergency cumbia bassline (90bpm).aif"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 9
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 3
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": -3
+    },
+    {
+     "step": 8,
+     "semi": 9
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 2
+    },
+    {
+     "step": 12,
+     "semi": 3
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": -1
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "emergency cumbia bassline (90bpm).aif"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -2
+    },
+    {
+     "step": 2,
+     "semi": 1
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 3
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": -1
+    },
+    {
+     "step": 9,
+     "semi": 1
+    },
+    {
+     "step": 10,
+     "semi": 1
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 3
+    },
+    {
+     "step": 14,
+     "semi": 3
+    },
+    {
+     "step": 15,
+     "semi": 1
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "salude slap bass (80bpm).aif"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -2
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 3
+    },
+    {
+     "step": 6,
+     "semi": 1
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": -2
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 3
+    },
+    {
+     "step": 14,
+     "semi": -5
+    },
+    {
+     "step": 15,
+     "semi": -1
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "salude slap bass (80bpm).aif"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 3
+    },
+    {
+     "step": 7,
+     "semi": 7
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": -5
+    },
+    {
+     "step": 14,
+     "semi": -5
+    },
+    {
+     "step": 15,
+     "semi": 3
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 8,
+     "semi": 7
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -5
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 3
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 8,
+     "semi": 7
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": -5
+    },
+    {
+     "step": 14,
+     "semi": -5
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 3
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 8,
+     "semi": 7
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 7
+    },
+    {
+     "step": 15,
+     "semi": 7
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 8,
+     "semi": -12
+    },
+    {
+     "step": 15,
+     "semi": -5
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -2
+    },
+    {
+     "step": 7,
+     "semi": -5
+    },
+    {
+     "step": 9,
+     "semi": -2
+    },
+    {
+     "step": 11,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -12
+    },
+    {
+     "step": 9,
+     "semi": -2
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 2,
+     "semi": -2
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": -2
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 2,
+     "semi": -2
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": -5
+    },
+    {
+     "step": 10,
+     "semi": -2
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -2
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": -2
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -5
+    },
+    {
+     "step": 2,
+     "semi": -2
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": -5
+    },
+    {
+     "step": 10,
+     "semi": 3
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": -5
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -5
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 2
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": -5
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 3,
+     "semi": -5
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 2
+    },
+    {
+     "step": 13,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Urban Cumbia Ska (Bass).wav"
+   ],
+   "n_sources": 1
+  }
+ ],
+ "style": "electro_cumbia",
+ "cells": [
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 9,
+     "vel": 0.88,
+     "dur": 0.28
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.31,
+     "dur": 0.51
+    },
+    {
+     "step": 4,
+     "semi": 3,
+     "vel": 0.71,
+     "dur": 0.42
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.1,
+     "dur": 0.27
+    },
+    {
+     "step": 7,
+     "semi": -3,
+     "vel": 0.6,
+     "dur": 0.22
+    },
+    {
+     "step": 8,
+     "semi": 9,
+     "vel": 0.98,
+     "dur": 0.3
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.31,
+     "dur": 0.26
+    },
+    {
+     "step": 11,
+     "semi": 1,
+     "vel": 0.45,
+     "dur": 0.25
+    },
+    {
+     "step": 12,
+     "semi": 3,
+     "vel": 0.76,
+     "dur": 0.41
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.14,
+     "dur": 0.26
+    },
+    {
+     "step": 15,
+     "semi": -3,
+     "vel": 0.26,
+     "dur": 0.19
+    }
+   ],
+   "share": 1.0,
+   "bars": 2,
+   "file": "emergency cumbia bassline (90bpm).aif",
+   "bpm": 90,
+   "typicality": 0.74
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.41,
+     "dur": 0.12
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.47,
+     "dur": 0.12
+    },
+    {
+     "step": 3,
+     "semi": 1,
+     "vel": 0.44,
+     "dur": 0.27
+    },
+    {
+     "step": 4,
+     "semi": 1,
+     "vel": 0.47,
+     "dur": 0.14
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.57,
+     "dur": 0.19
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.52,
+     "dur": 0.25
+    },
+    {
+     "step": 8,
+     "semi": 1,
+     "vel": 0.44,
+     "dur": 0.13
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.53,
+     "dur": 0.15
+    },
+    {
+     "step": 11,
+     "semi": 1,
+     "vel": 0.63,
+     "dur": 0.29
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.56,
+     "dur": 0.16
+    },
+    {
+     "step": 14,
+     "semi": 13,
+     "vel": 0.89,
+     "dur": 0.29
+    }
+   ],
+   "share": 0.36,
+   "bars": 10,
+   "file": "Bleepolar - Cumbia Maquina 100 BPM_01.mp3",
+   "bpm": 100,
+   "typicality": 0.74
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -2,
+     "vel": 0.98,
+     "dur": 0.27
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.33,
+     "dur": 0.27
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.31,
+     "dur": 0.19
+    },
+    {
+     "step": 4,
+     "semi": 3,
+     "vel": 0.79,
+     "dur": 0.29
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.38,
+     "dur": 0.27
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.27,
+     "dur": 0.19
+    },
+    {
+     "step": 8,
+     "semi": -1,
+     "vel": 0.85,
+     "dur": 0.28
+    },
+    {
+     "step": 9,
+     "semi": 1,
+     "vel": 0.67,
+     "dur": 0.25
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.29,
+     "dur": 0.26
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.38,
+     "dur": 0.25
+    },
+    {
+     "step": 12,
+     "semi": 3,
+     "vel": 0.65,
+     "dur": 0.19
+    },
+    {
+     "step": 14,
+     "semi": 3,
+     "vel": 0.35,
+     "dur": 0.19
+    },
+    {
+     "step": 15,
+     "semi": 1,
+     "vel": 0.33,
+     "dur": 0.16
+    }
+   ],
+   "share": 1.0,
+   "bars": 2,
+   "file": "salude slap bass (80bpm).aif",
+   "bpm": 80,
+   "typicality": 0.728
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": -16,
+     "vel": 0.58,
+     "dur": 0.36
+    },
+    {
+     "step": 2,
+     "semi": 3,
+     "vel": 0.61,
+     "dur": 0.15
+    },
+    {
+     "step": 4,
+     "semi": -28,
+     "vel": 0.33,
+     "dur": 0.24
+    },
+    {
+     "step": 6,
+     "semi": 3,
+     "vel": 0.77,
+     "dur": 0.14
+    },
+    {
+     "step": 8,
+     "semi": -21,
+     "vel": 0.35,
+     "dur": 0.24
+    },
+    {
+     "step": 10,
+     "semi": 3,
+     "vel": 0.83,
+     "dur": 0.14
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.48,
+     "dur": 0.21
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.43,
+     "dur": 0.27
+    },
+    {
+     "step": 14,
+     "semi": -16,
+     "vel": 0.89,
+     "dur": 0.27
+    }
+   ],
+   "share": 0.75,
+   "bars": 15,
+   "file": "Bleepolar - Cumbia Trueno 88 BPM_01.mp3",
+   "bpm": 88,
+   "typicality": 0.706
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0,
+     "vel": 0.79,
+     "dur": 0.31
+    },
+    {
+     "step": 2,
+     "semi": 1,
+     "vel": 0.45,
+     "dur": 0.17
+    },
+    {
+     "step": 4,
+     "semi": 5,
+     "vel": 0.94,
+     "dur": 0.33
+    },
+    {
+     "step": 6,
+     "semi": 4,
+     "vel": 0.59,
+     "dur": 0.15
+    },
+    {
+     "step": 8,
+     "semi": 0,
+     "vel": 0.81,
+     "dur": 0.32
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.72,
+     "dur": 0.1
+    },
+    {
+     "step": 10,
+     "semi": 2,
+     "vel": 0.47,
+     "dur": 0.23
+    },
+    {
+     "step": 12,
+     "semi": 5,
+     "vel": 0.91,
+     "dur": 0.33
+    },
+    {
+     "step": 14,
+     "semi": 4,
+     "vel": 0.53,
+     "dur": 0.23
+    }
+   ],
+   "share": 0.44,
+   "bars": 11,
+   "file": "Bleepolar - Cumbia Feliz 100 BPM_01.mp3",
+   "bpm": 100,
+   "typicality": 0.628
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0,
+     "vel": 0.25,
+     "dur": 0.18
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.34,
+     "dur": 0.21
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.52,
+     "dur": 0.26
+    },
+    {
+     "step": 4,
+     "semi": 0,
+     "vel": 0.61,
+     "dur": 0.23
+    },
+    {
+     "step": 5,
+     "semi": -1,
+     "vel": 0.65,
+     "dur": 0.17
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.45,
+     "dur": 0.16
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.28,
+     "dur": 0.22
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.61,
+     "dur": 0.19
+    },
+    {
+     "step": 12,
+     "semi": 0,
+     "vel": 0.9,
+     "dur": 0.35
+    },
+    {
+     "step": 13,
+     "semi": 0,
+     "vel": 0.85,
+     "dur": 0.32
+    },
+    {
+     "step": 14,
+     "semi": -1,
+     "vel": 0.77,
+     "dur": 0.14
+    },
+    {
+     "step": 15,
+     "semi": -1,
+     "vel": 0.8,
+     "dur": 0.26
+    }
+   ],
+   "share": 0.47,
+   "bars": 8,
+   "file": "Bleepolar - Cumbia Magdalena 110 BPM_01.mp3",
+   "bpm": 110,
+   "typicality": 0.468
+  }
+ ]
+}

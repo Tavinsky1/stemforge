@@ -9,6 +9,7 @@ pyinstaller --noconfirm --clean --windowed --name Stemforge \
   --distpath "${DIST:-dist}" --workpath "${WORK:-build}" --specpath packaging \
   --paths . \
   --add-data "$(pwd)/ableton:ableton" \
+  --add-data "$(pwd)/stemforge/styles/library:stemforge/styles/library" \
   --collect-all basic_pitch --collect-all coremltools --collect-all librosa \
   --collect-all numba --collect-all llvmlite --collect-all soundfile --collect-all resampy \
   --collect-submodules stemforge \

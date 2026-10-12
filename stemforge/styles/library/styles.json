@@ -1,0 +1,9259 @@
+{
+ "schema": "stemforge.styles/1",
+ "patterns": {
+  "B01": {
+   "id": "B01",
+   "name": "Classic Root Fifth",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "anchor rhythm",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "B02": {
+   "id": "B02",
+   "name": "Cacharpo Arpeggio",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 52,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 55,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 52,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 55,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "melodic foundation",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "B03": {
+   "id": "B03",
+   "name": "Syncopated Crotchet Shuffle",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "drive momentum",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    88,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "B04": {
+   "id": "B04",
+   "name": "High Low Mobility",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 55,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "hypnotic movement",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "B05": {
+   "id": "B05",
+   "name": "Octave Swing",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "bouncy low end",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "B06": {
+   "id": "B06",
+   "name": "Dub Sub Offbeat",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 31,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "heavy minimal groove",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "B07": {
+   "id": "B07",
+   "name": "Dark Hypnotic Repeating",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 0.75,
+     "pitch": 48,
+     "vel": 70,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 39,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "trance induction",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "B08": {
+   "id": "B08",
+   "name": "Analog Synth 808 Style",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 1.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 31,
+     "vel": 85,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "sub frequencies",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "B09": {
+   "id": "B09",
+   "name": "Organic Repetitive Pulse",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.75
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 80,
+     "dur": 0.75
+    },
+    {
+     "start": 3.5,
+     "pitch": 50,
+     "vel": 70,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "grounding texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "folktronica"
+   }
+  },
+  "B10": {
+   "id": "B10",
+   "name": "Acoustic Hybrid Strum",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 43,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 52,
+     "vel": 80,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "warm foundation",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    115
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "folktronica"
+   }
+  },
+  "B11": {
+   "id": "B11",
+   "name": "Spacious Deep Sub",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 2.0
+    },
+    {
+     "start": 2.5,
+     "pitch": 41,
+     "vel": 75,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "ambient low end",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "B12": {
+   "id": "B12",
+   "name": "Emotional Walking",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.75
+    },
+    {
+     "start": 1.0,
+     "pitch": 51,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 55,
+     "vel": 80,
+     "dur": 0.75
+    },
+    {
+     "start": 3.0,
+     "pitch": 53,
+     "vel": 70,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "melodic anchor",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "B13": {
+   "id": "B13",
+   "name": "Slow Evolving Drone",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 70,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "texture",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    60,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "B14": {
+   "id": "B14",
+   "name": "Rolling 16ths",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 1.25,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 3.25,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "driving momentum",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "B15": {
+   "id": "B15",
+   "name": "Minimal Offbeat Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "bounce",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    132
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "B16": {
+   "id": "B16",
+   "name": "Polyrhythmic Drone",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 3.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "trance feeling",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "B17": {
+   "id": "B17",
+   "name": "Dark FM Sub",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 39,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 38,
+     "vel": 90,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "weight",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "B18": {
+   "id": "B18",
+   "name": "Ghost Note Bounce",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 48,
+     "vel": 40,
+     "dur": 0.125
+    },
+    {
+     "start": 1.0,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.75,
+     "pitch": 48,
+     "vel": 45,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "advanced groove",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "B19": {
+   "id": "B19",
+   "name": "Dubby Hybrid",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 2.75,
+     "pitch": 39,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "deep rhythm",
+   "genre": "folktronica",
+   "tempo_range": [
+    80,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "folktronica"
+   }
+  },
+  "B20": {
+   "id": "B20",
+   "name": "Minimal Cumbia Sub",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 43,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "sparse low end",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "B21": {
+   "id": "B21",
+   "name": "Sliding Bass",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 1.0
+    },
+    {
+     "start": 1.0,
+     "pitch": 53,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 55,
+     "vel": 85,
+     "dur": 1.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 46,
+     "vel": 75,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "trippy movement",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "B22": {
+   "id": "B22",
+   "name": "Restful Syncopation",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 1.75,
+     "pitch": 43,
+     "vel": 70,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 48,
+     "vel": 80,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "laid back groove",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "B23": {
+   "id": "B23",
+   "name": "Deep Step",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "hypnotic drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "B24": {
+   "id": "B24",
+   "name": "Double Phrase Root",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 48,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 48,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 43,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "classic groove",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "B25": {
+   "id": "B25",
+   "name": "Aggressive Wobble",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 0.75,
+     "pitch": 39,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 41,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 43,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "peak energy",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    90,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_bass.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P01": {
+   "id": "P01",
+   "name": "Guacharaca Core",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 0.75,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 0.875,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 2.0,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.75,
+     "pitch": 60,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 2.875,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "driving rhythm",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "P02": {
+   "id": "P02",
+   "name": "Conga Tumbao",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 62,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 0.875,
+     "pitch": 62,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 64,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.75,
+     "pitch": 62,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 2.875,
+     "pitch": 62,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 64,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "percussive base",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "P03": {
+   "id": "P03",
+   "name": "Hybrid 4/4 Kick",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "dancefloor anchor",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P04": {
+   "id": "P04",
+   "name": "Timbale Roll",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 67,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 3.25,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "transition",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P05": {
+   "id": "P05",
+   "name": "Offbeat Hihat",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 42,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 42,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "P06": {
+   "id": "P06",
+   "name": "Polyrhythmic Woodblock",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 64,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 64,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 64,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 64,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 64,
+     "vel": 75,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "hypnotic layer",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "P07": {
+   "id": "P07",
+   "name": "Dusty Breakbeat Kick/Snare",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "boom bap groove",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "P08": {
+   "id": "P08",
+   "name": "Vinyl Crackle & Shaker",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.125
+    },
+    {
+     "start": 0.5,
+     "pitch": 46,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 46,
+     "vel": 65,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 1.75,
+     "pitch": 46,
+     "vel": 65,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 46,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 46,
+     "vel": 65,
+     "dur": 0.125
+    },
+    {
+     "start": 3.25,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 46,
+     "vel": 65,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "texture and swing",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "P09": {
+   "id": "P09",
+   "name": "Cajon Festejo Groove",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 38,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.25,
+     "pitch": 38,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "woody percussion",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "folktronica"
+   }
+  },
+  "P10": {
+   "id": "P10",
+   "name": "Animal Hoof Shakers",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 54,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 54,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 54,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 54,
+     "vel": 70,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "shamanic texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "folktronica"
+   }
+  },
+  "P11": {
+   "id": "P11",
+   "name": "Tambor Alegre Solo",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 64,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.25,
+     "pitch": 64,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 0.5,
+     "pitch": 64,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 64,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 1.75,
+     "pitch": 64,
+     "vel": 85,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "improvisational fill",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "P12": {
+   "id": "P12",
+   "name": "Clap Snare Combo",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "backbeat",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P13": {
+   "id": "P13",
+   "name": "Dub Delay Rimshot",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.75,
+     "pitch": 37,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "spatial echo",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "P14": {
+   "id": "P14",
+   "name": "Ghost Snare 16ths",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 38,
+     "vel": 40,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 38,
+     "vel": 50,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 38,
+     "vel": 45,
+     "dur": 0.125
+    },
+    {
+     "start": 3.25,
+     "pitch": 38,
+     "vel": 55,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "forward momentum",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "P15": {
+   "id": "P15",
+   "name": "Organic Clave 3-2",
+   "bars": 2,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 51,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 51,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 51,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 5.0,
+     "pitch": 51,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 6.0,
+     "pitch": 51,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "latin root",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "folktronica"
+   }
+  },
+  "P16": {
+   "id": "P16",
+   "name": "Cowbell Accent",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 56,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 56,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.75,
+     "pitch": 56,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "flavour",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P17": {
+   "id": "P17",
+   "name": "Tambora Deep Groove",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 38,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 38,
+     "vel": 75,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "bottom end rhythm",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "P18": {
+   "id": "P18",
+   "name": "Ride Cymbal 16ths",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 51,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 51,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 51,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 51,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 51,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 51,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 51,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "high energy drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "P19": {
+   "id": "P19",
+   "name": "Lazy Hihats",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 42,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 42,
+     "vel": 70,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 65,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "slow timekeeping",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "P20": {
+   "id": "P20",
+   "name": "Rebajada Slow Beat",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 38,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "screwed cumbia",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    65,
+    75
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "P21": {
+   "id": "P21",
+   "name": "Field Recording Rhythms",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 62,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.75,
+     "pitch": 62,
+     "vel": 75,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "found sound beat",
+   "genre": "folktronica",
+   "tempo_range": [
+    80,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "folktronica"
+   }
+  },
+  "P22": {
+   "id": "P22",
+   "name": "Machine Gun Timbale",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 0.25,
+     "pitch": 67,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 0.5,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 1.0,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 67,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 1.75,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "build tension",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "P23": {
+   "id": "P23",
+   "name": "Deep Sub Kick",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "pulse",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "P24": {
+   "id": "P24",
+   "name": "Percussive Click",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 64,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 64,
+     "vel": 60,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "subtle rhythm",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "P25": {
+   "id": "P25",
+   "name": "Llamador Backbeat",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 50,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 50,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 50,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 50,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "cumbia anchor",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-25": {
+   "id": "G2-25",
+   "name": "Timbale Roll Build",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 50,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 50,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 50,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 50,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 50,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 3.25,
+     "pitch": 50,
+     "vel": 105,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 50,
+     "vel": 110,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 50,
+     "vel": 120,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "transition marker",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-26": {
+   "id": "G2-26",
+   "name": "Guacharaca Density Build",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 42,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 42,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 42,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 1.0,
+     "pitch": 42,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 42,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 1.75,
+     "pitch": 42,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 42,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 42,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 105,
+     "dur": 0.125
+    },
+    {
+     "start": 3.25,
+     "pitch": 42,
+     "vel": 110,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 42,
+     "vel": 115,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 42,
+     "vel": 120,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "rhythmic tension",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-27": {
+   "id": "G2-27",
+   "name": "Conga Syncopated Fill",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.5,
+     "pitch": 48,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.75,
+     "pitch": 49,
+     "vel": 105,
+     "dur": 0.25
+    },
+    {
+     "start": 3.25,
+     "pitch": 48,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 49,
+     "vel": 110,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "drop anticipation",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-28": {
+   "id": "G2-28",
+   "name": "Dub Delay Rimshot Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 3.0,
+     "pitch": 37,
+     "vel": 120,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "spatial transition",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-29": {
+   "id": "G2-29",
+   "name": "Cowbell Density Build",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 40,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 40,
+     "vel": 95,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 40,
+     "vel": 100,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 40,
+     "vel": 105,
+     "dur": 0.15
+    },
+    {
+     "start": 3.25,
+     "pitch": 40,
+     "vel": 110,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 40,
+     "vel": 115,
+     "dur": 0.15
+    },
+    {
+     "start": 3.75,
+     "pitch": 40,
+     "vel": 120,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "hypnotic climax",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-30": {
+   "id": "G2-30",
+   "name": "Shaker Wash Build",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 46,
+     "vel": 70,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 46,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 46,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 46,
+     "vel": 105,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 46,
+     "vel": 110,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 46,
+     "vel": 115,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "textural tension",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-31": {
+   "id": "G2-31",
+   "name": "Snare Machine Gun",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 38,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 2.25,
+     "pitch": 38,
+     "vel": 95,
+     "dur": 0.1
+    },
+    {
+     "start": 2.5,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 2.75,
+     "pitch": 38,
+     "vel": 105,
+     "dur": 0.1
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 110,
+     "dur": 0.1
+    },
+    {
+     "start": 3.25,
+     "pitch": 38,
+     "vel": 115,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 38,
+     "vel": 120,
+     "dur": 0.1
+    },
+    {
+     "start": 3.75,
+     "pitch": 38,
+     "vel": 127,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "EDM-style riser",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-32": {
+   "id": "G2-32",
+   "name": "Synth Timbale Fill",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.5,
+     "pitch": 50,
+     "vel": 100,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 50,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 50,
+     "vel": 110,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 50,
+     "vel": 120,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "club transition",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-33": {
+   "id": "G2-33",
+   "name": "Sub Kick Drop Prep",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "rhythmic deceleration",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-34": {
+   "id": "G2-34",
+   "name": "Vinyl Noise/Hat Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 50,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 42,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 42,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "lofi transition",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-35": {
+   "id": "G2-35",
+   "name": "Reverse Snare Suck",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 80,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "smooth drop entry",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-36": {
+   "id": "G2-36",
+   "name": "Dusty Break Fill",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.75,
+     "pitch": 38,
+     "vel": 55,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.25,
+     "pitch": 38,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 38,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "organic drum transition",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-37": {
+   "id": "G2-37",
+   "name": "Seed Rattle Crescendo",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 46,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 46,
+     "vel": 65,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 46,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 46,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 3.25,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 46,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "shamanic tension",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-38": {
+   "id": "G2-38",
+   "name": "Cajon Wood Roll",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.5,
+     "pitch": 37,
+     "vel": 65,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 37,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 37,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 3.25,
+     "pitch": 37,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 37,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "earthy transition",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-39": {
+   "id": "G2-39",
+   "name": "Organic Woodblock Tension",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 40,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 1.75,
+     "pitch": 40,
+     "vel": 65,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 40,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 3.25,
+     "pitch": 40,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "polyrhythmic build",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-40": {
+   "id": "G2-40",
+   "name": "Sparse 16th Hats Build",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 70,
+     "dur": 0.1
+    },
+    {
+     "start": 2.25,
+     "pitch": 42,
+     "vel": 80,
+     "dur": 0.1
+    },
+    {
+     "start": 2.5,
+     "pitch": 42,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 2.75,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 110,
+     "dur": 0.1
+    },
+    {
+     "start": 3.25,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 42,
+     "vel": 115,
+     "dur": 0.1
+    },
+    {
+     "start": 3.75,
+     "pitch": 42,
+     "vel": 127,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "hypnotic drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-41": {
+   "id": "G2-41",
+   "name": "Clap 2&4 Velocity Riser",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 39,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 39,
+     "vel": 115,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "classic tension",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-42": {
+   "id": "G2-42",
+   "name": "Ride Cymbal Wash",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 47,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 47,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 47,
+     "vel": 110,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 47,
+     "vel": 120,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "high frequency saturation",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "M01": {
+   "id": "M01",
+   "name": "Classic Guitar Skank",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 64,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 64,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "rhythmic chord",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "M02": {
+   "id": "M02",
+   "name": "Chicha Guitar Lead",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 79,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 77,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.75,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "melody",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "M03": {
+   "id": "M03",
+   "name": "Charango Arp",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.25,
+     "pitch": 88,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 0.5,
+     "pitch": 91,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 96,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 91,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 88,
+     "vel": 85,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "high rhythmic texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "folktronica"
+   }
+  },
+  "M04": {
+   "id": "M04",
+   "name": "Gaita Flute Call",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 79,
+     "vel": 95,
+     "dur": 1.0
+    },
+    {
+     "start": 1.0,
+     "pitch": 77,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "melodic phrase",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "M05": {
+   "id": "M05",
+   "name": "Rhodes Introspection",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 65,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 70,
+     "dur": 2.0
+    },
+    {
+     "start": 2.5,
+     "pitch": 62,
+     "vel": 60,
+     "dur": 1.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 65,
+     "vel": 55,
+     "dur": 1.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 69,
+     "vel": 60,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "chordal bed",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "M06": {
+   "id": "M06",
+   "name": "Dark Synth Motif",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.75,
+     "pitch": 74,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "hypnotic hook",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "M07": {
+   "id": "M07",
+   "name": "Vocal Chop Simulation",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 1.25,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 75,
+     "vel": 100,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "rhythmic vocal",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "M08": {
+   "id": "M08",
+   "name": "Acoustic Guitar Fingerpick",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 85,
+     "dur": 1.0
+    },
+    {
+     "start": 0.5,
+     "pitch": 55,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 64,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 55,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 64,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 55,
+     "vel": 80,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "flowing texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "folktronica"
+   }
+  },
+  "M09": {
+   "id": "M09",
+   "name": "Horn Call and Response",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 79,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "brass section",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "M10": {
+   "id": "M10",
+   "name": "Minimal Pluck",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.25,
+     "pitch": 84,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "foreground tension",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "M11": {
+   "id": "M11",
+   "name": "Sitar/World String Loop",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 62,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 1.0
+    },
+    {
+     "start": 2.5,
+     "pitch": 55,
+     "vel": 70,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "ethnic flavor",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "M12": {
+   "id": "M12",
+   "name": "Fuzz Guitar Motif",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.25,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 77,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 79,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "chicha surf lead",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "M13": {
+   "id": "M13",
+   "name": "Glockenspiel Sparkle",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 91,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 88,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 96,
+     "vel": 75,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "high frequency melodic",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "folktronica"
+   }
+  },
+  "M14": {
+   "id": "M14",
+   "name": "Dub Melodica",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 79,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 74,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 77,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "reggae offbeat melody",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "M15": {
+   "id": "M15",
+   "name": "Atonal Bleep Motif",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.25,
+     "pitch": 73,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "sci-fi tension",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "M16": {
+   "id": "M16",
+   "name": "Cinematic Strings",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 79,
+     "vel": 70,
+     "dur": 4.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 87,
+     "vel": 80,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "emotional sweep",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "M17": {
+   "id": "M17",
+   "name": "Vallenato Accordion Roll",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.125,
+     "pitch": 74,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 0.25,
+     "pitch": 75,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 79,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 84,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "folkloric melody",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "M18": {
+   "id": "M18",
+   "name": "Breathy Andean Flute",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 85,
+     "dur": 1.5
+    },
+    {
+     "start": 1.5,
+     "pitch": 79,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 87,
+     "vel": 80,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "mountain atmosphere",
+   "genre": "folktronica",
+   "tempo_range": [
+    80,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "folktronica"
+   }
+  },
+  "M19": {
+   "id": "M19",
+   "name": "Robot Voice Chop",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 60,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.25,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 100,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "modern digital hook",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "M20": {
+   "id": "M20",
+   "name": "Acid Sequence",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.25,
+     "pitch": 51,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.75,
+     "pitch": 48,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 53,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.25,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "303 style drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-43": {
+   "id": "G2-43",
+   "name": "Sparse Gaita Flute",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 77,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "introductory motif",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-44": {
+   "id": "G2-44",
+   "name": "Lonely Accordion",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 84,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 84,
+     "vel": 90,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "nostalgic break",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-45": {
+   "id": "G2-45",
+   "name": "Trippy Chicha Lead",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 75,
+     "dur": 0.5
+    },
+    {
+     "start": 1.0,
+     "pitch": 79,
+     "vel": 85,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "spacey outro",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-46": {
+   "id": "G2-46",
+   "name": "Distant Fuzz Organ",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 4.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 79,
+     "vel": 70,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "eerie suspension",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-47": {
+   "id": "G2-47",
+   "name": "Echo Flute Fragments",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 84,
+     "vel": 70,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 82,
+     "vel": 65,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "mystical atmosphere",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-48": {
+   "id": "G2-48",
+   "name": "Digital Bell Break",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 80,
+     "dur": 0.2
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 70,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "sparse suspension",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-49": {
+   "id": "G2-49",
+   "name": "Minimal Pluck Intro",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "setting the tone",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-50": {
+   "id": "G2-50",
+   "name": "Deep Sub Motif",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 1.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 31,
+     "vel": 80,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "weighty outro",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-51": {
+   "id": "G2-51",
+   "name": "Rhodes Whisper",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 60,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 55,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 60,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 65,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "jazz melancholy",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-52": {
+   "id": "G2-52",
+   "name": "Sitar Fragments",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 72,
+     "vel": 70,
+     "dur": 0.25
+    },
+    {
+     "start": 1.75,
+     "pitch": 74,
+     "vel": 65,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 75,
+     "vel": 75,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "world music flavor",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-53": {
+   "id": "G2-53",
+   "name": "Ambient Piano Drop",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 50,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 79,
+     "vel": 45,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "emotional stillness",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-54": {
+   "id": "G2-54",
+   "name": "Charango Plucks",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 88,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 91,
+     "vel": 80,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "gentle rhythm",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-55": {
+   "id": "G2-55",
+   "name": "Sparse Marimba",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 67,
+     "vel": 75,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "woody texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-56": {
+   "id": "G2-56",
+   "name": "Andean Flute Wind",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 65,
+     "dur": 3.0
+    },
+    {
+     "start": 3.0,
+     "pitch": 87,
+     "vel": 70,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "mountain atmosphere",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-57": {
+   "id": "G2-57",
+   "name": "Minimal Bleep Break",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.25,
+     "pitch": 84,
+     "vel": 85,
+     "dur": 0.1
+    },
+    {
+     "start": 3.75,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "sci-fi tension",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-58": {
+   "id": "G2-58",
+   "name": "Drone Bell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 75,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "dark resonance",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_melodic_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S01": {
+   "id": "S01",
+   "name": "Chucu-Chucu Synth Scraper",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 0.75,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 0.875,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 2.75,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 2.875,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "percussive rhythm",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "S02": {
+   "id": "S02",
+   "name": "Tropical Arpeggio",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 79,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "melodic hook",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "S03": {
+   "id": "S03",
+   "name": "Juno Style Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 65,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 70,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 75,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "atmosphere",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "S04": {
+   "id": "S04",
+   "name": "Dub Techno Chord Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "rhythmic texture",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S05": {
+   "id": "S05",
+   "name": "Organic Drone",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 60,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 55,
+     "vel": 50,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "bed texture",
+   "genre": "folktronica",
+   "tempo_range": [
+    80,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "folktronica"
+   }
+  },
+  "S06": {
+   "id": "S06",
+   "name": "Call Motif",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 79,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 77,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "hook",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "S07": {
+   "id": "S07",
+   "name": "Minimal Bleep Sequence",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 84,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 2.75,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "hypnotic drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S08": {
+   "id": "S08",
+   "name": "Emotional Rhodes Chords",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 75,
+     "dur": 1.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 70,
+     "dur": 1.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 75,
+     "dur": 1.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 80,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 62,
+     "vel": 70,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 65,
+     "vel": 65,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 69,
+     "vel": 70,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "harmonic progression",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "S09": {
+   "id": "S09",
+   "name": "Dark Atmospheric Sequence",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 61,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "tension",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "S10": {
+   "id": "S10",
+   "name": "Pluck Sequence",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 67,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 2.25,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 3.0,
+     "pitch": 79,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 3.75,
+     "pitch": 74,
+     "vel": 85,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "rhythmic melody",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "folktronica"
+   }
+  },
+  "S11": {
+   "id": "S11",
+   "name": "Offbeat Chord Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 63,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 67,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 63,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 67,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "reggae/cumbia skank",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "S12": {
+   "id": "S12",
+   "name": "Evolving Drone Pitch",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 4.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 67,
+     "vel": 70,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "subtle harmonic shift",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S13": {
+   "id": "S13",
+   "name": "Accordion Synth Melody",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 0.5,
+     "pitch": 79,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 87,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 86,
+     "vel": 90,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 84,
+     "vel": 85,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "main hook",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "S14": {
+   "id": "S14",
+   "name": "Glitchy Chords",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.0,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 72,
+     "vel": 70,
+     "dur": 0.125
+    },
+    {
+     "start": 0.75,
+     "pitch": 75,
+     "vel": 65,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.125
+    },
+    {
+     "start": 2.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.125
+    }
+   ],
+   "purpose": "texture and rhythm",
+   "genre": "folktronica",
+   "tempo_range": [
+    85,
+    105
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "folktronica"
+   }
+  },
+  "S15": {
+   "id": "S15",
+   "name": "Ambient Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 55,
+     "vel": 85,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "transition",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "S16": {
+   "id": "S16",
+   "name": "Siren Riser",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "build tension",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "S17": {
+   "id": "S17",
+   "name": "Organ Trill",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.125
+    },
+    {
+     "start": 0.125,
+     "pitch": 74,
+     "vel": 80,
+     "dur": 0.125
+    },
+    {
+     "start": 0.25,
+     "pitch": 72,
+     "vel": 85,
+     "dur": 0.125
+    },
+    {
+     "start": 0.375,
+     "pitch": 74,
+     "vel": 75,
+     "dur": 0.125
+    },
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 3.5
+    }
+   ],
+   "purpose": "retro psych vibe",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "S18": {
+   "id": "S18",
+   "name": "Atmo Chord",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 63,
+     "vel": 65,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 67,
+     "vel": 70,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "background depth",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S19": {
+   "id": "S19",
+   "name": "Marimba Synth Hybrid",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "melodic rhythm",
+   "genre": "folktronica",
+   "tempo_range": [
+    90,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "folktronica"
+   }
+  },
+  "S20": {
+   "id": "S20",
+   "name": "LoFi Tape Chords",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 75,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 70,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 75,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 80,
+     "dur": 2.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 62,
+     "vel": 70,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "nostalgic harmony",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    90
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "S21": {
+   "id": "S21",
+   "name": "Tropical Lead",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 0.5,
+     "pitch": 86,
+     "vel": 85,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 87,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 84,
+     "vel": 90,
+     "dur": 1.0
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 85,
+     "dur": 0.5
+    },
+    {
+     "start": 3.0,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 1.0
+    }
+   ],
+   "purpose": "solo instrument",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    90,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "S22": {
+   "id": "S22",
+   "name": "Rhythmic Noise Sweep",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "percussive texture",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    125,
+    135
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "S23": {
+   "id": "S23",
+   "name": "Dub Siren",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 84,
+     "vel": 100,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "FX transition",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    80,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "S24": {
+   "id": "S24",
+   "name": "Brass Section Stabs",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 75,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 75,
+     "vel": 95,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 79,
+     "vel": 100,
+     "dur": 0.5
+    }
+   ],
+   "purpose": "accent",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    100
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "S25": {
+   "id": "S25",
+   "name": "Wind Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 70,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 65,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "ambient background",
+   "genre": "folktronica",
+   "tempo_range": [
+    80,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-01": {
+   "id": "G2-01",
+   "name": "Phrygian Brass Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 73,
+     "vel": 75,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "harmonic bed",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-02": {
+   "id": "G2-02",
+   "name": "Accordion Minor Stabs",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 1.0,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 1.0,
+     "pitch": 79,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 79,
+     "vel": 95,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "rhythmic melody",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-03": {
+   "id": "G2-03",
+   "name": "Brass Syncopated Hit",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.75,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 1.75,
+     "pitch": 77,
+     "vel": 95,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 3.5,
+     "pitch": 77,
+     "vel": 85,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "accent",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-04": {
+   "id": "G2-04",
+   "name": "Guitar Style Skank",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 0.5,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 0.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "offbeat rhythm",
+   "genre": "traditional cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "traditional cumbia"
+   }
+  },
+  "G2-05": {
+   "id": "G2-05",
+   "name": "Juno Dorian Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 2.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 80,
+     "dur": 2.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 85,
+     "dur": 2.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 77,
+     "vel": 75,
+     "dur": 1.5
+    }
+   ],
+   "purpose": "atmospheric tension",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-06": {
+   "id": "G2-06",
+   "name": "Amazonian Drone Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 90,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 80,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "psychedelic bed",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-07": {
+   "id": "G2-07",
+   "name": "Fuzz Organ Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.2
+    },
+    {
+     "start": 0.75,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 0.75,
+     "pitch": 79,
+     "vel": 95,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "chicha lead accent",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-08": {
+   "id": "G2-08",
+   "name": "Dub Chord Skank",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 60,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 63,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "spatial rhythm",
+   "genre": "psychedelic cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "psychedelic cumbia"
+   }
+  },
+  "G2-09": {
+   "id": "G2-09",
+   "name": "Digital Future Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 1.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 85,
+     "dur": 1.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 1.5
+    },
+    {
+     "start": 2.0,
+     "pitch": 65,
+     "vel": 85,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 72,
+     "vel": 80,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 79,
+     "vel": 85,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "modern harmonic layer",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-10": {
+   "id": "G2-10",
+   "name": "Synth Brass Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 95,
+     "dur": 0.1
+    },
+    {
+     "start": 0.5,
+     "pitch": 79,
+     "vel": 100,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "urban club accent",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-11": {
+   "id": "G2-11",
+   "name": "Digital Pluck Hit",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.25,
+     "pitch": 84,
+     "vel": 95,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 79,
+     "vel": 90,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "percussive melody",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-12": {
+   "id": "G2-12",
+   "name": "Urban Chord Skank",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 0.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 1.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.1
+    },
+    {
+     "start": 1.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.1
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 100,
+     "dur": 0.1
+    },
+    {
+     "start": 2.5,
+     "pitch": 75,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 95,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 75,
+     "vel": 85,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "staccato rhythm",
+   "genre": "electro cumbia",
+   "tempo_range": [
+    85,
+    110
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "electro cumbia"
+   }
+  },
+  "G2-13": {
+   "id": "G2-13",
+   "name": "Dusty Rhodes Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 65,
+     "dur": 3.8
+    },
+    {
+     "start": 0.0,
+     "pitch": 63,
+     "vel": 60,
+     "dur": 3.8
+    },
+    {
+     "start": 0.0,
+     "pitch": 67,
+     "vel": 65,
+     "dur": 3.8
+    },
+    {
+     "start": 0.0,
+     "pitch": 70,
+     "vel": 70,
+     "dur": 3.8
+    }
+   ],
+   "purpose": "jazz harmonic bed",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-14": {
+   "id": "G2-14",
+   "name": "Warm Analog Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 60,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 55,
+     "dur": 4.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 62,
+     "vel": 50,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "ambient texture",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-15": {
+   "id": "G2-15",
+   "name": "Lofi Keys Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.25,
+     "pitch": 72,
+     "vel": 70,
+     "dur": 0.2
+    },
+    {
+     "start": 1.25,
+     "pitch": 75,
+     "vel": 65,
+     "dur": 0.2
+    },
+    {
+     "start": 1.25,
+     "pitch": 79,
+     "vel": 70,
+     "dur": 0.2
+    },
+    {
+     "start": 1.25,
+     "pitch": 82,
+     "vel": 75,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "syncopated accent",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-16": {
+   "id": "G2-16",
+   "name": "Jazz Chord Chop",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.5,
+     "pitch": 62,
+     "vel": 65,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 65,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 69,
+     "vel": 65,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 70,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "rhythmic harmony",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "G2-17": {
+   "id": "G2-17",
+   "name": "Acoustic Hybrid Pad",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 60,
+     "vel": 75,
+     "dur": 3.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 64,
+     "vel": 70,
+     "dur": 3.5
+    },
+    {
+     "start": 0.0,
+     "pitch": 71,
+     "vel": 75,
+     "dur": 3.5
+    }
+   ],
+   "purpose": "organic bed",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-18": {
+   "id": "G2-18",
+   "name": "Granular Folk Drone",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 60,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 55,
+     "vel": 55,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "textural background",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-19": {
+   "id": "G2-19",
+   "name": "Kalimba Synth Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.75,
+     "pitch": 84,
+     "vel": 80,
+     "dur": 0.1
+    },
+    {
+     "start": 1.5,
+     "pitch": 79,
+     "vel": 75,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "melodic accent",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-20": {
+   "id": "G2-20",
+   "name": "Marimba Digital Chop",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.25,
+     "pitch": 72,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 76,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 74,
+     "vel": 80,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "percussive melody",
+   "genre": "folktronica",
+   "tempo_range": [
+    70,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "folktronica"
+   }
+  },
+  "G2-21": {
+   "id": "G2-21",
+   "name": "Deep Space Drone",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 48,
+     "vel": 80,
+     "dur": 4.0
+    },
+    {
+     "start": 0.0,
+     "pitch": 55,
+     "vel": 75,
+     "dur": 4.0
+    }
+   ],
+   "purpose": "subtle harmonic layer",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-22": {
+   "id": "G2-22",
+   "name": "Dark FM Swell",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 2.0,
+     "pitch": 60,
+     "vel": 90,
+     "dur": 2.0
+    },
+    {
+     "start": 2.0,
+     "pitch": 63,
+     "vel": 85,
+     "dur": 2.0
+    }
+   ],
+   "purpose": "tension builder",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-23": {
+   "id": "G2-23",
+   "name": "Dub Techno Stab",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.5,
+     "pitch": 60,
+     "vel": 95,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 63,
+     "vel": 90,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 67,
+     "vel": 95,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "rhythmic texture",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "G2-24": {
+   "id": "G2-24",
+   "name": "Minimal Offbeat Skank",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 1.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 2.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.1
+    },
+    {
+     "start": 3.5,
+     "pitch": 72,
+     "vel": 90,
+     "dur": 0.1
+    }
+   ],
+   "purpose": "forward drive",
+   "genre": "hypnotic techno",
+   "tempo_range": [
+    120,
+    128
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_synth_gap2.json",
+    "genre": "hypnotic techno"
+   }
+  },
+  "DOC-KICK-4OTF": {
+   "id": "DOC-KICK-4OTF",
+   "name": "Four on the floor",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "kick on every quarter (positions 1,5,9,13)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/"
+    ]
+   }
+  },
+  "DOC-TECHNO-GHOSTKICK": {
+   "id": "DOC-TECHNO-GHOSTKICK",
+   "name": "Four on the floor + ghost kicks",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 42,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 42,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "ghost kick just before beats 2 and 4 'to create a pendulum effect' (Rolling Techno, 131 BPM)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-techno/"
+    ]
+   }
+  },
+  "DOC-CLAP-24": {
+   "id": "DOC-CLAP-24",
+   "name": "Clap on 2 and 4",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 39,
+     "vel": 100,
+     "dur": 0.2
+    },
+    {
+     "start": 3.0,
+     "pitch": 39,
+     "vel": 100,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "clap/snare on beats 2 and 4",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/"
+    ]
+   }
+  },
+  "DOC-SNARE-24": {
+   "id": "DOC-SNARE-24",
+   "name": "Snare on 2 and 4",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.2
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "snare on beats 2 and 4 (chillout beat)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/chillout-beat-raw-strip-hop/"
+    ]
+   }
+  },
+  "DOC-OHAT-OFFBEAT": {
+   "id": "DOC-OHAT-OFFBEAT",
+   "name": "Open hat on the offbeats",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.3
+    },
+    {
+     "start": 1.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.3
+    },
+    {
+     "start": 2.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.3
+    },
+    {
+     "start": 3.5,
+     "pitch": 46,
+     "vel": 80,
+     "dur": 0.3
+    }
+   ],
+   "purpose": "open hat on the offbeat between kicks",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/"
+    ]
+   }
+  },
+  "DOC-HAT-16": {
+   "id": "DOC-HAT-16",
+   "name": "Closed hat/shaker 16ths around the open hat",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.12
+    },
+    {
+     "start": 0.25,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 0.75,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 1.0,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.12
+    },
+    {
+     "start": 1.25,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 1.75,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.12
+    },
+    {
+     "start": 2.25,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 2.75,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 100,
+     "dur": 0.12
+    },
+    {
+     "start": 3.25,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    },
+    {
+     "start": 3.75,
+     "pitch": 42,
+     "vel": 58,
+     "dur": 0.12
+    }
+   ],
+   "purpose": "straight 16ths with velocity variation and 55-60% swing; velocity tiers from the KB",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/",
+     "knowledge/HYPNOTIC_TECHNO_NOTEBOOKLM_KNOWLEDGE_BASE.md section 5 (velocity tiers, swing)"
+    ]
+   }
+  },
+  "DOC-HAT-8TH": {
+   "id": "DOC-HAT-8TH",
+   "name": "Closed hat straight 8ths",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 42,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 0.5,
+     "pitch": 42,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 1.0,
+     "pitch": 42,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 1.5,
+     "pitch": 42,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 2.0,
+     "pitch": 42,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 42,
+     "vel": 60,
+     "dur": 0.15
+    },
+    {
+     "start": 3.0,
+     "pitch": 42,
+     "vel": 75,
+     "dur": 0.15
+    },
+    {
+     "start": 3.5,
+     "pitch": 42,
+     "vel": 60,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "straight 8ths to reinforce kick and snare (chillout beat)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/chillout-beat-raw-strip-hop/"
+    ]
+   }
+  },
+  "DOC-TOM-DEEP": {
+   "id": "DOC-TOM-DEEP",
+   "name": "909 tom (deep house)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 47,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 2.0,
+     "pitch": 47,
+     "vel": 85,
+     "dur": 0.15
+    },
+    {
+     "start": 2.5,
+     "pitch": 47,
+     "vel": 85,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "tom on the 3rd, 9th and 11th divisions (Rolling Deep House, 125 BPM, swing 60-70)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/"
+    ]
+   }
+  },
+  "DOC-AFRO-PERC": {
+   "id": "DOC-AFRO-PERC",
+   "name": "Afro percussion hit",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 63,
+     "vel": 70,
+     "dur": 0.15
+    },
+    {
+     "start": 2.25,
+     "pitch": 63,
+     "vel": 70,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "percussion hit on the 2nd and 10th divisions (Rolling Deep House)",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+     "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+     "https://ampedstudio.com/blog/how-tomake-a-house-beat/"
+    ]
+   }
+  },
+  "DOC-BASS-OFFBEAT": {
+   "id": "DOC-BASS-OFFBEAT",
+   "name": "Offbeat bass",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.4
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.4
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.4
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.4
+    }
+   ],
+   "purpose": "one bass note on every offbeat: the kick lands on the beat and the bass answers between",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://theproducerschool.com/blogs/featured-blogs/master-modern-tech-house-bass-lines-complete-tutorial-guide"
+    ]
+   }
+  },
+  "DOC-BASS-OFFBEAT-OCT": {
+   "id": "DOC-BASS-OFFBEAT-OCT",
+   "name": "Offbeat bass, first note an octave up",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.5,
+     "pitch": 48,
+     "vel": 108,
+     "dur": 0.4
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 94,
+     "dur": 0.4
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 94,
+     "dur": 0.4
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 94,
+     "dur": 0.4
+    }
+   ],
+   "purpose": "offbeat variation: 'a note on the first hit one octave higher with increased velocity'",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://theproducerschool.com/blogs/featured-blogs/master-modern-tech-house-bass-lines-complete-tutorial-guide"
+    ]
+   }
+  },
+  "DOC-BASS-ROLLING": {
+   "id": "DOC-BASS-ROLLING",
+   "name": "Rolling 16ths (kick steps empty)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 1.25,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 3.25,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 90,
+     "dur": 0.2
+    },
+    {
+     "start": 3.75,
+     "pitch": 36,
+     "vel": 62,
+     "dur": 0.2
+    }
+   ],
+   "purpose": "bass on the three offbeat 16ths of every quarter; the first 16th of each beat left empty for the kick; the 'and' medium, others quiet",
+   "genre": "",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "documented",
+    "ref": [
+     "https://www.attackmagazine.com/technique/tutorials/warehouse-rolling-techno-bass/",
+     "https://www.studiobrootle.com/rolling-techno-bassline-ableton/"
+    ]
+   }
+  },
+  "MEAS-techno-1": {
+   "id": "MEAS-techno-1",
+   "name": "Measured bar 1 (Low Pressure (owner's track) 1 Bass)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 36,
+     "vel": 84,
+     "dur": 0.24
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 98,
+     "dur": 0.27
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 73,
+     "dur": 0.27
+    },
+    {
+     "start": 1.25,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.24
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.27
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 72,
+     "dur": 0.24
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 81,
+     "dur": 0.24
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 97,
+     "dur": 0.27
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 73,
+     "dur": 0.27
+    },
+    {
+     "start": 3.25,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.24
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 96,
+     "dur": 0.27
+    },
+    {
+     "start": 3.75,
+     "pitch": 36,
+     "vel": 70,
+     "dur": 0.24
+    }
+   ],
+   "purpose": "recurring bar of a real techno loop",
+   "genre": "techno",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "Low Pressure (owner's track) 1 Bass",
+    "bpm": 126.0,
+    "typicality": 0.0,
+    "share_of_loop": 0.48
+   }
+  },
+  "MEAS-house-1": {
+   "id": "MEAS-house-1",
+   "name": "Measured bar 1 (LT_DO_Bass Groove_07_Quest_120 BPM_Amin.)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 31,
+     "vel": 62,
+     "dur": 0.12
+    },
+    {
+     "start": 0.25,
+     "pitch": 31,
+     "vel": 80,
+     "dur": 0.39
+    },
+    {
+     "start": 0.75,
+     "pitch": 26,
+     "vel": 94,
+     "dur": 0.73
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 57,
+     "dur": 0.49
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.42
+    }
+   ],
+   "purpose": "recurring bar of a real house loop",
+   "genre": "house",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav",
+    "bpm": 120,
+    "typicality": 0.388,
+    "share_of_loop": 0.75
+   }
+  },
+  "MEAS-house-2": {
+   "id": "MEAS-house-2",
+   "name": "Measured bar 2 (LT_DO_Bass Groove_07_Quest_120 BPM_Amin.)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 31,
+     "vel": 68,
+     "dur": 0.12
+    },
+    {
+     "start": 0.75,
+     "pitch": 26,
+     "vel": 90,
+     "dur": 0.53
+    },
+    {
+     "start": 1.25,
+     "pitch": 26,
+     "vel": 63,
+     "dur": 0.28
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 52,
+     "dur": 0.5
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 69,
+     "dur": 0.38
+    }
+   ],
+   "purpose": "recurring bar of a real house loop",
+   "genre": "house",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "LT_DO_Bass Groove_07_Quest_120 BPM_Amin.wav",
+    "bpm": 120,
+    "typicality": 0.371,
+    "share_of_loop": 0.25
+   }
+  },
+  "MEAS-house-3": {
+   "id": "MEAS-house-3",
+   "name": "Measured bar 3 (LT_DO_Bass Groove_03_Squelch_120 BPM_Fmi)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 52,
+     "vel": 80,
+     "dur": 0.26
+    },
+    {
+     "start": 0.25,
+     "pitch": 53,
+     "vel": 73,
+     "dur": 0.35
+    },
+    {
+     "start": 0.75,
+     "pitch": 39,
+     "vel": 69,
+     "dur": 0.14
+    },
+    {
+     "start": 1.0,
+     "pitch": 40,
+     "vel": 51,
+     "dur": 0.12
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 56,
+     "dur": 0.12
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 63,
+     "dur": 0.14
+    },
+    {
+     "start": 2.5,
+     "pitch": 39,
+     "vel": 104,
+     "dur": 0.48
+    },
+    {
+     "start": 3.0,
+     "pitch": 45,
+     "vel": 95,
+     "dur": 0.29
+    },
+    {
+     "start": 3.25,
+     "pitch": 44,
+     "vel": 94,
+     "dur": 0.33
+    },
+    {
+     "start": 3.75,
+     "pitch": 52,
+     "vel": 85,
+     "dur": 0.13
+    }
+   ],
+   "purpose": "recurring bar of a real house loop",
+   "genre": "house",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "LT_DO_Bass Groove_03_Squelch_120 BPM_Fmin.wav",
+    "bpm": 120,
+    "typicality": 0.368,
+    "share_of_loop": 1.0
+   }
+  },
+  "MEAS-downtempo-1": {
+   "id": "MEAS-downtempo-1",
+   "name": "Measured bar 1 (FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 107,
+     "dur": 0.45
+    },
+    {
+     "start": 0.5,
+     "pitch": 35,
+     "vel": 52,
+     "dur": 0.12
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 100,
+     "dur": 0.27
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 59,
+     "dur": 0.23
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 73,
+     "dur": 0.29
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 79,
+     "dur": 0.19
+    },
+    {
+     "start": 3.0,
+     "pitch": 46,
+     "vel": 55,
+     "dur": 0.27
+    },
+    {
+     "start": 3.25,
+     "pitch": 48,
+     "vel": 59,
+     "dur": 0.15
+    },
+    {
+     "start": 3.75,
+     "pitch": 43,
+     "vel": 55,
+     "dur": 0.19
+    }
+   ],
+   "purpose": "recurring bar of a real downtempo loop",
+   "genre": "downtempo",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "FL_FMT_Kit01_108_Bass_Loop_EbMaj.wav",
+    "bpm": 108,
+    "typicality": 0.321,
+    "share_of_loop": 0.25
+   }
+  },
+  "MEAS-downtempo-2": {
+   "id": "MEAS-downtempo-2",
+   "name": "Measured bar 2 (AMM2_BASS_E_96bpm(3).flac)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 36,
+     "vel": 108,
+     "dur": 0.17
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 104,
+     "dur": 0.2
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 94,
+     "dur": 0.24
+    },
+    {
+     "start": 1.0,
+     "pitch": 36,
+     "vel": 101,
+     "dur": 0.32
+    },
+    {
+     "start": 1.25,
+     "pitch": 36,
+     "vel": 97,
+     "dur": 0.5
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 73,
+     "dur": 0.22
+    },
+    {
+     "start": 2.0,
+     "pitch": 36,
+     "vel": 70,
+     "dur": 0.24
+    },
+    {
+     "start": 2.25,
+     "pitch": 36,
+     "vel": 77,
+     "dur": 0.43
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 87,
+     "dur": 0.54
+    },
+    {
+     "start": 3.25,
+     "pitch": 36,
+     "vel": 91,
+     "dur": 0.28
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 84,
+     "dur": 0.24
+    },
+    {
+     "start": 3.75,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.48
+    }
+   ],
+   "purpose": "recurring bar of a real downtempo loop",
+   "genre": "downtempo",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "AMM2_BASS_E_96bpm(3).flac",
+    "bpm": 96,
+    "typicality": 0.29,
+    "share_of_loop": 0.33
+   }
+  },
+  "MEAS-downtempo-3": {
+   "id": "MEAS-downtempo-3",
+   "name": "Measured bar 3 (FL_RSC_Kit05_Bass_Loop_84_C#.wav)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.25,
+     "pitch": 36,
+     "vel": 57,
+     "dur": 0.23
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 61,
+     "dur": 0.26
+    },
+    {
+     "start": 1.0,
+     "pitch": 35,
+     "vel": 51,
+     "dur": 0.12
+    },
+    {
+     "start": 1.25,
+     "pitch": 24,
+     "vel": 98,
+     "dur": 0.21
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 50,
+     "dur": 0.2
+    },
+    {
+     "start": 3.5,
+     "pitch": 35,
+     "vel": 68,
+     "dur": 0.24
+    },
+    {
+     "start": 3.75,
+     "pitch": 35,
+     "vel": 53,
+     "dur": 0.15
+    }
+   ],
+   "purpose": "recurring bar of a real downtempo loop",
+   "genre": "downtempo",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "FL_RSC_Kit05_Bass_Loop_84_C#.wav",
+    "bpm": 84,
+    "typicality": 0.287,
+    "share_of_loop": 0.25
+   }
+  },
+  "MEAS-electro_cumbia-1": {
+   "id": "MEAS-electro_cumbia-1",
+   "name": "Measured bar 1 (emergency cumbia bassline (90bpm).aif)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 45,
+     "vel": 101,
+     "dur": 0.28
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 67,
+     "dur": 0.51
+    },
+    {
+     "start": 1.0,
+     "pitch": 39,
+     "vel": 91,
+     "dur": 0.42
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 55,
+     "dur": 0.27
+    },
+    {
+     "start": 1.75,
+     "pitch": 33,
+     "vel": 84,
+     "dur": 0.22
+    },
+    {
+     "start": 2.0,
+     "pitch": 45,
+     "vel": 106,
+     "dur": 0.3
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 67,
+     "dur": 0.26
+    },
+    {
+     "start": 2.75,
+     "pitch": 37,
+     "vel": 76,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 39,
+     "vel": 94,
+     "dur": 0.41
+    },
+    {
+     "start": 3.5,
+     "pitch": 36,
+     "vel": 58,
+     "dur": 0.26
+    },
+    {
+     "start": 3.75,
+     "pitch": 33,
+     "vel": 65,
+     "dur": 0.19
+    }
+   ],
+   "purpose": "recurring bar of a real electro_cumbia loop",
+   "genre": "electro_cumbia",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "emergency cumbia bassline (90bpm).aif",
+    "bpm": 90,
+    "typicality": 0.74,
+    "share_of_loop": 1.0
+   }
+  },
+  "MEAS-electro_cumbia-2": {
+   "id": "MEAS-electro_cumbia-2",
+   "name": "Measured bar 2 (Bleepolar - Cumbia Maquina 100 BPM_01.mp)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 73,
+     "dur": 0.12
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 77,
+     "dur": 0.12
+    },
+    {
+     "start": 0.75,
+     "pitch": 37,
+     "vel": 75,
+     "dur": 0.27
+    },
+    {
+     "start": 1.0,
+     "pitch": 37,
+     "vel": 77,
+     "dur": 0.14
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 83,
+     "dur": 0.19
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.25
+    },
+    {
+     "start": 2.0,
+     "pitch": 37,
+     "vel": 75,
+     "dur": 0.13
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 80,
+     "dur": 0.15
+    },
+    {
+     "start": 2.75,
+     "pitch": 37,
+     "vel": 86,
+     "dur": 0.29
+    },
+    {
+     "start": 3.0,
+     "pitch": 36,
+     "vel": 82,
+     "dur": 0.16
+    },
+    {
+     "start": 3.5,
+     "pitch": 49,
+     "vel": 101,
+     "dur": 0.29
+    }
+   ],
+   "purpose": "recurring bar of a real electro_cumbia loop",
+   "genre": "electro_cumbia",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "Bleepolar - Cumbia Maquina 100 BPM_01.mp3",
+    "bpm": 100,
+    "typicality": 0.74,
+    "share_of_loop": 0.36
+   }
+  },
+  "MEAS-electro_cumbia-3": {
+   "id": "MEAS-electro_cumbia-3",
+   "name": "Measured bar 3 (salude slap bass (80bpm).aif)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 34,
+     "vel": 106,
+     "dur": 0.27
+    },
+    {
+     "start": 0.5,
+     "pitch": 36,
+     "vel": 69,
+     "dur": 0.27
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 67,
+     "dur": 0.19
+    },
+    {
+     "start": 1.0,
+     "pitch": 39,
+     "vel": 95,
+     "dur": 0.29
+    },
+    {
+     "start": 1.5,
+     "pitch": 36,
+     "vel": 72,
+     "dur": 0.27
+    },
+    {
+     "start": 1.75,
+     "pitch": 36,
+     "vel": 65,
+     "dur": 0.19
+    },
+    {
+     "start": 2.0,
+     "pitch": 35,
+     "vel": 99,
+     "dur": 0.28
+    },
+    {
+     "start": 2.25,
+     "pitch": 37,
+     "vel": 88,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 66,
+     "dur": 0.26
+    },
+    {
+     "start": 2.75,
+     "pitch": 36,
+     "vel": 72,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 39,
+     "vel": 87,
+     "dur": 0.19
+    },
+    {
+     "start": 3.5,
+     "pitch": 39,
+     "vel": 70,
+     "dur": 0.19
+    },
+    {
+     "start": 3.75,
+     "pitch": 37,
+     "vel": 69,
+     "dur": 0.16
+    }
+   ],
+   "purpose": "recurring bar of a real electro_cumbia loop",
+   "genre": "electro_cumbia",
+   "tempo_range": [
+    0,
+    0
+   ],
+   "source": {
+    "kind": "measured",
+    "ref": "salude slap bass (80bpm).aif",
+    "bpm": 80,
+    "typicality": 0.728,
+    "share_of_loop": 1.0
+   }
+  },
+  "P07-KICK": {
+   "id": "P07-KICK",
+   "name": "Dusty Breakbeat (kick)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 0.0,
+     "pitch": 36,
+     "vel": 95,
+     "dur": 0.25
+    },
+    {
+     "start": 0.75,
+     "pitch": 36,
+     "vel": 75,
+     "dur": 0.25
+    },
+    {
+     "start": 2.5,
+     "pitch": 36,
+     "vel": 85,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "boom bap groove",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  },
+  "P07-SNARE": {
+   "id": "P07-SNARE",
+   "name": "Dusty Breakbeat (snare)",
+   "bars": 1,
+   "notes": [
+    {
+     "start": 1.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    },
+    {
+     "start": 3.0,
+     "pitch": 38,
+     "vel": 100,
+     "dur": 0.25
+    }
+   ],
+   "purpose": "boom bap groove",
+   "genre": "downtempo electronic music",
+   "tempo_range": [
+    75,
+    95
+   ],
+   "source": {
+    "kind": "notebooklm",
+    "ref": "knowledge/research/patterns_percussion.json",
+    "genre": "downtempo electronic music"
+   }
+  }
+ },
+ "styles": {
+  "techno": {
+   "label": "Techno",
+   "bpm": {
+    "default": 128,
+    "min": 124,
+    "max": 134
+   },
+   "swing_pct": 56,
+   "tonic": "D",
+   "element_map": {
+    "drums": [
+     "kick",
+     "clap",
+     "hat"
+    ],
+    "percussion": [
+     "perc"
+    ],
+    "bass": [
+     "bass"
+    ],
+    "texture": [
+     "chords"
+    ],
+    "pad": [
+     "pad"
+    ],
+    "lead": [
+     "lead"
+    ],
+    "melody": [
+     "lead"
+    ]
+   },
+   "layers": {
+    "kick": {
+     "sparse": [
+      "P23"
+     ],
+     "base": [
+      [
+       "P23"
+      ],
+      [
+       "DOC-TECHNO-GHOSTKICK"
+      ]
+     ],
+     "dense": [
+      "DOC-TECHNO-GHOSTKICK"
+     ]
+    },
+    "clap": {
+     "sparse": null,
+     "base": [
+      [
+       "DOC-CLAP-24"
+      ]
+     ],
+     "dense": [
+      "DOC-CLAP-24"
+     ],
+     "min_energy": 0.5
+    },
+    "hat": {
+     "sparse": null,
+     "base": [
+      [
+       "P05"
+      ]
+     ],
+     "dense": [
+      "P05",
+      "P18"
+     ],
+     "min_energy": 0.35
+    },
+    "perc": {
+     "sparse": null,
+     "base": [
+      [
+       "P06"
+      ],
+      [
+       "P14"
+      ]
+     ],
+     "dense": [
+      "P06",
+      "P14"
+     ],
+     "min_energy": 0.55
+    },
+    "bass": {
+     "sparse": [
+      "B17"
+     ],
+     "base": [
+      [
+       "B14"
+      ],
+      [
+       "B15"
+      ],
+      [
+       "MEAS-techno-1"
+      ]
+     ],
+     "dense": [
+      "B14"
+     ]
+    },
+    "chords": {
+     "sparse": null,
+     "base": [
+      [
+       "S04"
+      ],
+      [
+       "G2-23"
+      ],
+      [
+       "G2-24"
+      ]
+     ],
+     "dense": [
+      "G2-24"
+     ]
+    },
+    "pad": {
+     "sparse": [
+      "G2-21"
+     ],
+     "base": [
+      [
+       "G2-21"
+      ],
+      [
+       "S12"
+      ]
+     ],
+     "dense": [
+      "G2-22"
+     ]
+    },
+    "lead": {
+     "sparse": null,
+     "base": [
+      [
+       "M06"
+      ],
+      [
+       "S07"
+      ],
+      [
+       "M10"
+      ]
+     ],
+     "dense": [
+      "M06"
+     ]
+    }
+   },
+   "fill": [
+    "G2-40"
+   ],
+   "refs": [
+    "https://www.attackmagazine.com/technique/tutorials/warehouse-rolling-techno-bass/",
+    "https://www.studiobrootle.com/rolling-techno-bassline-ableton/",
+    "https://www.attackmagazine.com/technique/beat-dissected/rolling-techno/",
+    "knowledge/HYPNOTIC_TECHNO_NOTEBOOKLM_KNOWLEDGE_BASE.md section 5 (velocity tiers, swing)"
+   ],
+   "arrangement": [
+    {
+     "name": "intro",
+     "bars": 32,
+     "elements": [
+      "drums"
+     ],
+     "energy": 0.25,
+     "notes": "Kick only. Maybe a distant metallic sound in the background. This builds atmosphere and discipline in the crowd. The hat does NOT enter yet."
+    },
+    {
+     "name": "build",
+     "bars": 16,
+     "elements": [
+      "drums",
+      "bass"
+     ],
+     "energy": 0.4,
+     "notes": "Bass drone enters \u2014 a low sub rumble or mid-range industrial grind. Drive-type sound. Hats begin to fill \u2014 16ths very tight."
+    },
+    {
+     "name": "groove",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "texture"
+     ],
+     "energy": 0.65,
+     "notes": "First industrial texture enters. Could be a looping metallic sample, a distorted synth stab, or a noise layer. This locks in the hypnotic groove."
+    },
+    {
+     "name": "breakdown",
+     "bars": 8,
+     "elements": [
+      "texture",
+      "pad"
+     ],
+     "energy": 0.2,
+     "notes": "Drums drop. Only a held pad and texture remain. Very dark, atmospheric. Short \u2014 8 bars max. The silence makes the kick re-entry hit harder."
+    },
+    {
+     "name": "peak",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "texture",
+      "pad",
+      "fx"
+     ],
+     "energy": 0.9,
+     "notes": "Densest moment. Extra percussion layer, ride cymbal adds drive, bass louder, FX hits punctuate. Pad adds a slight harmonic wash. This should feel relentless but controlled."
+    },
+    {
+     "name": "groove",
+     "bars": 8,
+     "elements": [
+      "drums",
+      "bass",
+      "texture"
+     ],
+     "energy": 0.65,
+     "notes": "Brief return to groove energy to begin wind-down. Texture filtering out."
+    },
+    {
+     "name": "outro",
+     "bars": 24,
+     "elements": [
+      "drums",
+      "bass"
+     ],
+     "energy": 0.3,
+     "notes": "Elements remove in reverse order. Bass goes first, then hats, then ride, until only kick remains \u2014 mirroring the intro."
+    }
+   ]
+  },
+  "house": {
+   "label": "House",
+   "bpm": {
+    "default": 124,
+    "min": 120,
+    "max": 128
+   },
+   "swing_pct": 58,
+   "tonic": "A",
+   "element_map": {
+    "drums": [
+     "kick",
+     "clap",
+     "hat"
+    ],
+    "percussion": [
+     "perc"
+    ],
+    "bass": [
+     "bass"
+    ],
+    "chords": [
+     "chords"
+    ],
+    "pad": [
+     "pad"
+    ],
+    "lead": [
+     "lead"
+    ],
+    "texture": [
+     "pad"
+    ]
+   },
+   "layers": {
+    "kick": {
+     "sparse": [
+      "DOC-KICK-4OTF"
+     ],
+     "base": [
+      [
+       "DOC-KICK-4OTF"
+      ]
+     ],
+     "dense": [
+      "DOC-KICK-4OTF"
+     ]
+    },
+    "clap": {
+     "sparse": null,
+     "base": [
+      [
+       "DOC-CLAP-24"
+      ]
+     ],
+     "dense": [
+      "DOC-CLAP-24"
+     ],
+     "min_energy": 0.4
+    },
+    "hat": {
+     "sparse": [
+      "DOC-OHAT-OFFBEAT"
+     ],
+     "base": [
+      [
+       "DOC-HAT-16",
+       "DOC-OHAT-OFFBEAT"
+      ]
+     ],
+     "dense": [
+      "DOC-HAT-16",
+      "DOC-OHAT-OFFBEAT"
+     ]
+    },
+    "perc": {
+     "sparse": null,
+     "base": [
+      [
+       "DOC-TOM-DEEP",
+       "DOC-AFRO-PERC"
+      ]
+     ],
+     "dense": [
+      "DOC-TOM-DEEP",
+      "DOC-AFRO-PERC"
+     ],
+     "min_energy": 0.55
+    },
+    "bass": {
+     "sparse": [
+      "DOC-BASS-OFFBEAT"
+     ],
+     "base": [
+      [
+       "DOC-BASS-OFFBEAT-OCT"
+      ],
+      [
+       "MEAS-house-1"
+      ],
+      [
+       "MEAS-house-2"
+      ],
+      [
+       "DOC-BASS-OFFBEAT"
+      ]
+     ],
+     "dense": [
+      "DOC-BASS-OFFBEAT-OCT"
+     ]
+    },
+    "chords": {
+     "sparse": null,
+     "base": [
+      [
+       "S11"
+      ],
+      [
+       "G2-16"
+      ],
+      [
+       "G2-15"
+      ]
+     ],
+     "dense": [
+      "S11"
+     ]
+    },
+    "pad": {
+     "sparse": [
+      "S03"
+     ],
+     "base": [
+      [
+       "S03"
+      ],
+      [
+       "G2-13"
+      ]
+     ],
+     "dense": [
+      "S03"
+     ]
+    },
+    "lead": {
+     "sparse": null,
+     "base": [
+      [
+       "M14"
+      ]
+     ],
+     "dense": [
+      "M14"
+     ]
+    }
+   },
+   "fill": [
+    "G2-41"
+   ],
+   "refs": [
+    "https://www.attackmagazine.com/technique/beat-dissected/rolling-deep-house/",
+    "https://www.attackmagazine.com/technique/beat-dissected/soulful-deep-house/",
+    "https://ampedstudio.com/blog/how-tomake-a-house-beat/",
+    "https://theproducerschool.com/blogs/featured-blogs/master-modern-tech-house-bass-lines-complete-tutorial-guide"
+   ],
+   "arrangement": [
+    {
+     "name": "intro",
+     "bars": 16,
+     "elements": [
+      "drums"
+     ],
+     "energy": 0.2,
+     "notes": "Kick and hi-hat only. No bass, no chords. Pure rhythm to get dancers on the floor. Consider adding a subtle vinyl crackle or atmosphere."
+    },
+    {
+     "name": "intro",
+     "bars": 8,
+     "elements": [
+      "drums",
+      "bass"
+     ],
+     "energy": 0.3,
+     "notes": "Bass enters \u2014 minimal movement, mostly root note. Establishes key without revealing chords."
+    },
+    {
+     "name": "build",
+     "bars": 8,
+     "elements": [
+      "drums",
+      "bass",
+      "chords"
+     ],
+     "energy": 0.45,
+     "notes": "Chord stabs enter \u2014 off-beat, sparse. Maybe 2 per bar. Energy starting to grow. Consider an open hi-hat upbeat to signal the groove arriving."
+    },
+    {
+     "name": "groove",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "pad"
+     ],
+     "energy": 0.65,
+     "notes": "Full groove. Pad or organ holds the space. Chord stabs more frequent. Bass more melodic. This should feel DEEPLY satisfying. No lead yet \u2014 let the groove breathe."
+    },
+    {
+     "name": "breakdown",
+     "bars": 8,
+     "elements": [
+      "pad",
+      "chords"
+     ],
+     "energy": 0.25,
+     "notes": "Drums and bass drop. Pads hold the harmony over silence. Classic house breakdown. Maybe add a filtered vocal sample or piano riff. Maximum tension before the reintro."
+    },
+    {
+     "name": "build",
+     "bars": 8,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "pad",
+      "fx"
+     ],
+     "energy": 0.55,
+     "notes": "Kick re-enters (filtered, building). Snare roll in final 4 bars. FX riser sweeps upward. Prepare for peak."
+    },
+    {
+     "name": "peak",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "pad",
+      "lead"
+     ],
+     "energy": 0.85,
+     "notes": "Lead melody enters \u2014 piano lick, vocal hook, or organ riff. This is the emotional climax. Full energy, everything present. Lead should have space \u2014 don't crowd it with too many stabs."
+    },
+    {
+     "name": "breakdown",
+     "bars": 8,
+     "elements": [
+      "chords",
+      "texture"
+     ],
+     "energy": 0.2,
+     "notes": "Second breakdown, slightly shorter. Pure atmosphere. Signals outro is coming."
+    },
+    {
+     "name": "outro",
+     "bars": 16,
+     "elements": [
+      "drums",
+      "bass"
+     ],
+     "energy": 0.3,
+     "notes": "Drums and bass return but everything else strips away. DJs can mix out here. End with a final snare roll and open hat."
+    }
+   ]
+  },
+  "downtempo": {
+   "label": "Downtempo",
+   "bpm": {
+    "default": 90,
+    "min": 80,
+    "max": 100
+   },
+   "swing_pct": 57,
+   "tonic": "C",
+   "element_map": {
+    "drums": [
+     "kick",
+     "clap",
+     "hat"
+    ],
+    "bass": [
+     "bass"
+    ],
+    "chords": [
+     "chords"
+    ],
+    "melody": [
+     "lead"
+    ],
+    "texture": [
+     "perc"
+    ],
+    "pad": [
+     "pad"
+    ]
+   },
+   "layers": {
+    "kick": {
+     "sparse": null,
+     "base": [
+      [
+       "P07-KICK"
+      ]
+     ],
+     "dense": [
+      "P07-KICK"
+     ]
+    },
+    "clap": {
+     "sparse": null,
+     "base": [
+      [
+       "P07-SNARE"
+      ],
+      [
+       "DOC-SNARE-24"
+      ]
+     ],
+     "dense": [
+      "P07-SNARE"
+     ],
+     "min_energy": 0.4
+    },
+    "hat": {
+     "sparse": null,
+     "base": [
+      [
+       "P19"
+      ],
+      [
+       "DOC-HAT-8TH"
+      ]
+     ],
+     "dense": [
+      "DOC-HAT-8TH"
+     ],
+     "min_energy": 0.4
+    },
+    "perc": {
+     "sparse": [
+      "P24"
+     ],
+     "base": [
+      [
+       "P08"
+      ],
+      [
+       "P24"
+      ]
+     ],
+     "dense": [
+      "P08",
+      "P24"
+     ]
+    },
+    "bass": {
+     "sparse": [
+      "B11"
+     ],
+     "base": [
+      [
+       "B12"
+      ],
+      [
+       "B22"
+      ],
+      [
+       "MEAS-downtempo-1"
+      ],
+      [
+       "B11"
+      ]
+     ],
+     "dense": [
+      "B12"
+     ]
+    },
+    "chords": {
+     "sparse": [
+      "S08"
+     ],
+     "base": [
+      [
+       "S08"
+      ],
+      [
+       "S20"
+      ],
+      [
+       "G2-15"
+      ]
+     ],
+     "dense": [
+      "G2-16"
+     ]
+    },
+    "pad": {
+     "sparse": [
+      "S03"
+     ],
+     "base": [
+      [
+       "S03"
+      ],
+      [
+       "G2-13"
+      ]
+     ],
+     "dense": [
+      "S03"
+     ]
+    },
+    "lead": {
+     "sparse": null,
+     "base": [
+      [
+       "M05"
+      ],
+      [
+       "G2-51"
+      ],
+      [
+       "M11"
+      ]
+     ],
+     "dense": [
+      "M05"
+     ]
+    }
+   },
+   "fill": [
+    "G2-36"
+   ],
+   "refs": [
+    "https://www.attackmagazine.com/technique/beat-dissected/chillout-beat-raw-strip-hop/"
+   ],
+   "arrangement": [
+    {
+     "name": "intro",
+     "bars": 16,
+     "elements": [
+      "texture",
+      "pad"
+     ],
+     "energy": 0.15,
+     "notes": "Chill atmosphere opening. Sample or vinyl crackle."
+    },
+    {
+     "name": "groove",
+     "bars": 24,
+     "elements": [
+      "drums",
+      "bass",
+      "chords"
+     ],
+     "energy": 0.5,
+     "notes": "Laid-back groove enters. Drums feel slightly behind the beat."
+    },
+    {
+     "name": "full_groove",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "melody"
+     ],
+     "energy": 0.65,
+     "notes": "Full arrangement. Live flute or vibraphone melody. World elements welcome."
+    },
+    {
+     "name": "breakdown",
+     "bars": 16,
+     "elements": [
+      "bass",
+      "chords",
+      "texture"
+     ],
+     "energy": 0.3,
+     "notes": "Strip back drums. Bass and pads carry the vibe."
+    },
+    {
+     "name": "peak",
+     "bars": 24,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "melody"
+     ],
+     "energy": 0.8,
+     "notes": "Warmest moment. All elements together with maximum feel."
+    },
+    {
+     "name": "outro",
+     "bars": 16,
+     "elements": [
+      "texture",
+      "pad"
+     ],
+     "energy": 0.15,
+     "notes": "Return to texture and atmosphere. Slow fade."
+    }
+   ]
+  },
+  "electro_cumbia": {
+   "label": "Electro cumbia",
+   "bpm": {
+    "default": 100,
+    "min": 88,
+    "max": 108
+   },
+   "swing_pct": 52,
+   "tonic": "A",
+   "element_map": {
+    "drums": [
+     "kick",
+     "clap",
+     "hat"
+    ],
+    "percussion": [
+     "perc"
+    ],
+    "bass": [
+     "bass"
+    ],
+    "chords": [
+     "chords"
+    ],
+    "melody": [
+     "lead"
+    ],
+    "texture": [
+     "pad"
+    ],
+    "pad": [
+     "pad"
+    ]
+   },
+   "layers": {
+    "kick": {
+     "sparse": null,
+     "base": [
+      [
+       "P03"
+      ]
+     ],
+     "dense": [
+      "P03"
+     ]
+    },
+    "clap": {
+     "sparse": null,
+     "base": [
+      [
+       "P12"
+      ]
+     ],
+     "dense": [
+      "P12"
+     ],
+     "min_energy": 0.45
+    },
+    "hat": {
+     "sparse": [
+      "P01"
+     ],
+     "base": [
+      [
+       "P01"
+      ]
+     ],
+     "dense": [
+      "P01"
+     ]
+    },
+    "perc": {
+     "sparse": [
+      "P25"
+     ],
+     "base": [
+      [
+       "P02"
+      ],
+      [
+       "P25"
+      ],
+      [
+       "P17"
+      ]
+     ],
+     "dense": [
+      "P02",
+      "P16"
+     ],
+     "min_energy": 0.0
+    },
+    "bass": {
+     "sparse": [
+      "B20"
+     ],
+     "base": [
+      [
+       "B06"
+      ],
+      [
+       "B01"
+      ],
+      [
+       "B02"
+      ],
+      [
+       "B24"
+      ],
+      [
+       "MEAS-electro_cumbia-1"
+      ]
+     ],
+     "dense": [
+      "B02"
+     ]
+    },
+    "chords": {
+     "sparse": null,
+     "base": [
+      [
+       "S11"
+      ],
+      [
+       "G2-12"
+      ],
+      [
+       "M01"
+      ]
+     ],
+     "dense": [
+      "G2-12"
+     ]
+    },
+    "pad": {
+     "sparse": [
+      "G2-09"
+     ],
+     "base": [
+      [
+       "G2-09"
+      ]
+     ],
+     "dense": [
+      "G2-09"
+     ]
+    },
+    "lead": {
+     "sparse": null,
+     "base": [
+      [
+       "S06"
+      ],
+      [
+       "S01"
+      ],
+      [
+       "M14"
+      ],
+      [
+       "M07"
+      ]
+     ],
+     "dense": [
+      "S06"
+     ]
+    }
+   },
+   "fill": [
+    "P04",
+    "G2-22"
+   ],
+   "refs": [
+    "https://bassscalespdf.org/blog/how-to-play-cumbia-bass/",
+    "https://en.wikipedia.org/wiki/Tumbao",
+    "knowledge/research/prose_catalog.md (10 traditional cumbia bass rhythms)"
+   ],
+   "arrangement": [
+    {
+     "name": "intro",
+     "bars": 16,
+     "elements": [
+      "texture",
+      "field_recording"
+     ],
+     "energy": 0.25,
+     "notes": "Start with Andean field recordings, distant guacharaca scrape emerging"
+    },
+    {
+     "name": "ritmo_entra",
+     "bars": 16,
+     "elements": [
+      "drums",
+      "percussion"
+     ],
+     "energy": 0.5,
+     "notes": "Cumbia rhythm enters \u2014 guacharaca, tambora, deep kick. Bass not yet."
+    },
+    {
+     "name": "groove",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "chords"
+     ],
+     "energy": 0.7,
+     "notes": "Full cumbia groove with sub bass and synth pad stabs"
+    },
+    {
+     "name": "puente",
+     "bars": 16,
+     "elements": [
+      "chords",
+      "melody",
+      "texture"
+     ],
+     "energy": 0.4,
+     "notes": "Bridge \u2014 drop drums, focus on melody (charango/pan pipe) and atmosphere"
+    },
+    {
+     "name": "remate",
+     "bars": 32,
+     "elements": [
+      "drums",
+      "bass",
+      "chords",
+      "melody"
+     ],
+     "energy": 0.9,
+     "notes": "Peak \u2014 all elements, maximum energy, percussion fills every 4 bars"
+    },
+    {
+     "name": "outro",
+     "bars": 16,
+     "elements": [
+      "percussion",
+      "texture"
+     ],
+     "energy": 0.2,
+     "notes": "Fade to percussion and field recordings, guacharaca last"
+    }
+   ]
+  }
+ }
+}

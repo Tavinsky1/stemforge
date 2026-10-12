@@ -34,6 +34,13 @@ Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 98
 - Commands time out after 10 s: chunk big note batches.
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
+## Create from zero (stemforge/styles/)
+Deterministic assembly from `styles/library/styles.json` (177 patterns, each with `source.kind` notebooklm | documented |
+measured). Do not add randomness or invented notes; add patterns WITH a source instead. Mining real loops: `styles/mine.py`
+(Ableton factory `.aif` packs use a compressed format that only Live can read, so they cannot be mined offline).
+Two files in the owner's `knowledge/arrangement/` (downtempo, electro_cumbia) have a literal `...` where a `{` should be;
+`build_library.arrangement` repairs them in memory and the owner's files are untouched.
+
 ## Clean rebuild (stemforge/resynth.py) is the recommended route for Bass/Keys/Synth
 Measured, deterministic, no generation. Score it with `resynth.check_against_audio` (onset F1 vs the stem). Learned on
 Low Pressure: Keys/Synth are D2 (MIDI 38) with the fundamental filtered (their energy sits in harmonics 2-4; a harmonic

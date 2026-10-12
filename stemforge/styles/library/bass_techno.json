@@ -1,0 +1,1020 @@
+{
+ "loops": [
+  {
+   "file": "Low Pressure (owner's track) 1 Bass",
+   "bpm": 126.0,
+   "bars": 220
+  }
+ ],
+ "n_bars": 168,
+ "notes_per_bar_median": 12.0,
+ "step_probability": [
+  0.011,
+  0.096,
+  0.083,
+  0.071,
+  0.006,
+  0.082,
+  0.088,
+  0.075,
+  0.007,
+  0.095,
+  0.071,
+  0.065,
+  0.007,
+  0.08,
+  0.089,
+  0.074
+ ],
+ "kick_step_share": 0.031,
+ "interval_share": {
+  "0": 0.837,
+  "3": 0.05,
+  "5": 0.048,
+  "12": 0.033,
+  "15": 0.013,
+  "17": 0.013,
+  "1": 0.003,
+  "6": 0.001,
+  "24": 0.001,
+  "4": 0.001
+ },
+ "velocity_by_step": {
+  "0": 0.44,
+  "1": 0.5,
+  "2": 0.68,
+  "3": 0.4,
+  "4": 0.54,
+  "5": 0.51,
+  "6": 0.7,
+  "7": 0.34,
+  "8": 0.44,
+  "9": 0.41,
+  "10": 0.61,
+  "11": 0.39,
+  "12": 0.52,
+  "13": 0.48,
+  "14": 0.59,
+  "15": 0.35
+ },
+ "duration_by_step": {
+  "0": 0.24,
+  "1": 0.24,
+  "2": 0.27,
+  "3": 0.26,
+  "4": 0.24,
+  "5": 0.24,
+  "6": 0.27,
+  "7": 0.24,
+  "8": 0.24,
+  "9": 0.24,
+  "10": 0.27,
+  "11": 0.27,
+  "12": 0.24,
+  "13": 0.24,
+  "14": 0.27,
+  "15": 0.24
+ },
+ "patterns": [
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 58,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 4,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 8,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 12,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 6,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 3,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 3
+    },
+    {
+     "step": 2,
+     "semi": 3
+    },
+    {
+     "step": 3,
+     "semi": 3
+    },
+    {
+     "step": 5,
+     "semi": 3
+    },
+    {
+     "step": 6,
+     "semi": 3
+    },
+    {
+     "step": 7,
+     "semi": 3
+    },
+    {
+     "step": 9,
+     "semi": 3
+    },
+    {
+     "step": 10,
+     "semi": 3
+    },
+    {
+     "step": 11,
+     "semi": 3
+    },
+    {
+     "step": 13,
+     "semi": 3
+    },
+    {
+     "step": 14,
+     "semi": 3
+    },
+    {
+     "step": 15,
+     "semi": 3
+    }
+   ],
+   "count": 3,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 5
+    },
+    {
+     "step": 2,
+     "semi": 5
+    },
+    {
+     "step": 3,
+     "semi": 5
+    },
+    {
+     "step": 5,
+     "semi": 5
+    },
+    {
+     "step": 6,
+     "semi": 5
+    },
+    {
+     "step": 7,
+     "semi": 5
+    },
+    {
+     "step": 9,
+     "semi": 5
+    },
+    {
+     "step": 10,
+     "semi": 5
+    },
+    {
+     "step": 11,
+     "semi": 5
+    },
+    {
+     "step": 13,
+     "semi": 5
+    },
+    {
+     "step": 14,
+     "semi": 5
+    },
+    {
+     "step": 15,
+     "semi": 5
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 11,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 2,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 3,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 0,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 12
+    },
+    {
+     "step": 9,
+     "semi": 12
+    },
+    {
+     "step": 13,
+     "semi": 12
+    },
+    {
+     "step": 14,
+     "semi": 12
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 12
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 12
+    },
+    {
+     "step": 15,
+     "semi": 12
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 12
+    },
+    {
+     "step": 5,
+     "semi": 12
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 10,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 5,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 13,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 12
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 12
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 2,
+     "semi": 0
+    },
+    {
+     "step": 6,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 12
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 12
+    },
+    {
+     "step": 9,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    },
+    {
+     "step": 15,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  },
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0
+    },
+    {
+     "step": 7,
+     "semi": 0
+    },
+    {
+     "step": 9,
+     "semi": 0
+    },
+    {
+     "step": 14,
+     "semi": 0
+    }
+   ],
+   "count": 1,
+   "sources": [
+    "Low Pressure (owner's track) 1 Bass"
+   ],
+   "n_sources": 1
+  }
+ ],
+ "style": "techno",
+ "cells": [
+  {
+   "pattern": [
+    {
+     "step": 1,
+     "semi": 0,
+     "vel": 0.59,
+     "dur": 0.24
+    },
+    {
+     "step": 2,
+     "semi": 0,
+     "vel": 0.84,
+     "dur": 0.27
+    },
+    {
+     "step": 3,
+     "semi": 0,
+     "vel": 0.41,
+     "dur": 0.27
+    },
+    {
+     "step": 5,
+     "semi": 0,
+     "vel": 0.53,
+     "dur": 0.24
+    },
+    {
+     "step": 6,
+     "semi": 0,
+     "vel": 0.8,
+     "dur": 0.27
+    },
+    {
+     "step": 7,
+     "semi": 0,
+     "vel": 0.38,
+     "dur": 0.24
+    },
+    {
+     "step": 9,
+     "semi": 0,
+     "vel": 0.54,
+     "dur": 0.24
+    },
+    {
+     "step": 10,
+     "semi": 0,
+     "vel": 0.82,
+     "dur": 0.27
+    },
+    {
+     "step": 11,
+     "semi": 0,
+     "vel": 0.41,
+     "dur": 0.27
+    },
+    {
+     "step": 13,
+     "semi": 0,
+     "vel": 0.53,
+     "dur": 0.24
+    },
+    {
+     "step": 14,
+     "semi": 0,
+     "vel": 0.81,
+     "dur": 0.27
+    },
+    {
+     "step": 15,
+     "semi": 0,
+     "vel": 0.35,
+     "dur": 0.24
+    }
+   ],
+   "share": 0.48,
+   "bars": 80,
+   "file": "Low Pressure (owner's track) 1 Bass",
+   "bpm": 126.0,
+   "typicality": 0.0
+  }
+ ]
+}
