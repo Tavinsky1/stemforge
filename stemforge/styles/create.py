@@ -1,16 +1,20 @@
-"""Create a song skeleton from zero in one of four styles. Deterministic: no randomness, no generated notes.
+"""Create a song skeleton from zero in one of four styles. Every song is different; none contains an invented note.
 
 Everything written comes from the style library (library/styles.json): patterns from the owner's NotebookLM research,
 bar patterns measured from real loops, and documented recipes, each with its source. The arrangement is the style's own
 (knowledge/arrangement/*.json). This module only ASSEMBLES: it picks, for every section, the pattern its energy and
 elements call for, tiles it over the bars, transposes pitched parts to the key, and applies the style's swing.
 
-`take` rotates through the alternatives the library holds for a layer (take 0 is the first/most typical). It never
-invents anything.
+Variety comes from a SEED. The seed decides, from sourced material only: the key and tempo (inside the style's range),
+the swing (inside the style's range), the section lengths and whether the peak comes back after a second breakdown (in
+8-bar steps, the rule from the owner's arrangement research), which of the library's alternatives each layer uses and
+how they alternate between sections, which optional layers sit out a section, and which fill closes a section.
+The same seed always gives the same song, so a song you like can be recreated from its number.
 """
 from __future__ import annotations
 
 import json
+import random
 from functools import lru_cache
 from pathlib import Path
 
@@ -67,24 +71,93 @@ def _tier(energy: float) -> str:
     return "sparse" if energy < 0.35 else ("dense" if energy >= 0.75 else "base")
 
 
-def create(style: str, tonic: str | None = None, bpm: float | None = None, take: int = 0, short: bool = False,
+def _snap8(bars: float) -> int:
+    return max(8, int(round(bars / 8.0)) * 8)
+
+
+LONG_KINDS = {"groove", "peak", "full_groove", "remate"}
+EDGE_KINDS = {"intro", "outro", "ritmo_entra"}
+
+
+def structure(template: list[dict], rng: random.Random, short: bool) -> list[dict]:
+    """The style's own arrangement, varied in 8-bar steps: section lengths, and sometimes the peak returns after a short
+    breakdown. Elements and energies are copied from the template, never made up."""
+    secs = [{"name": t["name"], "bars": t["bars"], "elements": list(t["elements"]), "energy": t["energy"]} for t in template]
+    for s in secs:
+        b = s["bars"]
+        if s["name"] in LONG_KINDS or s["name"] in EDGE_KINDS:
+            opts = sorted({_snap8(b * 0.5), _snap8(b * 0.75), _snap8(b)})
+        elif b >= 16:
+            opts = sorted({_snap8(b * 0.5), _snap8(b)})
+        else:
+            opts = [b]
+        s["bars"] = rng.choice(opts)
+    peaks = [i for i, s in enumerate(secs) if s["name"] in ("peak", "remate")]
+    breaks = [s for s in template if s["name"] in ("breakdown", "puente")]
+    if peaks and breaks and rng.random() < 0.5:
+        i = peaks[-1]
+        bd = dict(name=breaks[0]["name"], bars=8, elements=list(breaks[0]["elements"]), energy=breaks[0]["energy"])
+        again = dict(secs[i])
+        again["bars"] = _snap8(secs[i]["bars"] * 0.5)
+        secs[i + 1:i + 1] = [bd, again]
+    if short:
+        for s in secs:
+            s["bars"] = min(s["bars"], 16)
+    return secs
+
+
+def _kick_steps(style_def: dict, lib_patterns: dict) -> set[int]:
+    opt = style_def["layers"]["kick"]["base"][0]
+    return {int(round(n["start"] * 4)) % 16 for pid in opt for n in lib_patterns[pid]["notes"] if n["vel"] >= 80}
+
+
+def _kick_overlap(option: list[str], lib_patterns: dict, kick_steps: set[int]) -> float:
+    ns = [n for pid in option for n in lib_patterns[pid]["notes"]]
+    if not ns:
+        return 0.0
+    return sum(1 for n in ns if int(round(n["start"] * 4)) % 16 in kick_steps) / len(ns)
+
+
+def create(style: str, tonic: str | None = None, bpm: float | None = None, seed: int | None = None, short: bool = False,
            swing_pct: float | None = None) -> dict:
+    """tonic/bpm/swing_pct = None means 'let the seed choose, inside what suits the style'."""
     lib = library()
     if style not in lib["styles"]:
         raise ValueError("unknown style %r; choose one of %s" % (style, ", ".join(STYLES)))
     sd = lib["styles"][style]
     P = lib["patterns"]
-    tonic = tonic or sd["tonic"]
+    if seed is None:
+        seed = random.SystemRandom().randrange(100000, 1000000)
+    rng = random.Random(seed)
+    # fixed order of draws: key, tempo, swing, structure, then pools
+    auto_key = rng.choice(sd["keys_auto"])
+    auto_bpm = rng.randint(sd["bpm"]["min"], sd["bpm"]["max"])
+    auto_swing = rng.randint(sd["swing_range"][0], sd["swing_range"][1])
+    tonic = tonic or auto_key
     if tonic not in TONICS:
         raise ValueError("unknown key %r; choose one of %s" % (tonic, ", ".join(TONICS)))
-    bpm = float(bpm or sd["bpm"]["default"])
-    swing = float(sd["swing_pct"] if swing_pct is None else swing_pct)
+    bpm = float(bpm or auto_bpm)
+    swing = float(auto_swing if swing_pct is None else swing_pct)
     shift = _shift(tonic)
     warnings: list[str] = []
     if not (sd["bpm"]["min"] - 6 <= bpm <= sd["bpm"]["max"] + 6):
         warnings.append("%.0f BPM is outside the usual range for %s (%d-%d)" % (bpm, sd["label"], sd["bpm"]["min"], sd["bpm"]["max"]))
 
-    secs_in = sd["arrangement"]
+    # for each layer: the pool of alternatives in this song's order (primary first); kick-avoiding styles drop bass
+    # grooves that sit mostly on the main kick steps
+    kick_steps = _kick_steps(sd, P)
+    pools: dict[str, list[list[str]]] = {}
+    for lay, spec in sd["layers"].items():
+        opts = [list(o) for o in spec["base"]]
+        if lay == "bass" and sd.get("bass_avoids_kick"):
+            opts = [o for o in opts if _kick_overlap(o, P, kick_steps) <= 0.5] or opts
+        rng.shuffle(opts)
+        pools[lay] = opts
+    occurrence: dict[str, int] = {}
+
+    arrangement = structure(sd["arrangement"], rng, short)
+    used_fills: list[str] = []
+    secs_in = arrangement
     sections, clips, placements = [], [], []
     notes_by: dict[tuple[str, int], list[dict]] = {}
     used: dict[str, dict] = {}
@@ -104,8 +177,16 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, take:
             spec = sd["layers"].get(lay)
             if not spec or s["energy"] < spec.get("min_energy", 0.0):
                 continue
-            ids = spec["sparse"] if tier == "sparse" else (spec["dense"] if tier == "dense" else
-                                                             spec["base"][take % len(spec["base"])])
+            if tier == "sparse":
+                ids = spec["sparse"]
+            elif tier == "dense":
+                ids = spec["dense"]
+            else:
+                if lay in ("perc", "lead") and rng.random() < 0.3:
+                    continue                                   # an optional layer sits this section out
+                k = occurrence.get(lay, 0)
+                occurrence[lay] = k + 1
+                ids = pools[lay][k % len(pools[lay])]          # primary, secondary, primary ...
             if not ids:
                 continue
             notes: list[dict] = []
@@ -120,7 +201,7 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, take:
         # transition: a short fill on the percussion in the last bar before a clearly bigger section
         nxt = secs_in[i + 1] if i + 1 < len(secs_in) else None
         if nxt and nxt["energy"] >= s["energy"] + 0.2 and sd.get("fill") and bars >= 4:
-            fid = sd["fill"][take % len(sd["fill"])]
+            fid = rng.choice(sd["fill"])
             fn = _tile(P[fid], 1, 0)
             base = (bars - 1) * BEATS_PER_BAR
             notes_by.setdefault(("perc", i), [])
@@ -159,7 +240,7 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, take:
     beat = 60.0 / bpm
     bp = {
         "schema_version": 1,
-        "song": {"name": "%s in %s (created)" % (sd["label"], tonic), "source_dir": "", "duration_s": round(n_bars * 4 * beat, 2)},
+        "song": {"name": "%s in %s (seed %d)" % (sd["label"], tonic, seed), "source_dir": "", "duration_s": round(n_bars * 4 * beat, 2)},
         "global": {"tempo": bpm, "n_bars": n_bars, "time_signature": [4, 4], "steady": True, "drift_beats": 0.0,
                    "downbeat_phase": 0, "downbeat_confidence": 1.0, "downbeat_method": "created",
                    "key": {"tonic": tonic, "mode": "minor", "score": 1.0, "confidence": 1.0},
@@ -168,7 +249,7 @@ def create(style: str, tonic: str | None = None, bpm: float | None = None, take:
         "sections": sections, "stems": stems, "warnings": warnings, "clips": clips, "placements": placements,
         "clip_min_confidence": 0.0,
     }
-    bp["generation"] = {"method": "styles.create/1", "style": style, "tonic": tonic, "bpm": bpm, "swing_pct": swing, "take": take,
+    bp["generation"] = {"method": "styles.create/1", "style": style, "tonic": tonic, "bpm": bpm, "swing_pct": swing, "seed": seed,
                         "short": short, "layers": log, "refs": sd["refs"], "checks": checks(bp)}
     return bp
 

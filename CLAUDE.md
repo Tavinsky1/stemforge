@@ -35,6 +35,8 @@ Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 98
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
 ## Create from zero (stemforge/styles/)
+Variety = seed-driven CHOICE among sourced patterns/arrangement variants (`create(seed=...)`); same seed = same song.
+Never add free note generation; widen a layer's `base` pool in `build_library.styles()` with sourced patterns instead.
 Deterministic assembly from `styles/library/styles.json` (177 patterns, each with `source.kind` notebooklm | documented |
 measured). Do not add randomness or invented notes; add patterns WITH a source instead. Mining real loops: `styles/mine.py`
 (Ableton factory `.aif` packs use a compressed format that only Live can read, so they cannot be mined offline).

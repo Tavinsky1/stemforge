@@ -172,14 +172,15 @@ def _cmd_rebuild(a):
 def _cmd_create(a):
     """Create a song skeleton from zero in a style: deterministic, patterns from the library with their sources."""
     from .styles import create as C
-    bp = C.create(a.style, a.key, a.bpm, take=a.take, short=a.short)
+    bp = C.create(a.style, a.key, a.bpm, seed=a.seed, short=a.short)
     g = bp["generation"]
     out_dir = Path(a.out or "created")
     out_dir.mkdir(parents=True, exist_ok=True)
-    name = "%s-%s-%d.created.blueprint.json" % (a.style, g["tonic"], round(g["bpm"]))
+    name = "%s-%s-%d-seed%d.created.blueprint.json" % (a.style, g["tonic"].replace("#", "s"), round(g["bpm"]), g["seed"])
     path = out_dir / name
     blueprint.save(bp, str(path))
-    print("%s | %.0f BPM | %d bars | swing %.0f%% | take %d" % (bp["song"]["name"], g["bpm"], bp["global"]["n_bars"], g["swing_pct"], a.take))
+    print("%s | %.0f BPM | %d bars | swing %.0f%% | seed %d (use --seed %d to get this song again)"
+          % (bp["song"]["name"], g["bpm"], bp["global"]["n_bars"], g["swing_pct"], g["seed"], g["seed"]))
     for line in C.describe(bp):
         print("  " + line)
     print("  checks:", {k: v for k, v in g["checks"].items() if k.startswith("bass_on")})
@@ -226,8 +227,10 @@ def main(argv=None):
     ide.add_argument("blueprint"); ide.add_argument("--out"); ide.set_defaults(fn=_cmd_idea)
     cr = sp.add_parser("create", help="create a song skeleton from zero in a style (techno, house, downtempo, electro_cumbia)")
     cr.add_argument("--style", required=True, choices=["techno", "house", "downtempo", "electro_cumbia"])
-    cr.add_argument("--key", help="tonic, e.g. D, F#, A (default: the style's)"); cr.add_argument("--bpm", type=float)
-    cr.add_argument("--take", type=int, default=0, help="rotate through the library's alternatives (deterministic)")
+    cr.add_argument("--key", help="tonic, e.g. D, F#, A (default: chosen by the seed, from keys that suit the style)")
+    cr.add_argument("--bpm", type=float, help="default: chosen by the seed, inside the style's range")
+    cr.add_argument("--seed", type=int, help="default: a new random seed, so every run is a different song; the same seed "
+                                              "always gives the same song")
     cr.add_argument("--short", action="store_true", help="cap every section at 16 bars")
     cr.add_argument("--out", help="folder for the blueprint (default ./created)")
     cr.set_defaults(fn=_cmd_create)

@@ -219,28 +219,39 @@ def test_start_from_zero_flow_needs_no_stems(qapp, tmp_path, monkeypatch):
     w = Window()
     w.show()
     assert not w.rb_src_new.isEnabled() and not w.btn_prev.isEnabled()
-    # choosing a style sets that style's tempo and key
     w.pick_style("house")
-    assert w.bpm_box.value() == 124 and w.key_box.currentData() == "A"
-    w.pick_style("techno")
-    assert w.bpm_box.value() == 128 and w.key_box.currentData() == "D"
+    assert w.key_box.currentData() is None and w.bpm_box.value() == 0          # Auto: every new song differs
     w.create_new()
     assert w.new_bp is not None and w.rb_src_new.isChecked() and w.rb_src_new.isEnabled()
     assert w.btn_prev.isEnabled() and w.btn_mid.isEnabled()                     # no analysis was needed
-    assert "Rolling 16ths" in w.new_view.text() and "NotebookLM" in w.new_view.text()
+    assert "NotebookLM" in w.new_view.text() or "published recipe" in w.new_view.text()
     assert (Path(w.new_dir) / "song.created.blueprint.json").exists()
+    assert "seed%d" % w.new_bp["generation"]["seed"] in w.new_dir and w.seed_box.value() == w.new_bp["generation"]["seed"]
     w.build("preview")
     pump(qapp, lambda: "Preview of the song created from zero" in w.outcome.text())
     w.build("midi")
     pump(qapp, lambda: "Saved MIDI files of the song created from zero" in w.outcome.text())
     assert list((Path(w.new_dir) / "midi").glob("*.mid"))
-    # same choices -> same music; another take -> different
-    first = w.new_bp["clips"]
+    w.timer.stop()
+
+
+def test_every_press_of_new_song_is_a_different_song_and_keep_seed_recreates_it(qapp, tmp_path, monkeypatch):
+    import json
+    from pathlib import Path
+
+    from stemforge.app.window import Window
+    monkeypatch.setattr(Path, "home", classmethod(lambda cls: tmp_path))
+    w = Window()
+    w.pick_style("techno")
+    songs, seeds = [], []
+    for _ in range(5):
+        w.create_new()
+        songs.append(json.dumps(w.new_bp["clips"], sort_keys=True))
+        seeds.append(w.new_bp["generation"]["seed"])
+    assert len(set(songs)) == 5 and len(set(seeds)) == 5                          # five presses, five songs
+    w.cb_keep_seed.setChecked(True)                                             # the seed of the last song is still in the box
     w.create_new()
-    assert w.new_bp["clips"] == first
-    w.new_take.setValue(1)
-    w.create_new()
-    assert w.new_bp["clips"] != first
+    assert json.dumps(w.new_bp["clips"], sort_keys=True) == songs[-1]            # kept seed + same Auto choices -> same song
     w.timer.stop()
 
 
@@ -272,6 +283,7 @@ def test_all_four_styles_are_buttons_and_each_one_creates_its_own_song(qapp, tmp
         assert w.current_style() == key and sum(b.isChecked() for b in w.style_btns.values()) == 1
         w.create_new()
         seen[key] = w.new_bp["generation"]["style"]
-        assert w.new_bp["generation"]["bpm"] == w.styles_mod.style_info(key)["bpm"]["default"]
+        info = w.styles_mod.style_info(key)
+        assert info["bpm"]["min"] <= w.new_bp["generation"]["bpm"] <= info["bpm"]["max"]
     assert seen == {k: k for k in seen}
     w.timer.stop()

@@ -44,12 +44,13 @@ Status: the window is tested headless (offscreen) against the same library calls
 Live, and the `.app` bundle is not built yet (use `Stemforge.command` for now).
 
 ## Start from zero (no stems): four styles
-`stemforge create --style techno|house|downtempo|electro_cumbia [--key D] [--bpm 128] [--take N] [--short]` assembles a song
+`stemforge create --style techno|house|downtempo|electro_cumbia [--key D] [--bpm 128] [--seed N] [--short]` assembles a song
 skeleton: the style's own arrangement (from `knowledge/arrangement/*.json`), drums, a bass with that style's groove and note
 placement, chords, pad and lead. In the window it is the first card ("Start from zero"); then choose *Created from zero* in step 4.
-- **Deterministic, nothing generated.** Each section picks the pattern its energy and elements call for from
-  `stemforge/styles/library/styles.json`, tiles it over the bars, transposes pitched parts to the key and applies the
-  style's swing. `--take N` rotates through the library's alternatives.
+- **Every run is a different song, and nothing is invented.** A seed (random unless you give one) chooses, from sourced
+  material only: key and tempo inside the style's range, swing, section lengths (8-bar steps) and whether the peak returns,
+  which of the library's alternatives each layer uses and how they alternate, which optional layers sit a section out, and
+  the fills. The same seed always gives the same song, so any song can be recreated from its number.
 - **Every pattern has a source:** `notebooklm` (your research export, `knowledge/research/patterns_*.json`), `measured`
   (bar patterns measured from real loops by `stemforge/styles/mine.py`), or `documented` (published recipe + URL).
 - **Bass groove per style:** techno = rolling 16ths with the downbeat 16th free for the kick (matches the documented recipe

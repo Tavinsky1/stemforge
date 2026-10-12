@@ -8265,7 +8265,19 @@
     "max": 134
    },
    "swing_pct": 56,
+   "swing_range": [
+    52,
+    60
+   ],
    "tonic": "D",
+   "keys_auto": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "A"
+   ],
+   "bass_avoids_kick": true,
    "element_map": {
     "drums": [
      "kick",
@@ -8325,6 +8337,13 @@
      "base": [
       [
        "P05"
+      ],
+      [
+       "P18"
+      ],
+      [
+       "P05",
+       "P18"
       ]
      ],
      "dense": [
@@ -8340,6 +8359,10 @@
        "P06"
       ],
       [
+       "P14"
+      ],
+      [
+       "P06",
        "P14"
       ]
      ],
@@ -8379,6 +8402,9 @@
       ],
       [
        "G2-24"
+      ],
+      [
+       "S18"
       ]
      ],
      "dense": [
@@ -8395,6 +8421,9 @@
       ],
       [
        "S12"
+      ],
+      [
+       "S18"
       ]
      ],
      "dense": [
@@ -8412,6 +8441,9 @@
       ],
       [
        "M10"
+      ],
+      [
+       "M15"
       ]
      ],
      "dense": [
@@ -8420,7 +8452,8 @@
     }
    },
    "fill": [
-    "G2-40"
+    "G2-40",
+    "G2-41"
    ],
    "refs": [
     "https://www.attackmagazine.com/technique/tutorials/warehouse-rolling-techno-bass/",
@@ -8513,7 +8546,19 @@
     "max": 128
    },
    "swing_pct": 58,
+   "swing_range": [
+    55,
+    60
+   ],
    "tonic": "A",
+   "keys_auto": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G"
+   ],
+   "bass_avoids_kick": true,
    "element_map": {
     "drums": [
      "kick",
@@ -8573,6 +8618,9 @@
       [
        "DOC-HAT-16",
        "DOC-OHAT-OFFBEAT"
+      ],
+      [
+       "DOC-OHAT-OFFBEAT"
       ]
      ],
      "dense": [
@@ -8585,6 +8633,12 @@
      "base": [
       [
        "DOC-TOM-DEEP",
+       "DOC-AFRO-PERC"
+      ],
+      [
+       "DOC-TOM-DEEP"
+      ],
+      [
        "DOC-AFRO-PERC"
       ]
      ],
@@ -8603,13 +8657,13 @@
        "DOC-BASS-OFFBEAT-OCT"
       ],
       [
+       "DOC-BASS-OFFBEAT"
+      ],
+      [
        "MEAS-house-1"
       ],
       [
        "MEAS-house-2"
-      ],
-      [
-       "DOC-BASS-OFFBEAT"
       ]
      ],
      "dense": [
@@ -8627,6 +8681,9 @@
       ],
       [
        "G2-15"
+      ],
+      [
+       "S08"
       ]
      ],
      "dense": [
@@ -8643,6 +8700,9 @@
       ],
       [
        "G2-13"
+      ],
+      [
+       "S20"
       ]
      ],
      "dense": [
@@ -8654,6 +8714,12 @@
      "base": [
       [
        "M14"
+      ],
+      [
+       "M05"
+      ],
+      [
+       "G2-51"
       ]
      ],
      "dense": [
@@ -8779,7 +8845,19 @@
     "max": 100
    },
    "swing_pct": 57,
+   "swing_range": [
+    52,
+    60
+   ],
    "tonic": "C",
+   "keys_auto": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "A"
+   ],
+   "bass_avoids_kick": false,
    "element_map": {
     "drums": [
      "kick",
@@ -8837,6 +8915,10 @@
       ],
       [
        "DOC-HAT-8TH"
+      ],
+      [
+       "P19",
+       "DOC-HAT-8TH"
       ]
      ],
      "dense": [
@@ -8854,6 +8936,10 @@
       ],
       [
        "P24"
+      ],
+      [
+       "P08",
+       "P24"
       ]
      ],
      "dense": [
@@ -8863,7 +8949,7 @@
     },
     "bass": {
      "sparse": [
-      "B11"
+      "B13"
      ],
      "base": [
       [
@@ -8873,10 +8959,10 @@
        "B22"
       ],
       [
-       "MEAS-downtempo-1"
+       "B11"
       ],
       [
-       "B11"
+       "MEAS-downtempo-1"
       ]
      ],
      "dense": [
@@ -8896,6 +8982,9 @@
       ],
       [
        "G2-15"
+      ],
+      [
+       "G2-16"
       ]
      ],
      "dense": [
@@ -8912,6 +9001,9 @@
       ],
       [
        "G2-13"
+      ],
+      [
+       "G2-14"
       ]
      ],
      "dense": [
@@ -8929,6 +9021,12 @@
       ],
       [
        "M11"
+      ],
+      [
+       "G2-52"
+      ],
+      [
+       "G2-53"
       ]
      ],
      "dense": [
@@ -8937,7 +9035,8 @@
     }
    },
    "fill": [
-    "G2-36"
+    "G2-36",
+    "G2-35"
    ],
    "refs": [
     "https://www.attackmagazine.com/technique/beat-dissected/chillout-beat-raw-strip-hop/"
@@ -9019,7 +9118,19 @@
     "max": 108
    },
    "swing_pct": 52,
+   "swing_range": [
+    50,
+    56
+   ],
    "tonic": "A",
+   "keys_auto": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "C"
+   ],
+   "bass_avoids_kick": false,
    "element_map": {
     "drums": [
      "kick",
@@ -9095,6 +9206,10 @@
       ],
       [
        "P17"
+      ],
+      [
+       "P02",
+       "P25"
       ]
      ],
      "dense": [
@@ -9121,6 +9236,12 @@
        "B24"
       ],
       [
+       "B18"
+      ],
+      [
+       "B03"
+      ],
+      [
        "MEAS-electro_cumbia-1"
       ]
      ],
@@ -9139,6 +9260,9 @@
       ],
       [
        "M01"
+      ],
+      [
+       "G2-04"
       ]
      ],
      "dense": [
@@ -9152,6 +9276,9 @@
      "base": [
       [
        "G2-09"
+      ],
+      [
+       "G2-06"
       ]
      ],
      "dense": [
@@ -9172,6 +9299,9 @@
       ],
       [
        "M07"
+      ],
+      [
+       "M19"
       ]
      ],
      "dense": [
@@ -9181,7 +9311,8 @@
    },
    "fill": [
     "P04",
-    "G2-22"
+    "G2-22",
+    "G2-27"
    ],
    "refs": [
     "https://bassscalespdf.org/blog/how-to-play-cumbia-bass/",

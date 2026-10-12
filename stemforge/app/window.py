@@ -168,10 +168,11 @@ class Window(QMainWindow):
         cN, lN = card("Start from zero  ·  no stems needed", "0"); col.addWidget(cN)
         from ..styles import create as styles_mod
         self.styles_mod = styles_mod
-        nw = QLabel("Choose a style and Stemforge assembles a song skeleton: the style's own arrangement, drums, a bass with "
-                    "the groove and note placement of that style, chords, pad and lead. Every pattern comes from your NotebookLM "
-                    "research, from real loops measured on this Mac, or from published recipes, and the window shows which. "
-                    "<b>Nothing is random</b>: the same choices always give the same MIDI.")
+        nw = QLabel("Choose a style and press <b>New song</b>: every press is a different song. Stemforge assembles the style's "
+                    "own arrangement, drums, a bass with that style's groove and note placement, chords, pad and lead. Every "
+                    "pattern comes from your NotebookLM research, from real loops measured on this Mac, or from published "
+                    "recipes, and the window shows which. Nothing is invented: variety comes from choosing among those patterns. "
+                    "A song's <b>seed</b> is shown, so you can recreate it exactly.")
         nw.setObjectName("muted"); nw.setWordWrap(True); nw.setTextFormat(Qt.RichText); lN.addWidget(nw)
         # four styles as four clear buttons, each saying what it is
         sr_ = QHBoxLayout(); sr_.setSpacing(10)
@@ -190,20 +191,25 @@ class Window(QMainWindow):
         nr = QHBoxLayout()
         nr.addWidget(QLabel("Key"))
         self.key_box = QComboBox()
+        self.key_box.addItem("Auto (varies)", None)
         for t in styles_mod.TONICS:
             self.key_box.addItem(t, t)
+        self.key_box.setToolTip("Auto picks a key that suits the style, different for every new song.")
         nr.addWidget(self.key_box)
         nr.addWidget(QLabel("Tempo"))
-        self.bpm_box = QDoubleSpinBox(); self.bpm_box.setRange(60, 180); self.bpm_box.setDecimals(0); self.bpm_box.setSuffix(" BPM")
+        self.bpm_box = QDoubleSpinBox(); self.bpm_box.setRange(0, 180); self.bpm_box.setDecimals(0); self.bpm_box.setSuffix(" BPM")
+        self.bpm_box.setSpecialValueText("Auto (varies)"); self.bpm_box.setValue(0)
+        self.bpm_box.setToolTip("Auto picks a tempo inside the style's range, different for every new song.")
         nr.addWidget(self.bpm_box)
-        nr.addWidget(QLabel("Take"))
-        self.new_take = QSpinBox(); self.new_take.setRange(0, 9)
-        self.new_take.setToolTip("Another set of alternatives from the same library. Same number = same music.")
-        nr.addWidget(self.new_take)
+        nr.addWidget(QLabel("Seed"))
+        self.seed_box = QSpinBox(); self.seed_box.setRange(0, 999999)
+        self.seed_box.setToolTip("Every song has a seed. The same seed (with the same choices) always gives the same song.")
+        nr.addWidget(self.seed_box)
+        self.cb_keep_seed = QCheckBox("Keep this seed"); nr.addWidget(self.cb_keep_seed)
         self.cb_short = QCheckBox("Short (sections capped at 16 bars)"); nr.addWidget(self.cb_short)
         nr.addStretch(); lN.addLayout(nr)
         br0 = QHBoxLayout()
-        self.btn_new = QPushButton("Create song"); self.btn_new.setObjectName("primary")
+        self.btn_new = QPushButton("New song"); self.btn_new.setObjectName("primary")
         self.btn_new.clicked.connect(self.create_new)
         self.new_status = QLabel("Pick a style, then press Create."); self.new_status.setObjectName("muted"); self.new_status.setWordWrap(True)
         br0.addWidget(self.btn_new); br0.addWidget(self.new_status, 1); lN.addLayout(br0)
@@ -514,19 +520,27 @@ class Window(QMainWindow):
         self.style_changed()
 
     def style_changed(self):
-        info = self.styles_mod.style_info(self.current_style())
-        self.bpm_box.setValue(info["bpm"]["default"])
-        self.key_box.setCurrentIndex(self.styles_mod.TONICS.index(info["tonic"]))
+        # a style starts on Auto, so every New song is different; choose a key or tempo to pin it
+        self.key_box.setCurrentIndex(0)
+        self.bpm_box.setValue(0)
 
     def create_new(self):
+        import random
         style, key = self.current_style(), self.key_box.currentData()
+        bpm = self.bpm_box.value() or None
+        if self.cb_keep_seed.isChecked() and self.seed_box.value() > 0:
+            seed = self.seed_box.value()
+        else:
+            seed = random.SystemRandom().randrange(100000, 1000000)     # a new song every press
         try:
-            bp = self.styles_mod.create(style, key, self.bpm_box.value(), take=self.new_take.value(), short=self.cb_short.isChecked())
+            bp = self.styles_mod.create(style, key, bpm, seed=seed, short=self.cb_short.isChecked())
         except Exception as e:
             self.show_error(actions.plain_error(e)); return
         self.new_bp = bp
         g = bp["generation"]
-        out = Path.home() / "Documents" / "Stemforge" / "created" / ("%s-%s-%d-take%d" % (style, key.replace("#", "s"), round(g["bpm"]), g["take"]))
+        self.seed_box.setValue(seed)
+        out = Path.home() / "Documents" / "Stemforge" / "created" / (
+            "%s-%s-%d-seed%d" % (style, g["tonic"].replace("#", "s"), round(g["bpm"]), seed))
         out.mkdir(parents=True, exist_ok=True)
         from .. import blueprint
         blueprint.save(bp, str(out / "song.created.blueprint.json"))
@@ -539,12 +553,13 @@ class Window(QMainWindow):
         if "bass_on_offbeat_8ths_pct" in chk:
             facts.append("%.0f%% of bass notes sit on the offbeat 8ths" % chk["bass_on_offbeat_8ths_pct"])
         warn = "".join("<br><span style='color:%s'>%s</span>" % (theme.WARN, w) for w in bp["warnings"])
-        self.new_view.setText("<b>%s</b>: %d bars, %d sections, swing %.0f%%.<br>%s<br><span style='color:%s'>Checks: %s.</span>%s"
+        self.new_view.setText("<b>%s</b>: %.0f BPM, %d bars, %d sections, swing %.0f%%.<br>%s<br><span style='color:%s'>Checks: %s.</span>%s"
                               "<br><span style='color:%s'>Saved in %s. Now choose <b>Created from zero</b> in step 4.</span>"
-                              % (bp["song"]["name"], bp["global"]["n_bars"], len(bp["sections"]), g["swing_pct"],
+                              % (bp["song"]["name"], g["bpm"], bp["global"]["n_bars"], len(bp["sections"]), g["swing_pct"],
                                  "<br>".join("• " + x for x in lines), theme.MUTED, "; ".join(facts) or "none", warn, theme.MUTED, self.new_dir))
         self.new_view.show()
-        self.new_status.setText("Created. Preview, export or build it in step 4 (choose 'Created from zero').")
+        self.new_status.setText("Seed %d. Press New song again for a different one, or tick Keep this seed to recreate this song. "
+                                "Preview, export or build it in step 4." % seed)
         self.rb_src_new.setEnabled(True); self.rb_src_new.setChecked(True)
         self.update_buttons()
 
