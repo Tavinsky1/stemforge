@@ -91,6 +91,14 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
 - Update later: `bash packaging/build_app.sh`, quit the app, then
   `rm -rf ~/Desktop/Stemforge.app && ditto dist/Stemforge.app ~/Desktop/Stemforge.app`.
 
+## 2026-10-12 — full-song build staged; Desktop swap waits for you to quit the app
+- Staged (not on the Desktop): `~/Documents/Stemforge/staged/Stemforge.app` (build with Full song / Club mix, percussion
+  continuity, staged outro).
+- `~/Documents/Stemforge/staged/swap_when_closed.sh` runs in the background: when Stemforge is not running it replaces
+  `~/Desktop/Stemforge.app` with the staged build (single icon). Log: `~/Documents/Stemforge/staged/swap.log`.
+- Manual alternative: quit Stemforge, then `rm -rf ~/Desktop/Stemforge.app && ditto ~/Documents/Stemforge/staged/Stemforge.app ~/Desktop/Stemforge.app`.
+- Revert: delete `~/Documents/Stemforge/staged/`; the Desktop app is only changed if the swap runs.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
