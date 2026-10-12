@@ -74,6 +74,12 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
 - Read-only on your disk: the sample loops used for measuring (Desktop cumbia pack, Downloads/Urban Cumbia, Ableton
   samples, LotusTunes, Cymatics); nothing there was changed.
 
+## 2026-10-12 — new app build placed next to the running one
+- Created: `~/Desktop/Stemforge (new).app` (copy of `dist/Stemforge.app`: Start from zero with four style buttons, clean rebuild,
+  script-2). The running `~/Desktop/Stemforge.app` (old build) was NOT touched because it was open.
+- When you have quit the old one: `rm -rf ~/Desktop/Stemforge.app && mv ~/Desktop/"Stemforge (new).app" ~/Desktop/Stemforge.app`
+- Revert: `rm -rf ~/Desktop/"Stemforge (new).app"`.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
