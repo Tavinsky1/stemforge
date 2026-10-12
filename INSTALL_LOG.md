@@ -55,6 +55,13 @@ Never touched by any entry: `AbletonMCP` (either copy), `TouchDesigner`, anythin
 - Revert (by hand in Live, Stemforge's script cannot delete): delete the 5 tracks above, delete scenes 9–13, and clear the
   names of scenes 1–8 (they were unnamed before). Or close the set without saving.
 
+## 2026-10-12 20:23 — Stemforge.app placed on the Desktop
+- Created: `~/Desktop/Stemforge.app` (copy of `stemforge/dist/Stemforge.app`, arm64, ad-hoc signed, own icon,
+  contains script-2 and Idea & Compose). Removed my earlier `~/Desktop/Stemforge.command` (it only launched the dev copy).
+- The app never contacts Ableton until you press "Connect to Ableton".
+- Revert: `rm -r ~/Desktop/Stemforge.app`. To update after code changes: rebuild with `bash packaging/build_app.sh`
+  and copy again: `rm -r ~/Desktop/Stemforge.app && ditto dist/Stemforge.app ~/Desktop/Stemforge.app`.
+
 ## Not done yet (waiting for "scratch open, go")
 - No command has been sent to Live (ports 9877 and 9878). The smoke test will create one track and one scene named
   `stemforge_smoke`; delete them by hand afterwards (Stemforge's script cannot delete).
