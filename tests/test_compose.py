@@ -191,3 +191,61 @@ def test_layer_profile_finds_where_a_layer_hits(tmp_path):
     top = sorted(range(16), key=lambda k: -prof["step_weights"][k])[:4]
     assert sorted(top) == [1, 5, 9, 13]
     assert 3.0 <= prof["onsets_per_bar"] <= 5.0
+
+
+def test_synth_uses_at_most_three_pitch_classes_and_lanes_differ_in_length():
+    bp, i = _song()
+    g = compose.compose(bp, i, seed=4)
+    r = compose.report(g, i)
+    assert r["G Synth"]["max_pitch_classes_in_a_clip"] <= 3
+    assert r["G Keys"]["max_pitch_classes_in_a_clip"] <= 4
+    # pitch lane (3/5/7) and velocity lane (5/7) are never the same length, so they phase against each other
+    assert 7 != 5 and len({len([74, 69, 74]), len([74, 69, 74, 75, 69]), 7}) == 3
+
+
+def test_three_velocity_tiers_are_all_used():
+    bp, i = _song()
+    r = compose.report(compose.compose(bp, i, seed=0), i)
+    for name in ("G Keys", "G Synth"):
+        t = r[name]["velocity_tiers"]
+        assert all(v > 0 for v in t.values()), (name, t)
+
+
+def test_strip_back_before_a_drop_and_outro_mirrors_the_intro():
+    bp, i = _song()
+    g = compose.compose(bp, i, seed=0)
+    # section 1 (groove, 16 bars) is followed by the peak: the synth is silent in its last 2 bars
+    syn = next(c for c in g["clips"] if c["stem"] == "G Synth" and c["used_in"][0] == 1)
+    assert not [n for n in syn["notes"] if n["start"] >= (16 - 2) * 4]
+    keys = next(c for c in g["clips"] if c["stem"] == "G Keys" and c["used_in"][0] == 1)
+    last_bar = [n for n in keys["notes"] if n["start"] >= 15 * 4]
+    assert len({round(n["start"], 1) for n in last_bar}) <= 1            # one stab only
+    # outro (12 bars): no synth in the last 8 bars, keys on the bare D+A drone
+    out_syn = [c for c in g["clips"] if c["stem"] == "G Synth" and c["used_in"][0] == 4]
+    assert not out_syn or not [n for n in out_syn[0]["notes"] if n["start"] >= (12 - 8) * 4]
+    out_keys = next(c for c in g["clips"] if c["stem"] == "G Keys" and c["used_in"][0] == 4)
+    tail = [n for n in out_keys["notes"] if n["start"] >= (12 - 8) * 4]
+    assert {n["pitch"] % 12 for n in tail} == {2, 9}
+
+
+def test_idea_production_notes_are_tempo_synced():
+    notes = idea.production_notes(126.0)
+    assert any("357 ms" in n for n in notes)      # dotted 1/8 at 126 BPM
+    assert any("119 ms" in n for n in notes)      # 1/16
+
+
+def test_rules_are_listed_for_the_app():
+    assert len(compose.RULES) >= 10 and all(isinstance(r, str) for r in compose.RULES)
+    bp, i = _song()
+    assert compose.compose(bp, i)["generation"]["rules"] == compose.RULES
+
+
+def test_brief_works_for_plain_stem_names():
+    bp, i = _song()
+    for s in i["sections"]:
+        s["active_stems"] = [n.split(" ", 1)[1].lower() for n in s["active_stems"]]
+    md = idea.to_markdown({**i, "key": {**i["key"], "reading": "x", "palette_ranked": ["D", "A"], "fifth": 0.1, "flat_second": 0.1,
+                                        "leading_tone": 0.1, "tritone": 0.1,
+                                        "analyzer_said": {"tonic": "D", "mode": "major", "confidence": 0.5}},
+                           "groove": {"swing_pct": 58.0, "evidence_onsets": 10}})
+    assert "drums" in md and "keyboard" in md

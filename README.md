@@ -51,6 +51,8 @@ stemforge idea    "<song>.blueprint.json"            # key colour, swing, struct
 stemforge compose "<song>.blueprint.json" --seed 0   # new Keys + Synth from that idea -> .generated.blueprint.json
 stemforge build   "<song>.generated.blueprint.json" --backend midi    # or --backend live
 ```
+In the window this is step 3, **Idea & Compose**: *Read the song's idea*, *Write new Keys & Synth*, *Another take*, then
+choose **Composed** under *Build from* in step 4 (Preview, Export .mid, or Build in Ableton).
 Drums, Bass and Percussion stay as transcribed (16ths re-swung to the measured groove). Keys and Synth are written from
 the measured rhythm, dynamics, drone/fifth/colour tones and bass roots, with velocity accents, swing, micro-timing, an
 interlocking rhythm and a 5/7-note pitch cell that phases against the 16-step grid. Edit `.idea.json` to correct a reading,

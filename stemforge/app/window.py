@@ -1,4 +1,4 @@
-"""Native Stemforge window: 1 Stems -> 2 Analyze -> 3 Send to Ableton, with a live Ableton status pill."""
+"""Native Stemforge window: 1 Stems -> 2 Analyze -> 3 Idea & Compose (optional) -> 4 Send, with a live Ableton status pill."""
 from __future__ import annotations
 
 import sys
@@ -9,7 +9,7 @@ from PySide6.QtCore import QPointF, QRectF, Qt, QThread, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QPainter, QPen
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox, QFileDialog, QFrame, QHBoxLayout,
                                QHeaderView, QLabel, QMainWindow, QMessageBox, QPlainTextEdit, QProgressBar, QPushButton,
-                               QRadioButton, QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem, QToolTip,
+                               QRadioButton, QScrollArea, QSizePolicy, QSpinBox, QTableWidget, QTableWidgetItem, QToolTip,
                                QVBoxLayout, QWidget)
 
 from ..build.backends import DEFAULT_PORT, NotSupported
@@ -144,6 +144,7 @@ class Window(QMainWindow):
         super().__init__()
         self.setWindowTitle("Stemforge"); self.resize(1000, 820)
         self.folder = None; self.stems = []; self.bp = None; self.report = None; self.worker = None; self.live = {}
+        self.idea = None; self.gen_bp = None; self.gen_report = None; self.busy = False
         root = QWidget(); root.setObjectName("root"); self.setCentralWidget(root)
         outer = QVBoxLayout(root); outer.setContentsMargins(0, 0, 0, 0)
         sc = QScrollArea(); sc.setWidgetResizable(True); outer.addWidget(sc)
@@ -199,8 +200,46 @@ class Window(QMainWindow):
         self.res_table.setMaximumHeight(0); self.res_table.setSelectionMode(QTableWidget.NoSelection)
         l2.addWidget(self.res_table)
 
-        # 3 send
-        c3, l3 = card("Send to Ableton", "3"); col.addWidget(c3)
+        # 3 idea + compose (optional)
+        cI, lI = card("Idea & Compose  ·  optional", "3"); col.addWidget(cI)
+        why = QLabel("Dense polyphonic synths do not transcribe well. Stemforge can read the song's <b>idea</b> (key colour, "
+                     "swing, structure, where each layer really hits) and write <b>new Keys and Synth parts</b> from it, "
+                     "following your hypnotic-techno rules. Drums, Bass and Percussion stay as transcribed. Everything "
+                     "written here is named <b>G Keys</b> / <b>G Synth</b>, and you can always send the plain transcription instead.")
+        why.setObjectName("muted"); why.setWordWrap(True); why.setTextFormat(Qt.RichText); lI.addWidget(why)
+        ir = QHBoxLayout()
+        self.btn_idea = QPushButton("Read the song's idea"); self.btn_idea.setEnabled(False)
+        self.idea_status = QLabel("Analyze the song first."); self.idea_status.setObjectName("muted")
+        self.btn_idea.clicked.connect(self.read_idea)
+        ir.addWidget(self.btn_idea); ir.addWidget(self.idea_status, 1); lI.addLayout(ir)
+        self.idea_view = QLabel(""); self.idea_view.setWordWrap(True); self.idea_view.setTextFormat(Qt.RichText)
+        self.idea_view.hide(); lI.addWidget(self.idea_view)
+        cr = QHBoxLayout()
+        cr.addWidget(QLabel("Take"))
+        self.seed = QSpinBox(); self.seed.setRange(0, 99); self.seed.setToolTip("Same rules, a different take. Same number = same music.")
+        cr.addWidget(self.seed)
+        self.cb_straight = QCheckBox("Straight 16ths (ignore the song's swing)")
+        self.cb_bed = QCheckBox("Soft D+A bed at the end of the intro"); self.cb_bed.setChecked(True)
+        cr.addWidget(self.cb_straight); cr.addWidget(self.cb_bed); cr.addStretch(); lI.addLayout(cr)
+        cb = QHBoxLayout()
+        self.btn_compose = QPushButton("Write new Keys && Synth"); self.btn_compose.setObjectName("primary")
+        self.btn_take = QPushButton("Another take"); self.btn_rules = QPushButton("Show the rules it follows")
+        for b in (self.btn_compose, self.btn_take):
+            b.setEnabled(False)
+        self.btn_compose.clicked.connect(lambda: self.compose_parts())
+        self.btn_take.clicked.connect(self.another_take); self.btn_rules.clicked.connect(self.show_rules)
+        cb.addWidget(self.btn_compose); cb.addWidget(self.btn_take); cb.addWidget(self.btn_rules); cb.addStretch(); lI.addLayout(cb)
+        self.compose_view = QLabel(""); self.compose_view.setWordWrap(True); self.compose_view.setTextFormat(Qt.RichText)
+        self.compose_view.hide(); lI.addWidget(self.compose_view)
+
+        # 4 send
+        c3, l3 = card("Send to Ableton", "4"); col.addWidget(c3)
+        sr0 = QHBoxLayout(); sr0.addWidget(QLabel("Build from"))
+        self.rb_src_tr = QRadioButton("Transcription  ·  as analyzed"); self.rb_src_gen = QRadioButton("Composed  ·  new Keys & Synth")
+        self.rb_src_tr.setChecked(True); self.rb_src_gen.setEnabled(False)
+        gs = QButtonGroup(self); gs.addButton(self.rb_src_tr); gs.addButton(self.rb_src_gen)
+        sr0.addWidget(self.rb_src_tr); sr0.addWidget(self.rb_src_gen); sr0.addStretch(); l3.addLayout(sr0)
+        self.rb_src_tr.toggled.connect(lambda _=None: self.update_buttons())
         mr = QHBoxLayout(); mr.addWidget(QLabel("Layout"))
         self.rb_sess = QRadioButton("Session  ·  one scene per section"); self.rb_arr = QRadioButton("Arrangement  ·  clips on the timeline")
         self.rb_sess.setChecked(True); g = QButtonGroup(self); g.addButton(self.rb_sess); g.addButton(self.rb_arr)
@@ -243,8 +282,20 @@ class Window(QMainWindow):
         v = not self.logbox.isVisible(); self.logbox.setVisible(v); self.log_toggle.setText("Hide details" if v else "Show details")
 
     def run(self, fn, done, failed=None):
-        self.worker = Worker(fn); self.worker.log.connect(self.log); self.worker.done.connect(done)
-        self.worker.failed.connect(failed or self.show_error); self.worker.start()
+        """One background job at a time: every button that starts a job is disabled while one runs."""
+        self.busy = True; self.update_buttons()
+
+        def _done(r):
+            self.busy = False
+            done(r)
+            self.update_buttons()
+
+        def _failed(m):
+            self.busy = False
+            (failed or self.show_error)(m)
+            self.update_buttons()
+        self.worker = Worker(fn); self.worker.log.connect(self.log); self.worker.done.connect(_done)
+        self.worker.failed.connect(_failed); self.worker.start()
 
     def show_error(self, msg):
         self.progress.hide(); self.outcome.setText("<span style='color:%s'>%s</span>" % (theme.BAD, msg))
@@ -369,6 +420,7 @@ class Window(QMainWindow):
 
     def analyzed(self, res):
         self.bp, rep = res; self.report = rep["stems"]; self.progress.hide(); self.btn_an.setEnabled(True)
+        self.reset_compose()
         g = self.bp["global"]; key = g["key"]
         k = "%s %s" % (key["tonic"], key["mode"]) if key else "no key"
         self.facts.setText("%.1f BPM  ·  %s  ·  %d bars  ·  %d sections" % (g["tempo"], k, g["n_bars"], len(self.bp["sections"])))
@@ -404,13 +456,66 @@ class Window(QMainWindow):
             self.warn_label.hide()
         self.update_buttons()
 
-    # ---- step 3
+    # ---- step 3: idea and compose
+    def reset_compose(self):
+        self.idea = None; self.gen_bp = None; self.gen_report = None
+        self.idea_view.hide(); self.compose_view.hide()
+        self.rb_src_tr.setChecked(True); self.rb_src_gen.setEnabled(False)
+        self.idea_status.setText("Ready: press the button to read the song's idea." if self.bp is not None else "Analyze the song first.")
+
+    def read_idea(self):
+        if self.bp is None or self.folder is None:
+            return
+        self.progress.show(); self.idea_status.setText("Reading the idea… about a minute.")
+        self.run(lambda log: actions.read_idea(self.bp, self.folder, log), self.idea_done)
+
+    def idea_done(self, idea):
+        self.idea = idea; self.progress.hide()
+        self.idea_status.setText("Idea read and saved next to the stems (edit the .idea.json if a reading is wrong).")
+        self.idea_view.setText("<br>".join("• " + x for x in actions.idea_summary(idea))); self.idea_view.show()
+
+    def compose_parts(self, take=None):
+        if self.idea is None or self.bp is None:
+            return
+        if take is not None:
+            self.seed.setValue(take)
+        seed, straight, bed = self.seed.value(), self.cb_straight.isChecked(), self.cb_bed.isChecked()
+        self.progress.show(); self.compose_view.setText("Writing…"); self.compose_view.show()
+        self.run(lambda log: actions.compose_parts(self.bp, self.idea, seed, straight, bed, self.folder, log),
+                 lambda res: self.composed(res, seed))
+
+    def composed(self, res, seed):
+        self.gen_bp, self.gen_report, path = res; self.progress.hide()
+        from .. import compose
+        lines = compose.plain_report(self.gen_report)
+        self.compose_view.setText("<b>Take %d written.</b> Checked against the rules (not by ear):<br>%s<br>"
+                                  "<span style='color:%s'>Saved: %s. Now choose <b>Composed</b> in step 4 and listen.</span>"
+                                  % (seed, "<br>".join("• " + x for x in lines), theme.MUTED, Path(path).name))
+        self.rb_src_gen.setEnabled(True); self.rb_src_gen.setChecked(True)
+
+    def another_take(self):
+        self.seed.setValue((self.seed.value() + 1) % 100)
+        self.compose_parts()
+
+    def show_rules(self):
+        from .. import compose
+        self.logbox.show(); self.log_toggle.setText("Hide details")
+        self.log("What the composer follows:")
+        for r in compose.RULES:
+            self.log("  - " + r)
+
+    # ---- step 4
     def update_buttons(self):
-        ready = self.bp is not None and self.report is not None
+        idle = not self.busy
+        use_gen = self.rb_src_gen.isChecked() and self.gen_bp is not None
+        ready = idle and (use_gen or (self.bp is not None and self.report is not None))
         self.btn_prev.setEnabled(ready); self.btn_mid.setEnabled(ready)
         arr_ok = self.live.get("connected") and self.live.get("arrangement")
         self.rb_arr.setToolTip("" if arr_ok else "Needs Stemforge's script installed and selected in Live (see the status pill).")
         self.btn_live.setEnabled(bool(ready and self.live.get("connected")))
+        self.btn_idea.setEnabled(idle and self.bp is not None)
+        can_write = idle and self.idea is not None
+        self.btn_compose.setEnabled(can_write); self.btn_take.setEnabled(can_write and self.gen_bp is not None)
 
     def forced_stems(self) -> set[str]:
         out = set()
@@ -422,31 +527,34 @@ class Window(QMainWindow):
         return out
 
     def build(self, target):
-        if not self.bp:
+        use_gen = self.rb_src_gen.isChecked() and self.gen_bp is not None
+        bp = self.gen_bp if use_gen else self.bp
+        if not bp:
             return
+        report = None if use_gen else self.report
         mode = "arrangement" if self.rb_arr.isChecked() else "session"
-        include = self.forced_stems()
-        out_dir = str(Path(self.folder) / "stemforge_midi")
-        for b in (self.btn_live, self.btn_prev, self.btn_mid):
-            b.setEnabled(False)
+        include = set() if use_gen else self.forced_stems()
+        out_dir = str(Path(self.folder) / ("stemforge_generated" if use_gen else "stemforge_midi"))
         self.progress.show(); self.outcome.setText("Working…")
-        self.run(lambda log: actions.run_build(self.bp, self.report, mode=mode, target=target, out_dir=out_dir,
+        self.run(lambda log: actions.run_build(bp, report, mode=mode, target=target, out_dir=out_dir,
                                                set_tempo=self.cb_tempo.isChecked(), include=include, port=DEFAULT_PORT, log=log),
-                 lambda s: self.built(s, target, out_dir))
+                 lambda s: self.built(s, target, out_dir, use_gen))
 
-    def built(self, s, target, out_dir):
+    def built(self, s, target, out_dir, composed=False):
         self.progress.hide(); self.update_buttons()
+        what = "composed version (new Keys & Synth)" if composed else "transcription"
         left = "".join("<br>Left out: %s (%s)" % (n, r) for n, r in s["excluded"].items())
         if target == "preview":
-            head = "Preview: would create %d tracks and %d clips (%d notes). Nothing was changed. See details." % (s["tracks"], s["clips"], s["notes"])
+            head = ("Preview of the %s: would create %d tracks and %d clips (%d notes). Nothing was changed. See details."
+                    % (what, s["tracks"], s["clips"], s["notes"]))
             self.logbox.show(); self.log_toggle.setText("Hide details")
         elif target == "midi":
-            head = "Saved MIDI files to %s" % out_dir
+            head = "Saved MIDI files of the %s to %s" % (what, out_dir)
         else:
             ok, total = s["readback"]
             color = theme.OK if ok == total else theme.BAD
-            head = ("<span style='color:%s'>Built in Ableton: %d tracks, %d clips. Checked by reading the notes back from Live: "
-                    "%d of %d clips match.</span>" % (color, s["tracks"], s["clips"], ok, total))
+            head = ("<span style='color:%s'>Built the %s in Ableton: %d tracks, %d clips. Checked by reading the notes back "
+                    "from Live: %d of %d clips match.</span>" % (color, what, s["tracks"], s["clips"], ok, total))
         self.outcome.setText(head + left)
 
 
@@ -489,6 +597,12 @@ def selftest() -> int:
         checks["note transcriber (Basic Pitch) runs"] = "ok (%d notes)" % len(events)
     except Exception as e:
         checks["heavy parts run"] = "FAIL: %s: %s" % (type(e).__name__, e)
+    try:
+        from .. import compose as compose_mod, idea as idea_mod
+        checks["idea + compose modules"] = "ok (%d rules)" % len(compose_mod.RULES)
+        checks["tempo-synced notes"] = "ok" if any("357 ms" in n for n in idea_mod.production_notes(126.0)) else "FAIL: wrong delay time"
+    except Exception as e:
+        checks["idea + compose modules"] = "FAIL: %s: %s" % (type(e).__name__, e)
     print(json.dumps(checks, indent=1))
     return 0 if not any(v.startswith("FAIL") for v in checks.values()) else 1
 

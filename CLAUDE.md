@@ -34,6 +34,13 @@ Live.** Stemforge talks to its OWN Ableton script (`ableton/Stemforge/`, port 98
 - Commands time out after 10 s: chunk big note batches.
 - Two stems map to role `drums` (Drums, Percussion): keep them as separate tracks, never merge their notes.
 
+## Compose rules (stemforge/compose.py, `RULES`)
+Sources: owner's NotebookLM base (`ABLETON-AI/knowledge/HYPNOTIC_TECHNO_NOTEBOOKLM_KNOWLEDGE_BASE.md`, `knowledge/research/
+arrangement_conventions.md`, `knowledge/arrangement/arrangement_rules.json`) plus web research on techno structure, dub chords,
+polymeter and swing. Rules are about structure and dynamics and are checked by `compose.report`; taste is judged by ears.
+Do not add notes that the audio does not support; the key is read from audio chroma (overtone-aware), not from the analyzer's
+major/minor guess (Low Pressure: D drone, open fifth, Eb colour, ~60% swing, NOT G minor).
+
 ## Desktop app
 `stemforge/app/` is a native PySide6 window (Stems -> Analyze -> Send to Ableton). Selection of stems, build and read-back
 live in `stemforge/workflow.py`, shared by the CLI and the app. The app never contacts Live until the user clicks

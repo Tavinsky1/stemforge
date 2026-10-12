@@ -127,3 +127,68 @@ def test_plain_errors_are_plain():
     assert "No audio files" in actions.plain_error(RuntimeError("no audio files found in /x"))
     msg = actions.plain_error(KeyError("zzz"))
     assert "Show details" in msg and "Traceback" not in msg
+
+
+def test_idea_and_compose_flow_in_the_window(qapp, song):
+    from stemforge.app.window import Window
+    folder, _ = song
+    w = Window()
+    w.show()
+    w.load_folder(str(folder))
+    assert not w.btn_idea.isEnabled() and not w.btn_compose.isEnabled() and not w.rb_src_gen.isEnabled()
+    w.analyze()
+    pump(qapp, lambda: w.bp is not None and not w.busy)
+    assert w.btn_idea.isEnabled() and not w.btn_compose.isEnabled()       # idea first
+    w.read_idea()
+    assert not w.btn_idea.isEnabled() and not w.btn_prev.isEnabled()        # one job at a time
+    pump(qapp, lambda: w.idea is not None and not w.busy)
+    assert (folder / (folder.name + ".idea.json")).exists() or list(folder.glob("*.idea.json"))
+    assert "drone" in w.idea_view.text() or "Key" in w.idea_view.text()
+    assert w.btn_compose.isEnabled() and not w.btn_take.isEnabled()
+    w.compose_parts()
+    pump(qapp, lambda: w.gen_bp is not None and not w.busy)
+    assert w.rb_src_gen.isChecked() and w.btn_take.isEnabled()
+    assert any(c["stem"] == "G Keys" for c in w.gen_bp["clips"]) or any(c["stem"] == "G Synth" for c in w.gen_bp["clips"])
+    assert "outside the song's palette" in w.compose_view.text()
+    first_seed_clips = [c["notes"] for c in w.gen_bp["clips"] if c["stem"].startswith("G ")]
+    # preview and MIDI export build the COMPOSED version
+    w.build("preview")
+    pump(qapp, lambda: "Preview of the composed version" in w.outcome.text())
+    w.build("midi")
+    pump(qapp, lambda: "Saved MIDI files of the composed version" in w.outcome.text())
+    assert list((folder / "stemforge_generated").glob("*.mid"))
+    # another take changes the music, the same take does not
+    w.another_take()
+    pump(qapp, lambda: not w.busy and w.seed.value() == 1 and "Take 1" in w.compose_view.text())
+    assert [c["notes"] for c in w.gen_bp["clips"] if c["stem"].startswith("G ")] != first_seed_clips
+    # switching back builds the plain transcription
+    w.rb_src_tr.setChecked(True)
+    w.build("preview")
+    pump(qapp, lambda: "Preview of the transcription" in w.outcome.text())
+    # a new analysis clears what was composed from the old one
+    w.reset_compose()
+    assert w.gen_bp is None and not w.rb_src_gen.isEnabled()
+    w.timer.stop()
+
+
+def test_compose_buttons_stay_disabled_while_a_job_runs(qapp):
+    from stemforge.app.window import Window
+    w = Window()
+    w.bp, w.report, w.idea, w.gen_bp = {"x": 1}, {}, {"y": 1}, {"z": 1}
+    w.busy = False
+    w.update_buttons()
+    assert w.btn_idea.isEnabled() and w.btn_compose.isEnabled() and w.btn_take.isEnabled()
+    w.busy = True
+    w.update_buttons()
+    assert not (w.btn_idea.isEnabled() or w.btn_compose.isEnabled() or w.btn_take.isEnabled() or w.btn_prev.isEnabled())
+    w.timer.stop()
+
+
+def test_rules_are_shown_in_the_window(qapp):
+    from stemforge import compose
+    from stemforge.app.window import Window
+    w = Window()
+    w.show_rules()
+    text = w.logbox.toPlainText()
+    assert all(r in text for r in compose.RULES[:3])
+    w.timer.stop()

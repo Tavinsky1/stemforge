@@ -189,6 +189,27 @@ def extract(bp: dict, log=print) -> dict:
             "roles": roles, "bass_stem": bass}
 
 
+def _short(name: str) -> str:
+    """'3 Keyboard' -> 'Keyboard'; plain names ('bass') stay as they are."""
+    head, _, rest = name.partition(" ")
+    return rest if head.isdigit() and rest else name
+
+
+def production_notes(tempo: float, tonic: str = "D") -> list[str]:
+    """Tempo-synced numbers from the owner's NotebookLM base (knowledge/HYPNOTIC_TECHNO_NOTEBOOKLM_KNOWLEDGE_BASE.md).
+    They are for the mix and the sound design; Stemforge writes MIDI only."""
+    sixteenth = 15000.0 / tempo
+    return [
+        "Delay on keys/stabs: dotted 1/8 = %.0f ms (20%% feedback, 3-4 repeats); 1/16 = %.0f ms." % (sixteenth * 3, sixteenth),
+        "Kick sidechain on the rumble/pads: attack 1 ms, release 27-55 ms, or one 1/16 = %.0f ms; 8-12 dB of reduction." % sixteenth,
+        "Everything below ~120 Hz mono; keep the sub (the bass sits on %s0, about 37 Hz) and the kick out of each other's way:"
+        " notch the kick's fundamental in the sub, or tune the kick to F/F# (44-48 Hz) as your base suggests." % tonic,
+        "Kick and sub stay 100% on the grid; tops carry the swing (measured below). Offbeat hats 5-15 ms laid back is a good start.",
+        "Peak = denser, not louder: more layers, a slightly faster hat, a longer reverb tail. Test the loop with the "
+        "'walk out of the room' rule: if it still holds through the wall, the groove is right.",
+    ]
+
+
 def to_markdown(idea: dict) -> str:
     k, gr = idea["key"], idea["groove"]
     L = ["# Song idea: %s" % idea["song"], "",
@@ -208,5 +229,7 @@ def to_markdown(idea: dict) -> str:
         uniq = sorted(set(roots), key=roots.index)
         L.append("| %d | %s | %s | %d | %.1f | %s | %s |" % (
             s["index"] + 1, s["label"].upper(), s["role"], s["length_bars"], s["energy_db"],
-            ", ".join(n.split(" ", 1)[1] for n in s["active_stems"]), " ".join(uniq) or "-"))
+            ", ".join(_short(n) for n in s["active_stems"]), " ".join(uniq) or "-"))
+    L += ["", "## Sound and mix notes (from your NotebookLM base, tempo-synced)", ""]
+    L += ["- " + x for x in production_notes(idea["tempo"], idea["key"]["tonic"])]
     return "\n".join(L) + "\n"
