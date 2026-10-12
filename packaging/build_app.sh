@@ -5,6 +5,7 @@
 set -e
 cd "$(dirname "$0")/.."
 pyinstaller --noconfirm --clean --windowed --name Stemforge \
+  --icon "$(pwd)/packaging/Stemforge.icns" --osx-bundle-identifier com.tavinsky.stemforge \
   --distpath "${DIST:-dist}" --workpath "${WORK:-build}" --specpath packaging \
   --paths . \
   --add-data "$(pwd)/ableton:ableton" \
